@@ -118,7 +118,7 @@ img.card-avatar { width: 140px; position: relative; transition: all .2s ease-in-
 .pagina{width:660px; display: inline-table}
 .paginaTitulo{font-weight: 600}
 
-.b-right{float:right; position:absolute; right:0}
+.b-left{float:left; position:absolute; left:0}
 .zoom {position: absolute; z-index: 99;	transform: translate(9%, -31.2%);}
 .divTop{height: 31px; display: flex; flex-direction: column; justify-content: flex-end;}
 .divMid{height: 31px; display: flex; flex-direction: column; justify-content: space-between;}
@@ -202,11 +202,11 @@ img.card-avatar { width: 140px; position: relative; transition: all .2s ease-in-
 			<a href="#formaspaldea">Formas de Paldea</a>
 		</div>
 
-		<div class="b-right">
-			<input type="text" value="" id="iLocalStorage" disabled>
-			<button id="bImportar" onclick="clickImportar()" type="button" style="padding:5px">Importar</button>
-			<button id="bExportar" onclick="clickExportar()" type="button" style="padding:5px">Exportar</button>
+		<div class="b-left">
 			<button id="bContador" onclick="clickContador()" type="button" style="padding:5px">Contador</button>
+			<button id="bExportar" onclick="clickExportar()" type="button" style="padding:5px">Exportar</button>
+			<button id="bImportar" onclick="clickImportar()" type="button" style="padding:5px">Importar</button>
+			<input type="text" value="" id="iLocalStorage" disabled>
 		</div>
 
 		<!-- style="background: blue; 
@@ -249,10 +249,10 @@ function carregarPokedex(){
 	gContadorPagina = 0;
 	var corpo = document.getElementById('divCorpo');
 	
-	corpo.innerHTML = '<div class="list-container" id="kanto" ><div class="title-wrap related-title" id="I" style="margin-top: 10px;" ><h2 class="title kanto" style="font-size: 20px; font-weight: 800;">1ª Geração: Kanto</h2></div><center id="cenKanto"><div class="pagina"></div></center></div>';
+	corpo.innerHTML = '<div class="list-container" id="kanto" ><div class="title-wrap related-title" id="I" style="margin-top: 10px;" ><h2/><h2 class="title kanto" style="font-size: 20px; font-weight: 800;">1ª Geração: Kanto</h2></div><center id="cenKanto"><div class="pagina"></div></center></div>';
 	carregarPokemon('Kanto', 0, 152);
 	
-/*	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="johto"><div class="title-wrap related-title" id="II" style="margin-top: 30px;"><h2/><h2 class="title johto" style="font-size: 20px; font-weight: 800;">2ª Geração: Johto</h2></div><center id="cenJohto"></center></div>';
+	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="johto"><div class="title-wrap related-title" id="II" style="margin-top: 30px;"><h2/><h2 class="title johto" style="font-size: 20px; font-weight: 800;">2ª Geração: Johto</h2></div><center id="cenJohto"></center></div>';
 	carregarPokemon('Johto', 153, 260);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="hoenn"><div class="title-wrap related-title" id="III" style="margin-top: 30px;"><h2/><h2 class="title hoenn" style="font-size: 20px; font-weight: 800;">3ª Geração: Hoenn</h2></div><center id="cenHoenn"></center></div>';
@@ -292,7 +292,9 @@ function carregarPokedex(){
 	carregarPokemon('FormasPaldea', 1251, 1259);
 	
 	var cenFormasPaldea = document.getElementById('cenFormasPaldea');
-	cenFormasPaldea.innerHTML = cenFormasPaldea.innerHTML + '<div class="pagina"></div>';*/
+	cenFormasPaldea.innerHTML = cenFormasPaldea.innerHTML + '<div class="pagina"></div>';
+	
+	ajustarTamFonte();
 }
 
 function carregarPokemon(pRegiao, pInicial, pFinal){
@@ -329,6 +331,35 @@ function carregarPokemon(pRegiao, pInicial, pFinal){
 function gerarPokemon(pElement, pSeq, pValores){
 	//"xSequencial" : "0xNome|1xCodigo|2xAdicionado|3xNumeracao|4xRaridade|5xExtra|6xVariacoes"
 	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn('+pSeq+')" onmouseout="zoomOut('+pSeq+')"><img id="zoo'+pSeq+'" class="zoom"></div><div class="divMid" id="mid'+pSeq+'"><div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div>'+pValores[0]+'</div><div class="divBot"><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[3]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur()"><option value="vazio"></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur()"><option value="vazio"></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>';	
+}
+
+function ajustarTamFonte(){
+	var i = 0;
+	
+	let aTamFonte11 = [1037, 1200, 1201];
+	for (i = 0; i < aTamFonte11.length; i++){
+		document.getElementById('mid'+aTamFonte11[i]).style.fontSize = "11px";
+		document.getElementById('top'+aTamFonte11[i]).style.fontSize = "11px";}
+	
+	let aTamFonte12 = [1035, 1139, 1140, 1219];
+	for (i = 0; i < aTamFonte12.length; i++){
+		document.getElementById('mid'+aTamFonte12[i]).style.fontSize = "12px";
+		document.getElementById('top'+aTamFonte12[i]).style.fontSize = "12px";}
+		
+	let aTamFonte13 = [714, 716, 720, 1088, 1137, 1138, 1251, 1252];
+	for (i = 0; i < aTamFonte13.length; i++){
+		document.getElementById('mid'+aTamFonte13[i]).style.fontSize = "13px";
+		document.getElementById('top'+aTamFonte13[i]).style.fontSize = "13px";}
+		
+	let aTamFonte14 = [375, 454, 1038, 1130, 1239, 1253];
+	for (i = 0; i < aTamFonte14.length; i++){
+		document.getElementById('mid'+aTamFonte14[i]).style.fontSize = "14px";
+		document.getElementById('top'+aTamFonte14[i]).style.fontSize = "14px";}
+		
+	let aTamFonte15 = [453, 455, 527, 610, 717, 910, 1050, 1238, 1240, 1248];
+	for (i = 0; i < aTamFonte15.length; i++){
+		document.getElementById('mid'+aTamFonte15[i]).style.fontSize = "15px";
+		document.getElementById('top'+aTamFonte15[i]).style.fontSize = "15px";}
 }
 
 function carregarCarta(pSeq, pValores) {
@@ -430,6 +461,36 @@ function carregarImagem(pSeq, pCodigo, pCarregar) {
 		break;
 	case '0351_forma_chuvosa':
 		document.getElementById('img0351_forma_chuvosa').src = 'https://drive.google.com/thumbnail?id=10WCpN6IQZ4KLY4CDHp3BRPfVFdsVZs8J';
+		break;
+	case '0351_forma_nevada':
+		document.getElementById('img0351_forma_nevada').src = 'https://drive.google.com/thumbnail?id=14up8wtAQcNrhChmiDSXAkfV3S0THK50l';
+		break;
+	case '0555_modo_zen':
+		document.getElementById('img0555_modo_zen').src = 'https://drive.google.com/thumbnail?id=1DqFJXdUOaBZcG3TyzXYph-QOFqaqzy70';
+		break;
+	case '0875_face_sem_gelo':
+		document.getElementById('img0875_face_sem_gelo').src = 'https://drive.google.com/thumbnail?id=1WC3K24w52w1Zjqxf-jZ1x6lVJzWDLA5X';
+		break; 
+	case '0555_darmanitan_galar_modo_zen':
+		document.getElementById('img0555_darmanitan_galar_modo_zen').src = 'https://drive.google.com/thumbnail?id=1horu8Zv6eME83xtsw6vawnImVQeoi8Tf';
+		break;
+	case '0138_fossil_espiral':
+		document.getElementById('img0138_fossil_espiral').src = 'https://drive.google.com/thumbnail?id=161U2dPC3MADYLmqWxzOJ80ZjlvBpLI6T';
+		break;
+	case '0140_fossil_cupula':
+		document.getElementById('img0140_fossil_cupula').src = 'https://drive.google.com/thumbnail?id=1G8UokVIBXt93va5A72iJ18RQRrnDyu9V';
+		break;
+	case '0142_ambar_velho':
+		document.getElementById('img0142_ambar_velho').src = 'https://drive.google.com/thumbnail?id=1nOX8PmHpmNPvEspXG6tHeLskDZOzHnN5';
+		break;
+	case '0479_pokedex_rotom':
+		document.getElementById('img0479_pokedex_rotom').src = 'https://drive.google.com/thumbnail?id=1CwkorMCoMszfalVyZvEDXAfHGVJfarxY';
+		break;
+	case '0479_drone_rotom':
+		document.getElementById('img0479_drone_rotom').src = 'https://drive.google.com/thumbnail?id=1ZTHa4zUsEesoMvKIBPX4aru8_9ufP-rL';
+		break;
+	case '0479_bicicleta_rotom':
+		document.getElementById('img0479_bicicleta_rotom').src = 'https://drive.google.com/thumbnail?id=1xyRMx03LiQwsstDGJot1RbVyPhobUz9Q';
 		break;
 
 	default:
