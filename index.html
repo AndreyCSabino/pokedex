@@ -28,6 +28,7 @@
 --body-font:'Montserrat', Arial, sans-serif;
 --title-font:'Montserrat', Arial, sans-serif;
 --text-font:'Nunito Sans', Arial, sans-serif;
+--title-color:#373E59;
 --body-bg-color:#f5f6f7;
 --main-color:#E30C55;
 --text-color:#000000;
@@ -66,7 +67,7 @@ a,input,button{transition:all .0s ease}
 //.row-x1{width:1175px;max-width:100%}
 .flex-c{display:flex;justify-content:center}
 .flex-col{display:flex;flex-direction:column}
-#content-wrapper{float:left;width:100%;overflow:hidden;padding:50px 0}
+#content-wrapper{float:left;width:100%;overflow:hidden;padding:50px 0; min-height: 900px;}
 .title-wrap{display:flex;justify-content:space-between;height:30px;margin:0 0 20px;border-bottom:2px solid var(--border-color)}
 .title-wrap > .title{position:relative;height:30px;font-size:15px;color:var(--widget-title-color);font-weight:700;text-transform:uppercase;line-height:1;margin:0}
 .title-wrap > .title:after{position:absolute;content:'';left:0;bottom:0;width:130px;height:3px;background-image:linear-gradient(90deg, #E30C55 10%, #8C82E2 80%);margin:0}
@@ -103,7 +104,7 @@ div.inner-menu{ text-align: center;text-transform: uppercase;font-size:15px;}
 .inner-menu.ii {margin-bottom:40px;display: flex;line-height: 19px;justify-content: center;flex-wrap: wrap;}
 .is-page .post-body div.inner-menu a {white-space: nowrap;color: var(--text-color) !important;  padding: 5px 15px;  border-radius: 60px;  font-family: 'Montserrat';  font-weight: 600;  text-decoration: none;  margin: 3px 10px;}
 .is-page .post-body div.inner-menu a:hover {background-color: var(--main-color); color: white !important;font-weight: 700; text-decoration: none;}
-div.card { position:relative;	width: 195px;	height:250px; box-shadow: 0px 0px 25px -5px rgba(183, 189, 193, 0.4); border-radius: 12px; text-align: center; margin: 0px 10px 10px 0px; display: inline-block; vertical-align: middle; }
+div.card { position:relative;	width: 195px;	height:250px; box-shadow: 0px 0px 25px -5px rgba(183, 189, 193, 0.4); border-radius: 12px; text-align: center; margin: 0px 5px 10px 5px; display: inline-block; vertical-align: middle; }
 div.card:hover {box-shadow: 0px 0px 41px -10px rgba(183, 189, 193, 0.9); bottom: 2px;}
 html.is-dark div.card {box-shadow: 0px 0px 25px -5px rgba(0, 0, 0, 0.6);}
 html.is-dark div.card:hover {box-shadow: 0px 0px 41px -10px rgba(0, 0, 0, 0.9);}
@@ -112,21 +113,24 @@ div.card-inner:before {  content: "";  width: 110px;  height: 110px;  position: 
 
 .num {border: 0px solid orange; font-weight:500; font-size:11px; line-height: 15px; color: var(--meta-color); white-space:nowrap;}
 img.card-avatar { width: 140px; position: relative; transition: all .2s ease-in-out; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out;}
-.fichario{width:660px; display: inline-table}
-.folha{font-weight: 600}
+.pagina{width:660px; display: inline-table;}
+.paginaTitulo{font-weight: 600;}
 
-.pagina{width:660px; display: inline-table}
-.paginaTitulo{font-weight: 600}
-
-.b-left{float:left; position:absolute; left:0}
-.zoom {position: absolute; z-index: 99;	transform: translate(9%, -31.2%);}
+.b-left{float:left; position:absolute; left:0;}
+.zoom {position: absolute; z-index: 98;	transform: translate(9%, -31.2%);}
 .divTop{height: 31px; display: flex; flex-direction: column; justify-content: flex-end;}
 .divMid{height: 31px; display: flex; flex-direction: column; justify-content: space-between;}
 .divBot{position: absolute; bottom: 0px; left: 0px;	right: 0px; align-items: center;}
 .labelA{border: 0px solid gold; height: 15px; width: 0px; white-space: nowrap; line-height: 0.5; letter-spacing: -2px; padding-top: 2px; padding-left: 2px; float: left;}
 .inputA{border: 0px solid blue; min-width: 30px; field-sizing: content; font-size: 11px; float: left;}
-.selectA{border: 0px solid red; height: 15px; field-sizing: content; min-width: 30px; font-size: 11px; letter-spacing: -.3px; text-align: right; float: right;}
-.selectB{border: 0px solid red; height: 15px; min-width: 30px; font-size: 11px; letter-spacing: -.3px; text-align: right; float: right; padding-right: 7px;}
+.selectA{border: 0px solid red; height: 15px; min-width: 60px; font-size: 11px; letter-spacing: -.3px; text-align: right; float: right; field-sizing: content; }
+.selectB{border: 0px solid red; height: 15px; min-width: 30px; font-size: 11px; letter-spacing: -.3px; text-align: right; float: right; display: none; }
+.buttonA{border: 0px solid red; height: 15px; line-height: 0.3; font-family:'Montserrat'; font-size: 19px; font-weight: 500; position: absolute; left:0; top:-21px;}
+.fecharVar{position: absolute; top: 5px; right: 10px; padding: 5px;}
+
+.divVar{border: 0px solid rgba(183, 189, 193, 0.9); box-shadow: 0px 0px 41px -10px rgba(183, 189, 193, 0.9); border-radius: 10px; background-color: #ffffff; padding: 10px; width: 100%; position: absolute; top: 450px; z-index: 99; display: none;}
+.varSel{position: relative; right: 15px;}
+.varInp{position: relative; left: 15px;}
    
 .title.kanto:after {background-image: linear-gradient(90deg, #ED0303 10%, #3381F4 80%);width:100%;}
 .title.johto:after {background-image: linear-gradient(90deg, #F3BD2D 10%, #9BA8AF 80%);width:100%;}
@@ -160,6 +164,7 @@ img.card-avatar { width: 140px; position: relative; transition: all .2s ease-in-
 	<div class="blog-posts item-post-wrap flex-col">
 	<div class="item-post-inner flex-col">
 	<div class="post-body entry-content" id="post-body">
+		<div class="divVar" id="divVariacao" style="text-align: center;">      </div>
 		
 <!--
 			<div class="card" >          
@@ -250,9 +255,9 @@ function carregarPokedex(){
 	var corpo = document.getElementById('divCorpo');
 	
 	corpo.innerHTML = '<div class="list-container" id="kanto" ><div class="title-wrap related-title" id="I" style="margin-top: 10px;" ><h2/><h2 class="title kanto" style="font-size: 20px; font-weight: 800;">1ª Geração: Kanto</h2></div><center id="cenKanto"><div class="pagina"></div></center></div>';
-	carregarPokemon('Kanto', 0, 152);
+	carregarPokemon('Kanto', 1, 152);
 	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="johto"><div class="title-wrap related-title" id="II" style="margin-top: 30px;"><h2/><h2 class="title johto" style="font-size: 20px; font-weight: 800;">2ª Geração: Johto</h2></div><center id="cenJohto"></center></div>';
+	/*corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="johto"><div class="title-wrap related-title" id="II" style="margin-top: 30px;"><h2/><h2 class="title johto" style="font-size: 20px; font-weight: 800;">2ª Geração: Johto</h2></div><center id="cenJohto"></center></div>';
 	carregarPokemon('Johto', 153, 260);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="hoenn"><div class="title-wrap related-title" id="III" style="margin-top: 30px;"><h2/><h2 class="title hoenn" style="font-size: 20px; font-weight: 800;">3ª Geração: Hoenn</h2></div><center id="cenHoenn"></center></div>';
@@ -292,7 +297,7 @@ function carregarPokedex(){
 	carregarPokemon('FormasPaldea', 1251, 1259);
 	
 	var cenFormasPaldea = document.getElementById('cenFormasPaldea');
-	cenFormasPaldea.innerHTML = cenFormasPaldea.innerHTML + '<div class="pagina"></div>';
+	cenFormasPaldea.innerHTML = cenFormasPaldea.innerHTML + '<div class="pagina"></div>';*/
 	
 	ajustarTamFonte();
 }
@@ -318,8 +323,8 @@ function carregarPokemon(pRegiao, pInicial, pFinal){
 		if ((vContador+1) % 9 === 0){
 			element = document.getElementById('cen'+pRegiao);
 		}
-		
-		if (vValores[2] == 'A') {
+
+		if (vValores[5] == 'A') {
 			gCartasAdicionadas = gCartasAdicionadas + 1;
 			carregarCarta(i, vValores);
 			carregarVlrElementos(i, vValores);
@@ -329,8 +334,101 @@ function carregarPokemon(pRegiao, pInicial, pFinal){
 }
 
 function gerarPokemon(pElement, pSeq, pValores){
-	//"xSequencial" : "0xNome|1xCodigo|2xAdicionado|3xNumeracao|4xRaridade|5xExtra|6xVariacoes"
-	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn('+pSeq+')" onmouseout="zoomOut('+pSeq+')"><img id="zoo'+pSeq+'" class="zoom"></div><div class="divMid" id="mid'+pSeq+'"><div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div>'+pValores[0]+'</div><div class="divBot"><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[3]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur()"><option value="vazio"></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur()"><option value="vazio"></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>';	
+	//"xSequencial" : "0xNome|1xCodigo|2xNumeracao|3xRaridade|4xExtra|5xAdicionado|6xVariacoes" "0xRaridade;1xExtra;2Numeracao"
+	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn('+pSeq+')" onmouseout="zoomOut('+pSeq+')"><img id="zoo'+pSeq+'" class="zoom"></div><div class="divMid" id="mid'+pSeq+'"><div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div>'+pValores[0]+'</div><div class="divBot"><button type="button" id="but'+pSeq+'" class="buttonA" style="padding:5px; visibility: hidden;" onclick="clickVariacao(\''+pSeq+'\'); blur()">+</button><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[2]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur()"><option value="vazio"></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur()"><option value="vazio"></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div>   </div>';
+	
+	//pElement.innerHTML = pElement.innerHTML + '';
+}
+
+function fecharVariacao(){
+	document.getElementById('divVariacao').style.display = "none";
+}
+
+function clickVariacao(pSeq){
+	var vbutRect = document.getElementById("but"+pSeq).getBoundingClientRect().top;
+	var vbodyRect = document.body.getBoundingClientRect().top;
+	var vResult = vbutRect - vbodyRect - 25;
+	document.getElementById("divVariacao").style.top = vResult+'px';
+	
+	var variacao = document.getElementById('divVariacao');	
+	if (variacao.style.display != 'block'){
+		variacao.style.display = "block";}
+	
+	var vItem = localStorage.getItem(pSeq);
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[6].split(";");
+	var aVariacao = ''; 
+	var vCodVar = '';
+
+	variacao.innerHTML = '<h4 style="margin: 0 0 10px 0;">Variações</h4><button class="fecharVar" onclick="fecharVariacao(); blur();">❌</button>';
+	for (var i = 0; i < aVariacoes.length; i++){
+		aVariacao = aVariacoes[i].split("_");
+		vCodVar = pSeq+'var'+i;
+		
+		variacao.innerHTML = variacao.innerHTML + '<div class="card"><div class="card-inner"><div style="display: inline-block;"><img id="img'+vCodVar+'" class="card-avatar" style="width: 165px;" loading="lazy" src="'+cImagemVazia+'" onmousemove="zoomIn(\''+vCodVar+'\')" onmouseout="zoomOut(\''+vCodVar+'\')"><img id="zoo'+vCodVar+'" class="zoom"></div><div class="divBot"><input type="text" id="inp'+vCodVar+'" class="inputA varInp" value="'+aVariacao[2]+'" onchange="changeInpVar(\''+pSeq+'\', \''+i+'\', this.value)" onclick="select()"/><label id="lab'+vCodVar+'" class="labelA varInp"></label><select id="sel'+vCodVar+'" class="selectA varSel" onchange="changeSelVar(\''+pSeq+'\', \''+i+'\', this.value); blur()"><option value="vazio"></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+vCodVar+'" class="selectB varSel" onchange="changeExtVar(\''+pSeq+'\', \''+i+'\', this); blur()"><option value="vazio"></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>';
+		
+		carregarCarta(vCodVar, aVariacao);
+		carregarVlrElementosVar(vCodVar, aVariacao);
+	}
+}
+
+function changeInpVar(pSeq, pSeqVar, pValue) {
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[6].split(";");
+	var aVariacao = aVariacoes[pSeqVar].split("_");
+	
+	aVariacao[2] = pValue;
+	aVariacoes[pSeqVar] = aVariacao.join('_');	
+	aValores[6] = aVariacoes.join(';');
+	
+	localStorage.setItem(pSeq, aValores.join('|'));
+	carregarCarta(pSeq+'var'+pSeqVar, aVariacao);
+}
+
+function changeExtVar(pSeq, pSeqVar, pExtVar) {
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[6].split(";");
+	var aVariacao = aVariacoes[pSeqVar].split("_");
+	
+	aVariacao[1] = pExtVar.value;
+	aVariacoes[pSeqVar] = aVariacao.join('_');	
+	aValores[6] = aVariacoes.join(';');
+	
+	localStorage.setItem(pSeq, aValores.join('|'));
+	
+	if (pExtVar.value == 'vazio') {
+		document.getElementById('sel'+pSeq+'var'+pSeqVar).style.display = "inline-block";
+		pExtVar.style.display = "none";
+	}
+}
+
+function changeSelVar(pSeq, pSeqVar, pValue) {
+	carregarRaridade(pSeq+'var'+pSeqVar, pValue);
+	
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[6].split(";");
+	var aVariacao = aVariacoes[pSeqVar].split("_");
+	
+	aVariacao[0] = pValue;
+	aVariacoes[pSeqVar] = aVariacao.join('_');	
+	aValores[6] = aVariacoes.join(';');
+	
+	localStorage.setItem(pSeq, aValores.join('|'));
+}
+
+function carregarVlrElementosVar(pCodVar, pVariacao){
+	let vSelect = document.getElementById("sel"+pCodVar);
+	vSelect.value = pVariacao[0];
+	vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
+	
+	let vExtra = document.getElementById("ext"+pCodVar);
+	vExtra.value = pVariacao[1];
+	vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
+	
+	carregarRaridade(pCodVar, pVariacao[0]);
 }
 
 function ajustarTamFonte(){
@@ -363,15 +461,17 @@ function ajustarTamFonte(){
 }
 
 function carregarCarta(pSeq, pValores) {
-	if (pValores[3] == '') {
-		carregarImagem(pSeq, pValores[1], true); 
+	if (pValores[2] == '') {
+		carregarImagem(pSeq, pValores[1], true);
 		return;	}
 
-	document.getElementById("top"+pSeq).style.visibility = "visible";
-	document.getElementById("mid"+pSeq).style.display = "none";
+	if (document.getElementById("top"+pSeq) != null){
+		document.getElementById("top"+pSeq).style.visibility = "visible";
+		document.getElementById("mid"+pSeq).style.display = "none";
+		document.getElementById("but"+pSeq).style.visibility = "visible";
+	}
 	
-	let aValoresInput = pValores[3].split("/");	
-
+	let aValoresInput = pValores[2].split("/");
 	var vCodigoTratado = zeroEsquerda(aValoresInput[0], 3);	
 	var vEdicaoTratada = zeroEsquerda(aValoresInput[1], 3);
 
@@ -442,13 +542,14 @@ function carregarCarta(pSeq, pValores) {
 			break;
 
 		default:
-			carregarImagem(pSeq, pValores[1], true); 
+			carregarImagem(pSeq, pValores[1], true);
 	}
 }
 
 function carregarImagem(pSeq, pCodigo, pCarregar) {
 	document.getElementById("top"+pSeq).style.visibility = "hidden";
 	document.getElementById("mid"+pSeq).style.display = "flex";
+	document.getElementById("but"+pSeq).style.visibility = "hidden";
 
 	if ( !Boolean(pCarregar) ) {
 		document.getElementById('img'+pSeq).src = cImagemVazia;
@@ -506,7 +607,11 @@ function clickPokemon(pSeq) {
     var vItem = localStorage.getItem(pSeq); 
 	var vValores = vItem.split("|");
 	
-	if (vValores[2] == 'F'){
+	if (vValores[2] != '') {
+		return;
+	}
+	
+	if (vValores[5] == 'F'){
 		adicionarPokemon(pSeq, vValores);
 	} else {
 		removerPokemon(pSeq, vValores);
@@ -514,10 +619,10 @@ function clickPokemon(pSeq) {
 }
 
 function adicionarPokemon(pSeq, pValores){
-	if (pValores[2] == 'F'){
+	if (pValores[5] == 'F'){
 		gCartasAdicionadas = gCartasAdicionadas + 1;}
 		
-	pValores[2] = 'A';
+	pValores[5] = 'A';
 	carregarCarta(pSeq, pValores);
 	
 	localStorage.setItem(pSeq, pValores.join('|'));
@@ -525,10 +630,10 @@ function adicionarPokemon(pSeq, pValores){
 
 function removerPokemon(pSeq, pValores){
 	zoomOut(pSeq);
-	pValores[2] = 'F';
-	pValores[3] = '';
-	pValores[4] = 'vazio';
-	pValores[5] = 'vazio';	
+	pValores[5] = 'F';
+	pValores[2] = '';
+	pValores[3] = 'vazio';
+	pValores[4] = 'vazio';	
 	removerVlrElementos(pSeq);
 	carregarImagem(pSeq, pValores[1], false);
 	gCartasAdicionadas = gCartasAdicionadas - 1;
@@ -537,14 +642,14 @@ function removerPokemon(pSeq, pValores){
 
 function carregarVlrElementos(pSeq, pValores){
 	let vSelect = document.getElementById("sel"+pSeq);
-	vSelect.value = pValores[4];
+	vSelect.value = pValores[3];
 	vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
 	
 	let vExtra = document.getElementById("ext"+pSeq);
-	vExtra.value = pValores[5];
+	vExtra.value = pValores[4];
 	vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
 	
-	carregarRaridade(pSeq, pValores[4]);
+	carregarRaridade(pSeq, pValores[3]);
 }
 
 function removerVlrElementos(pSeq) {
@@ -558,7 +663,7 @@ function changeInp(pSeq, pValue) {
 	var vItem = localStorage.getItem(pSeq); 
 	var vValores = vItem.split("|");
 	
-	vValores[3] = pValue;
+	vValores[2] = pValue;
 	adicionarPokemon(pSeq, vValores);
 }	
 
@@ -566,7 +671,7 @@ function changeExt(pSeq, pExt) {
 	var vItem = localStorage.getItem(pSeq); 
 	var vValores = vItem.split("|");
 	
-	vValores[5] = pExt.value;
+	vValores[4] = pExt.value;
 	localStorage.setItem(pSeq, vValores.join('|'));
 	
 	if (pExt.value == 'vazio') {
@@ -581,7 +686,7 @@ function changeSel(pSeq, pSelValue) {
 	let vItem = localStorage.getItem(pSeq); 
 	let vValores = vItem.split("|");
 	
-	vValores[4] = pSelValue;
+	vValores[3] = pSelValue;
 	adicionarPokemon(pSeq, vValores);
 }
 
@@ -637,8 +742,13 @@ function carregarRaridade(pSeq, pRaridade) {
 var xModoZoom = 1;
 
 function zoomIn(pSeq) {
-	if (document.getElementById("top"+pSeq).style.visibility == "hidden") {
-		return;
+	var vAltura = '-31.2%';
+	if (document.getElementById("top"+pSeq) != null){
+		if (document.getElementById("top"+pSeq).style.visibility == "hidden") {
+			return;
+		}
+	} else {
+		vAltura = '-27.9%';
 	}
 	
 	if (xModoZoom == 1) {
@@ -652,9 +762,9 @@ function zoomIn(pSeq) {
 		
 		//if (vEspaco < 450) {
 		if (vEspaco < 760) {
-			element.style.transform = "translate(-145%, -31.2%)";
+			element.style.transform = "translate(-145%, "+vAltura+")";
 		} else {
-			element.style.transform = "translate(9%, -31.2%)";
+			element.style.transform = "translate(9%, "+vAltura+")";
 		}
 	} else {
 		var element = document.getElementById("img"+pSeq);
@@ -664,8 +774,10 @@ function zoomIn(pSeq) {
 }
 
 function zoomOut(pSeq) {
-	if (document.getElementById("top"+pSeq).style.visibility == "hidden") {
-		return; }
+	if (document.getElementById("top"+pSeq) != null){
+		if (document.getElementById("top"+pSeq).style.visibility == "hidden") {
+			return; }
+	}
 		
 	if (xModoZoom == 1) {
 		var element = document.getElementById("zoo"+pSeq);
