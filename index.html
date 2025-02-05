@@ -131,7 +131,11 @@ img.card-avatar { width: 140px; position: relative; transition: all .2s ease-in-
 .divVar{border: 0px solid rgba(183, 189, 193, 0.9); box-shadow: 0px 0px 41px -10px rgba(183, 189, 193, 0.9); border-radius: 10px; background-color: #ffffff; padding: 10px; width: 100%; position: absolute; top: 450px; z-index: 99; display: none;}
 .varSel{position: relative; right: 15px;}
 .varInp{position: relative; left: 15px;}
-   
+
+.imgMais{position: relative; top: 58px; border-radius: 12px; width: 135px; display: inline; vertical-align: middle;}
+.divMais:active {top: 5px; box-shadow:}
+div.NovaVar:before{position: absolute; top: 28%;}
+
 .title.kanto:after {background-image: linear-gradient(90deg, #ED0303 10%, #3381F4 80%);width:100%;}
 .title.johto:after {background-image: linear-gradient(90deg, #F3BD2D 10%, #9BA8AF 80%);width:100%;}
 .title.hoenn:after {background-image: linear-gradient(90deg, #D0193C 10%, #093ddf 80%);width:100%;}
@@ -172,7 +176,7 @@ img.card-avatar { width: 140px; position: relative; transition: all .2s ease-in-
 					<div class="divTop" id="top9999" style="visibility: hidden;">Bulbasaur
 					<div class="num">Nº 9999</div></div>
 					<div style="display: inline-block;">
-						<img id="img9999" class="card-avatar" loading="lazy" src="https://drive.google.com/thumbnail?id=1ylTHUEf086ASe5cOgMnPX-KPerFGgU4M" onclick="clickPokemon('9999')" onmousemove="zoomIn('9999')" onmouseout="zoomOut('9999')">
+						<img id="img9999" class="card-avatar" loading="lazy" src="https://drive.google.com/thumbnail?id=1ylTHUEf086ASe5cOgMnPX-KPerFGgU4M" onclick="clickPokemon('9999')" onmousemove="zoomIn('9999')" onmouseout="zoomOut('9999')"> 
 						<img id="zoo9999" class="zoom">
 					</div>
 					<div class="divMid" id="mid9999">
@@ -181,8 +185,8 @@ img.card-avatar { width: 140px; position: relative; transition: all .2s ease-in-
 					<div class="divBot">
 						<input type="text" id="inp9999" class="inputA" onchange="changeInp('9999', this.value)" onclick="select()"/>
 						<label id="lab9999" class="labelA"></label>
-						<select id="sel9999" class="selectA" onchange="changeSel('9999', this.value)"><option value="vazio"></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select> 
-						<select id="ext9999" class="selectB" onchange="changeExt('9999', this.value)"><option value="vazio"></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select>
+						<select id="sel9999" class="selectA" onchange="changeSel('9999', this.value)"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select> 
+						<select id="ext9999" class="selectB" onchange="changeExt('9999', this.value)"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select>
 					</div>
 				</div>
 			</div>
@@ -245,6 +249,7 @@ img.card-avatar { width: 140px; position: relative; transition: all .2s ease-in-
 var gContadorFolha = 0;
 var gContadorPagina = 0;
 var gCartasAdicionadas = 0;
+var gQtdVariacoes = 0;
 const cImagemVazia = 'https://drive.google.com/thumbnail?id=1ylTHUEf086ASe5cOgMnPX-KPerFGgU4M';
 	
 	
@@ -255,49 +260,49 @@ function carregarPokedex(){
 	var corpo = document.getElementById('divCorpo');
 	
 	corpo.innerHTML = '<div class="list-container" id="kanto" ><div class="title-wrap related-title" id="I" style="margin-top: 10px;" ><h2/><h2 class="title kanto" style="font-size: 20px; font-weight: 800;">1ª Geração: Kanto</h2></div><center id="cenKanto"><div class="pagina"></div></center></div>';
-	carregarPokemon('Kanto', 1, 152);
+	carregarPokemon('Kanto', 1, 153);
 	
-	/*corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="johto"><div class="title-wrap related-title" id="II" style="margin-top: 30px;"><h2/><h2 class="title johto" style="font-size: 20px; font-weight: 800;">2ª Geração: Johto</h2></div><center id="cenJohto"></center></div>';
-	carregarPokemon('Johto', 153, 260);
+	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="johto"><div class="title-wrap related-title" id="II" style="margin-top: 30px;"><h2/><h2 class="title johto" style="font-size: 20px; font-weight: 800;">2ª Geração: Johto</h2></div><center id="cenJohto"></center></div>';
+	carregarPokemon('Johto', 154, 261);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="hoenn"><div class="title-wrap related-title" id="III" style="margin-top: 30px;"><h2/><h2 class="title hoenn" style="font-size: 20px; font-weight: 800;">3ª Geração: Hoenn</h2></div><center id="cenHoenn"></center></div>';
-	carregarPokemon('Hoenn', 261, 422);
+	carregarPokemon('Hoenn', 262, 423);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="sinnoh"><div class="title-wrap related-title" id="IV" style="margin-top: 30px;"><h2 class="title sinnoh" style="font-size: 20px; font-weight: 800;">4ª Geração: Sinnoh</h2></div><center id="cenSinnoh"></center></div>';
-	carregarPokemon('Sinnoh', 423, 548);
+	carregarPokemon('Sinnoh', 424, 549);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="unova"><div class="title-wrap related-title" id="V" style="margin-top: 30px;"><h2 class="title unova" style="font-size: 20px; font-weight: 800;">5ª Geração: Unova</h2></div><center id="cenUnova"></center></div>';
-	carregarPokemon('Unova', 549, 728);
+	carregarPokemon('Unova', 550, 729);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="kalos"><div class="title-wrap related-title" id="VI" style="margin-top: 30px;"><h2/><h2 class="title kalos" style="font-size: 20px; font-weight: 800;">6ª Geração: Kalos</h2></div><center id="cenKalos"></center></div>';
-	carregarPokemon('Kalos', 729, 818);
+	carregarPokemon('Kalos', 730, 819);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="alola"><div class="title-wrap related-title" id="VII" style="margin-top: 30px;"><h2 class="title alola" style="font-size: 20px; font-weight: 800;">7ª Geração: Alola</h2></div><center id="cenAlola"></center></div>';
-	carregarPokemon('Alola', 819, 926);
+	carregarPokemon('Alola', 820, 927);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="formasalola"><div class="title-wrap related-title" id="VII-" style="margin-top: 30px;"><h2 class="title alola" style="font-size: 20px; font-weight: 800;">7ª Geração: Formas de Alola</h2></div><center id="cenFormasAlola"></center></div>';
-	carregarPokemon('FormasAlola', 927, 944);
+	carregarPokemon('FormasAlola', 928, 945);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="galar"><div class="title-wrap related-title" id="VIII" style="margin-top: 30px;"><h2 class="title galar" style="font-size: 20px; font-weight: 800;">8ª Geração: Galar</h2></div><center id="cenGalar"></center></div>';
-	carregarPokemon('Galar', 945, 1052);
+	carregarPokemon('Galar', 946, 1053);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="formasgalar"><div class="title-wrap related-title" id="VIII-" style="margin-top: 30px;"><h2 class="title galar" style="font-size: 20px; font-weight: 800;">8ª Geração: Formas de Galar</h2></div><center id="cenFormasGalar"></center></div>';
-	carregarPokemon('FormasGalar', 1053, 1070);
+	carregarPokemon('FormasGalar', 1054, 1071);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="hisui"><div class="title-wrap related-title" id="H" style="margin-top: 30px;"><h2/><h2 class="title hisui" style="font-size: 20px; font-weight: 800;">8ª Geração: Hisui</h2></div><center id="cenHisui"></center></div>';
-	carregarPokemon('Hisui', 1071, 1088);
+	carregarPokemon('Hisui', 1072, 1089);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="formashisui"><div class="title-wrap related-title" id="H-" style="margin-top: 30px;"><h2 class="title hisui" style="font-size: 20px; font-weight: 800;">8ª Geração: Formas de Hisui</h2></div><center id="cenFormasHisui"></center></div>';
-	carregarPokemon('FormasHisui', 1089, 1106);
+	carregarPokemon('FormasHisui', 1090, 1107);
 	
 	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="paldea"><div class="title-wrap related-title" id="IX" style="margin-top: 30px;"><h2 class="title paldea" style="font-size: 20px; font-weight: 800;">9ª Geração: Paldea</h2></div><center id="cenPaldea"></center></div>';
-	carregarPokemon('Paldea', 1107, 1250);
+	carregarPokemon('Paldea', 1108, 1251);
 	
 	corpo.innerHTML = corpo.innerHTML + '  <div class="list-container" id="formaspaldea"><div class="title-wrap related-title" id="IX" style="margin-top: 30px;"><h2 class="title paldea" style="font-size: 20px; font-weight: 800;">9ª Geração: Formas de Paldea</h2></div><center id="cenFormasPaldea"></center></div>';
-	carregarPokemon('FormasPaldea', 1251, 1259);
+	carregarPokemon('FormasPaldea', 1252, 1260);
 	
 	var cenFormasPaldea = document.getElementById('cenFormasPaldea');
-	cenFormasPaldea.innerHTML = cenFormasPaldea.innerHTML + '<div class="pagina"></div>';*/
+	cenFormasPaldea.innerHTML = cenFormasPaldea.innerHTML + '<div class="pagina"></div>';
 	
 	ajustarTamFonte();
 }
@@ -326,278 +331,168 @@ function carregarPokemon(pRegiao, pInicial, pFinal){
 
 		if (vValores[5] == 'A') {
 			gCartasAdicionadas = gCartasAdicionadas + 1;
-			carregarCarta(i, vValores);
+			carregarCarta(i, i, vValores[2], vValores[1]);
 			carregarVlrElementos(i, vValores);
 		}
 		vContador = vContador + 1;
 	}
 }
 
+//"xSequencial" : "0xNome|1xCodigo|2xNumeracao|3xRaridade|4xExtra|5xAdicionado|6xVariacoes" "0xRaridade;1xExtra;2Numeracao"
 function gerarPokemon(pElement, pSeq, pValores){
-	//"xSequencial" : "0xNome|1xCodigo|2xNumeracao|3xRaridade|4xExtra|5xAdicionado|6xVariacoes" "0xRaridade;1xExtra;2Numeracao"
-	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn('+pSeq+')" onmouseout="zoomOut('+pSeq+')"><img id="zoo'+pSeq+'" class="zoom"></div><div class="divMid" id="mid'+pSeq+'"><div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div>'+pValores[0]+'</div><div class="divBot"><button type="button" id="but'+pSeq+'" class="buttonA" style="padding:5px; visibility: hidden;" onclick="clickVariacao(\''+pSeq+'\'); blur()">+</button><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[2]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur()"><option value="vazio"></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur()"><option value="vazio"></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div>   </div>';
-	
-	//pElement.innerHTML = pElement.innerHTML + '';
+
+	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn(\''+pSeq+'\')" onmouseout="zoomOut(\''+pSeq+'\')"><img id="zoo'+pSeq+'" class="zoom"></div><div class="divMid" id="mid'+pSeq+'"><div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div>'+pValores[0]+'</div><div class="divBot"><button type="button" id="but'+pSeq+'" class="buttonA" style="padding:5px; visibility: hidden;" onclick="clickVariacao(\''+pSeq+'\'); blur()">+</button><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[2]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur()"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur()"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div>   </div>';
 }
 
-function fecharVariacao(){
-	document.getElementById('divVariacao').style.display = "none";
-}
-
-function clickVariacao(pSeq){
-	var vbutRect = document.getElementById("but"+pSeq).getBoundingClientRect().top;
-	var vbodyRect = document.body.getBoundingClientRect().top;
-	var vResult = vbutRect - vbodyRect - 25;
-	document.getElementById("divVariacao").style.top = vResult+'px';
-	
-	var variacao = document.getElementById('divVariacao');	
-	if (variacao.style.display != 'block'){
-		variacao.style.display = "block";}
-	
-	var vItem = localStorage.getItem(pSeq);
-	var aValores = vItem.split("|");
-	var aVariacoes = aValores[6].split(";");
-	var aVariacao = ''; 
-	var vCodVar = '';
-
-	variacao.innerHTML = '<h4 style="margin: 0 0 10px 0;">Variações</h4><button class="fecharVar" onclick="fecharVariacao(); blur();">❌</button>';
-	for (var i = 0; i < aVariacoes.length; i++){
-		aVariacao = aVariacoes[i].split("_");
-		vCodVar = pSeq+'var'+i;
-		
-		variacao.innerHTML = variacao.innerHTML + '<div class="card"><div class="card-inner"><div style="display: inline-block;"><img id="img'+vCodVar+'" class="card-avatar" style="width: 165px;" loading="lazy" src="'+cImagemVazia+'" onmousemove="zoomIn(\''+vCodVar+'\')" onmouseout="zoomOut(\''+vCodVar+'\')"><img id="zoo'+vCodVar+'" class="zoom"></div><div class="divBot"><input type="text" id="inp'+vCodVar+'" class="inputA varInp" value="'+aVariacao[2]+'" onchange="changeInpVar(\''+pSeq+'\', \''+i+'\', this.value)" onclick="select()"/><label id="lab'+vCodVar+'" class="labelA varInp"></label><select id="sel'+vCodVar+'" class="selectA varSel" onchange="changeSelVar(\''+pSeq+'\', \''+i+'\', this.value); blur()"><option value="vazio"></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+vCodVar+'" class="selectB varSel" onchange="changeExtVar(\''+pSeq+'\', \''+i+'\', this); blur()"><option value="vazio"></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>';
-		
-		carregarCarta(vCodVar, aVariacao);
-		carregarVlrElementosVar(vCodVar, aVariacao);
+function carregarCarta(pSeq, pIdElemento, pNumeracao, pCodigo) {
+	if (pNumeracao == '') {
+		carregarImagem(pSeq, pIdElemento, pCodigo, true);
+		return;	
 	}
-}
 
-function changeInpVar(pSeq, pSeqVar, pValue) {
-	var vItem = localStorage.getItem(pSeq); 
-	var aValores = vItem.split("|");
-	var aVariacoes = aValores[6].split(";");
-	var aVariacao = aVariacoes[pSeqVar].split("_");
-	
-	aVariacao[2] = pValue;
-	aVariacoes[pSeqVar] = aVariacao.join('_');	
-	aValores[6] = aVariacoes.join(';');
-	
-	localStorage.setItem(pSeq, aValores.join('|'));
-	carregarCarta(pSeq+'var'+pSeqVar, aVariacao);
-}
-
-function changeExtVar(pSeq, pSeqVar, pExtVar) {
-	var vItem = localStorage.getItem(pSeq); 
-	var aValores = vItem.split("|");
-	var aVariacoes = aValores[6].split(";");
-	var aVariacao = aVariacoes[pSeqVar].split("_");
-	
-	aVariacao[1] = pExtVar.value;
-	aVariacoes[pSeqVar] = aVariacao.join('_');	
-	aValores[6] = aVariacoes.join(';');
-	
-	localStorage.setItem(pSeq, aValores.join('|'));
-	
-	if (pExtVar.value == 'vazio') {
-		document.getElementById('sel'+pSeq+'var'+pSeqVar).style.display = "inline-block";
-		pExtVar.style.display = "none";
-	}
-}
-
-function changeSelVar(pSeq, pSeqVar, pValue) {
-	carregarRaridade(pSeq+'var'+pSeqVar, pValue);
-	
-	var vItem = localStorage.getItem(pSeq); 
-	var aValores = vItem.split("|");
-	var aVariacoes = aValores[6].split(";");
-	var aVariacao = aVariacoes[pSeqVar].split("_");
-	
-	aVariacao[0] = pValue;
-	aVariacoes[pSeqVar] = aVariacao.join('_');	
-	aValores[6] = aVariacoes.join(';');
-	
-	localStorage.setItem(pSeq, aValores.join('|'));
-}
-
-function carregarVlrElementosVar(pCodVar, pVariacao){
-	let vSelect = document.getElementById("sel"+pCodVar);
-	vSelect.value = pVariacao[0];
-	vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
-	
-	let vExtra = document.getElementById("ext"+pCodVar);
-	vExtra.value = pVariacao[1];
-	vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
-	
-	carregarRaridade(pCodVar, pVariacao[0]);
-}
-
-function ajustarTamFonte(){
-	var i = 0;
-	
-	let aTamFonte11 = [1037, 1200, 1201];
-	for (i = 0; i < aTamFonte11.length; i++){
-		document.getElementById('mid'+aTamFonte11[i]).style.fontSize = "11px";
-		document.getElementById('top'+aTamFonte11[i]).style.fontSize = "11px";}
-	
-	let aTamFonte12 = [1035, 1139, 1140, 1219];
-	for (i = 0; i < aTamFonte12.length; i++){
-		document.getElementById('mid'+aTamFonte12[i]).style.fontSize = "12px";
-		document.getElementById('top'+aTamFonte12[i]).style.fontSize = "12px";}
+	if (document.getElementById("top"+pIdElemento) != null){
+		document.getElementById("top"+pIdElemento).style.visibility = "visible";}
+	if (document.getElementById("mid"+pIdElemento) != null){
+		document.getElementById("mid"+pIdElemento).style.display = "none";}
+	if (document.getElementById("but"+pIdElemento) != null){
+		document.getElementById("but"+pIdElemento).style.visibility = "visible";}
 		
-	let aTamFonte13 = [714, 716, 720, 1088, 1137, 1138, 1251, 1252];
-	for (i = 0; i < aTamFonte13.length; i++){
-		document.getElementById('mid'+aTamFonte13[i]).style.fontSize = "13px";
-		document.getElementById('top'+aTamFonte13[i]).style.fontSize = "13px";}
-		
-	let aTamFonte14 = [375, 454, 1038, 1130, 1239, 1253];
-	for (i = 0; i < aTamFonte14.length; i++){
-		document.getElementById('mid'+aTamFonte14[i]).style.fontSize = "14px";
-		document.getElementById('top'+aTamFonte14[i]).style.fontSize = "14px";}
-		
-	let aTamFonte15 = [453, 455, 527, 610, 717, 910, 1050, 1238, 1240, 1248];
-	for (i = 0; i < aTamFonte15.length; i++){
-		document.getElementById('mid'+aTamFonte15[i]).style.fontSize = "15px";
-		document.getElementById('top'+aTamFonte15[i]).style.fontSize = "15px";}
-}
+	if (pIdElemento.toString().includes("var")){
+		document.getElementById("img"+pIdElemento).style.top = "0px";}
 
-function carregarCarta(pSeq, pValores) {
-	if (pValores[2] == '') {
-		carregarImagem(pSeq, pValores[1], true);
-		return;	}
-
-	if (document.getElementById("top"+pSeq) != null){
-		document.getElementById("top"+pSeq).style.visibility = "visible";
-		document.getElementById("mid"+pSeq).style.display = "none";
-		document.getElementById("but"+pSeq).style.visibility = "visible";
-	}
-	
-	let aValoresInput = pValores[2].split("/");
+	let aValoresInput = pNumeracao.split("/");
 	var vCodigoTratado = zeroEsquerda(aValoresInput[0], 3);	
 	var vEdicaoTratada = zeroEsquerda(aValoresInput[1], 3);
-
+	
 	switch(vEdicaoTratada) {
 		// Promocional
 		case 'SVP':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/svp/'+vCodigoTratado+'/high.webp';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/svp/'+vCodigoTratado+'/high.webp';
 			break;
 		// Escarleta e Violeta
 		case '198':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv01/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/scarlet-violet/pt-br/SV01_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv01/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/scarlet-violet/pt-br/SV01_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Evoluções em Paldea
         case '193':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv02/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/paldea-evolved/pt-br/SV02_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv02/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/paldea-evolved/pt-br/SV02_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Obsidiana em Chamas
 		case '197':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv03/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/obsidian-flames/pt-br/SV03_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv03/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/obsidian-flames/pt-br/SV03_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// 151
 		case '165':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv03.5/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/151/pt-br/SV3pt5_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv03.5/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/151/pt-br/SV3pt5_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Fenda Paradoxal
 		case '182':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv04/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/paradox-rift/pt-br/SV04_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv04/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/paradox-rift/pt-br/SV04_PTBR_'+vCodigoTratado+'.png';
 			break; 
 		// Destinos de Paldea
 		case '091':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv04.5/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/paldean-fates/pt-br/SV4pt5_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv04.5/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/paldean-fates/pt-br/SV4pt5_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Forças Temporais
 		case '162':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv05/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/temporal-forces/pt-br/SV05_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv05/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/temporal-forces/pt-br/SV05_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Máscaras do Crepúsculo
 		case '167':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv06/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/twilight-masquerade/pt-br/SV06_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv06/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/twilight-masquerade/pt-br/SV06_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Fábulas Nebulosas
 		case '064':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv06.5/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/shrouded-fable/pt-br/SV6pt5_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv06.5/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/shrouded-fable/pt-br/SV6pt5_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Coroa Estelar
 		case '142':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv07/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/stellar-crown/pt-br/SV07_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv07/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/stellar-crown/pt-br/SV07_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Fagulhas Impetuosas
 		case '191':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv08/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/surging-sparks/pt-br/SV08_PTBR_'+vCodigoTratado+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv08/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/surging-sparks/pt-br/SV08_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Evoluções Prismáticas
         case '':
-			document.getElementById('img'+pSeq).src = 'https://assets.tcgdex.net/pt/sv/sv08.5/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pSeq).src = ''+aValoresInput[0]+'.png';
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv08.5/'+vCodigoTratado+'/high.webp';
+			//document.getElementById('img'+pIdElemento).src = ''+aValoresInput[0]+'.png';
 			break;
 
 		default:
-			carregarImagem(pSeq, pValores[1], true);
+			carregarImagem(pSeq, pIdElemento, pCodigo, true);
 	}
 }
 
-function carregarImagem(pSeq, pCodigo, pCarregar) {
-	document.getElementById("top"+pSeq).style.visibility = "hidden";
-	document.getElementById("mid"+pSeq).style.display = "flex";
-	document.getElementById("but"+pSeq).style.visibility = "hidden";
+function carregarImagem(pSeq, pIdElemento, pCodigo, pCarregar) {
+	if (document.getElementById("top"+pIdElemento) != null){
+		document.getElementById("top"+pIdElemento).style.visibility = "hidden";}
+	if (document.getElementById("mid"+pIdElemento) != null){
+		document.getElementById("mid"+pIdElemento).style.display = "flex";}
+	if (document.getElementById("but"+pIdElemento) != null){
+		document.getElementById("but"+pIdElemento).style.visibility = "hidden";}
 
 	if ( !Boolean(pCarregar) ) {
-		document.getElementById('img'+pSeq).src = cImagemVazia;
+		document.getElementById('img'+pIdElemento).src = cImagemVazia;
 		return;
-	} 
+	}
+	
+	if (pIdElemento.toString().includes("var")){
+		document.getElementById("img"+pIdElemento).style.top = "35px";}
 
-	switch(pCodigo) {
-	case '0351_forma_ensolarada':
-		document.getElementById('img0351_forma_ensolarada').src = 'https://drive.google.com/thumbnail?id=1lHPi8L8ilL7eC-orIRQ_xaa42GNLM5V1';
+	switch(pSeq.toString()) {
+	case '376':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1lHPi8L8ilL7eC-orIRQ_xaa42GNLM5V1';
 		break;
-	case '0351_forma_chuvosa':
-		document.getElementById('img0351_forma_chuvosa').src = 'https://drive.google.com/thumbnail?id=10WCpN6IQZ4KLY4CDHp3BRPfVFdsVZs8J';
+	case '377':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=10WCpN6IQZ4KLY4CDHp3BRPfVFdsVZs8J';
 		break;
-	case '0351_forma_nevada':
-		document.getElementById('img0351_forma_nevada').src = 'https://drive.google.com/thumbnail?id=14up8wtAQcNrhChmiDSXAkfV3S0THK50l';
+	case '378':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=14up8wtAQcNrhChmiDSXAkfV3S0THK50l';
 		break;
-	case '0555_modo_zen':
-		document.getElementById('img0555_modo_zen').src = 'https://drive.google.com/thumbnail?id=1DqFJXdUOaBZcG3TyzXYph-QOFqaqzy70';
+	case '618':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1DqFJXdUOaBZcG3TyzXYph-QOFqaqzy70';
 		break;
-	case '0875_face_sem_gelo':
-		document.getElementById('img0875_face_sem_gelo').src = 'https://drive.google.com/thumbnail?id=1WC3K24w52w1Zjqxf-jZ1x6lVJzWDLA5X';
+	case '1017':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1WC3K24w52w1Zjqxf-jZ1x6lVJzWDLA5X';
 		break; 
-	case '0555_darmanitan_galar_modo_zen':
-		document.getElementById('img0555_darmanitan_galar_modo_zen').src = 'https://drive.google.com/thumbnail?id=1horu8Zv6eME83xtsw6vawnImVQeoi8Tf';
+	case '1074':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1horu8Zv6eME83xtsw6vawnImVQeoi8Tf';
 		break;
-	case '0138_fossil_espiral':
-		document.getElementById('img0138_fossil_espiral').src = 'https://drive.google.com/thumbnail?id=161U2dPC3MADYLmqWxzOJ80ZjlvBpLI6T';
+	case '145':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=161U2dPC3MADYLmqWxzOJ80ZjlvBpLI6T';
 		break;
-	case '0140_fossil_cupula':
-		document.getElementById('img0140_fossil_cupula').src = 'https://drive.google.com/thumbnail?id=1G8UokVIBXt93va5A72iJ18RQRrnDyu9V';
+	case '148':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1G8UokVIBXt93va5A72iJ18RQRrnDyu9V';
 		break;
-	case '0142_ambar_velho':
-		document.getElementById('img0142_ambar_velho').src = 'https://drive.google.com/thumbnail?id=1nOX8PmHpmNPvEspXG6tHeLskDZOzHnN5';
+	case '151':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1nOX8PmHpmNPvEspXG6tHeLskDZOzHnN5';
 		break;
-	case '0479_pokedex_rotom':
-		document.getElementById('img0479_pokedex_rotom').src = 'https://drive.google.com/thumbnail?id=1CwkorMCoMszfalVyZvEDXAfHGVJfarxY';
+	case '529':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1CwkorMCoMszfalVyZvEDXAfHGVJfarxY';
 		break;
-	case '0479_drone_rotom':
-		document.getElementById('img0479_drone_rotom').src = 'https://drive.google.com/thumbnail?id=1ZTHa4zUsEesoMvKIBPX4aru8_9ufP-rL';
+	case '530':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1ZTHa4zUsEesoMvKIBPX4aru8_9ufP-rL';
 		break;
-	case '0479_bicicleta_rotom':
-		document.getElementById('img0479_bicicleta_rotom').src = 'https://drive.google.com/thumbnail?id=1xyRMx03LiQwsstDGJot1RbVyPhobUz9Q';
+	case '531':
+		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1xyRMx03LiQwsstDGJot1RbVyPhobUz9Q';
 		break;
 
 	default:
 		var vCodigo = pCodigo.replace(/^0+/, '');
 		vCodigo = zeroEsquerda(vCodigo, 3);
-		document.getElementById('img'+pSeq).src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/'+vCodigo+'.png'; 
+		document.getElementById('img'+pIdElemento).src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/'+vCodigo+'.png'; 
 	} 
 }
 
@@ -623,7 +518,7 @@ function adicionarPokemon(pSeq, pValores){
 		gCartasAdicionadas = gCartasAdicionadas + 1;}
 		
 	pValores[5] = 'A';
-	carregarCarta(pSeq, pValores);
+	carregarCarta(pSeq, pSeq, pValores[2], pValores[1]);
 	
 	localStorage.setItem(pSeq, pValores.join('|'));
 }
@@ -632,10 +527,10 @@ function removerPokemon(pSeq, pValores){
 	zoomOut(pSeq);
 	pValores[5] = 'F';
 	pValores[2] = '';
-	pValores[3] = 'vazio';
-	pValores[4] = 'vazio';	
+	pValores[3] = '';
+	pValores[4] = '';	
 	removerVlrElementos(pSeq);
-	carregarImagem(pSeq, pValores[1], false);
+	carregarImagem(pSeq, pSeq, '', false);
 	gCartasAdicionadas = gCartasAdicionadas - 1;
 	localStorage.setItem(pSeq, pValores.join('|'));
 }
@@ -654,8 +549,8 @@ function carregarVlrElementos(pSeq, pValores){
 
 function removerVlrElementos(pSeq) {
 	document.getElementById("inp"+pSeq).value = '';
-	document.getElementById("ext"+pSeq).value = "vazio";
-	document.getElementById("sel"+pSeq).value = "vazio";
+	document.getElementById("ext"+pSeq).value = "";
+	document.getElementById("sel"+pSeq).value = "";
 	document.getElementById("lab"+pSeq).innerHTML = "";
 }
 
@@ -674,7 +569,7 @@ function changeExt(pSeq, pExt) {
 	vValores[4] = pExt.value;
 	localStorage.setItem(pSeq, vValores.join('|'));
 	
-	if (pExt.value == 'vazio') {
+	if (pExt.value == '') {
 		document.getElementById('sel'+pSeq).style.display = "inline-block";
 		pExt.style.display = "none";
 	}
@@ -682,7 +577,7 @@ function changeExt(pSeq, pExt) {
 
 function changeSel(pSeq, pSelValue) {
 	carregarRaridade(pSeq, pSelValue);
-	
+
 	let vItem = localStorage.getItem(pSeq); 
 	let vValores = vItem.split("|");
 	
@@ -710,28 +605,28 @@ function carregarRaridade(pSeq, pRaridade) {
 			break;
 		case 'promo':
 			document.getElementById('lab'+pSeq).innerHTML = "✩";
-			document.getElementById('ext'+pSeq).value = "vazio";
+			document.getElementById('ext'+pSeq).value = "";
 			
 			break;
 		case 'raradupla':
 			document.getElementById('lab'+pSeq).innerHTML = "★★";
-			document.getElementById('ext'+pSeq).value = "vazio";
+			document.getElementById('ext'+pSeq).value = "";
 			break;
 		case 'raraultra':
 			document.getElementById('lab'+pSeq).innerHTML = "<div style='color:#A7A9AD;'>★★</div>";
-			document.getElementById('ext'+pSeq).value = "vazio";
+			document.getElementById('ext'+pSeq).value = "";
 			break;
 		case 'fullart':
 			document.getElementById('lab'+pSeq).innerHTML = "<div style='color:#FCB912;'>★</div>";
-			document.getElementById('ext'+pSeq).value = "vazio";
+			document.getElementById('ext'+pSeq).value = "";
 			break;
 		case 'fullartesp':
 			document.getElementById('lab'+pSeq).innerHTML = "<div style='color:#FCB912;'>★★</div>";
-			document.getElementById('ext'+pSeq).value = "vazio";
+			document.getElementById('ext'+pSeq).value = "";
 			break;
 		case 'rarasecreta':
 			document.getElementById('lab'+pSeq).innerHTML = "<div style='width: 23px; position: relative; top: -6px; color:#FCB912;'>★<br>★★</div>";
-			document.getElementById('ext'+pSeq).value = "vazio";
+			document.getElementById('ext'+pSeq).value = "";
 			break;
 
 		default:
@@ -743,14 +638,15 @@ var xModoZoom = 1;
 
 function zoomIn(pSeq) {
 	var vAltura = '-31.2%';
-	if (document.getElementById("top"+pSeq) != null){
-		if (document.getElementById("top"+pSeq).style.visibility == "hidden") {
-			return;
-		}
-	} else {
-		vAltura = '-27.9%';
+	
+	if (document.getElementById("top"+pSeq).style.visibility == "hidden") {
+		return;
 	}
 	
+	if (pSeq.includes("var")){
+		vAltura = '-28.1%';
+	}
+
 	if (xModoZoom == 1) {
 		var vWindowWidth = window.innerWidth;
 		var vImgRigth = document.getElementById("img"+pSeq).getBoundingClientRect().right;
@@ -789,6 +685,207 @@ function zoomOut(pSeq) {
 	}
 }
 
+// VARIACOES
+function clickVariacao(pSeq){
+	gQtdVariacoes = 0;
+	var vbutRect = document.getElementById("but"+pSeq).getBoundingClientRect().top;
+	var vbodyRect = document.body.getBoundingClientRect().top;
+	var vResult = vbutRect - vbodyRect - 25;
+	document.getElementById("divVariacao").style.top = vResult+'px';
+	
+	var divVariacao = document.getElementById('divVariacao');	
+	if (divVariacao.style.display != 'block'){
+		divVariacao.style.display = "block";}
+	
+	var vItem = localStorage.getItem(pSeq);
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[6].split(";");
+	var aVariacao = ''; 
+	var vSeqVar = '';
+
+	divVariacao.innerHTML = '<h4 style="margin: 0 0 10px 0;">Variações</h4><button class="fecharVar" onclick="fecharVariacao(\''+pSeq+'\'); blur();">❌</button>';
+	for (var i = 0; i < aVariacoes.length; i++){
+		if (aVariacoes[i] != ''){
+			aVariacao = aVariacoes[i].split("_");
+			
+			vSeqVar = pSeq+'var'+gQtdVariacoes;
+			
+			gerarVariacao(divVariacao, pSeq, aVariacao[0]);
+
+			if (aVariacao[0] != '') {
+				carregarCarta(pSeq, vSeqVar, aVariacao[0], aValores[1]);}
+
+			carregarVlrElementosVar(vSeqVar, aVariacao);
+			
+			gQtdVariacoes = gQtdVariacoes + 1;
+		}
+	}
+	
+	divVariacao.innerHTML = divVariacao.innerHTML + '<div class="card divMais" id="divVarMais" onclick="adicionarVar(\''+pSeq+'\')"><img class="imgMais" src="https://drive.google.com/thumbnail?id=1ZyuQrATlYWaw7_EgEq0l2AqopkaBJxbs"></img></div>';
+}
+
+function fecharVariacao(pSeq){
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[6].split(";");
+	var aVariacao;
+	var aVariacoesNew = [];
+	
+	for (var i = 0; i < aVariacoes.length; i++){
+		aVariacao = aVariacoes[i].split("_");
+		
+		if (aVariacao[0] != '') {
+			aVariacoesNew.push(aVariacao.join('_'));}
+	}
+
+	aValores[6] = aVariacoesNew.join(';');	
+
+	localStorage.setItem(pSeq, aValores.join('|'));
+	document.getElementById('divVariacao').style.display = "none";
+}
+
+// "0xRaridade;1xExtra;2Numeracao"
+function gerarVariacao(pElement, pSeq, pVariacao){
+	var vSeqVar = pSeq+'var'+gQtdVariacoes;
+	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner NovaVar"><div id="top'+vSeqVar+'" style="visibility: hidden;"></div><div style="display: inline-block;"><img id="img'+vSeqVar+'" class="card-avatar" style="width: 165px;" loading="lazy" src="'+cImagemVazia+'" onmousemove="zoomIn(\''+vSeqVar+'\')" onmouseout="zoomOut(\''+vSeqVar+'\')"><img id="zoo'+vSeqVar+'" class="zoom"></div><div class="divBot"><input type="text" id="inp'+vSeqVar+'" class="inputA varInp" value="'+pVariacao+'" onchange="changeInpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value)" onclick="select()"/><label id="lab'+vSeqVar+'" class="labelA varInp"></label><select id="sel'+vSeqVar+'" class="selectA varSel" onchange="changeSelVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur()"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+vSeqVar+'" class="selectB varSel" onchange="changeExtVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this); blur()"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>';
+}
+
+function adicionarVar(pSeq){	
+	var divVariacao = document.getElementById('divVariacao');
+	
+	document.getElementById('divVarMais').remove();
+	gerarVariacao(divVariacao, pSeq, '');
+	
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[6].split(";");
+	
+	aVariacoes.push("__");
+	aValores[6] = aVariacoes.join(';');
+
+	localStorage.setItem(pSeq, aValores.join('|'));
+	
+	gQtdVariacoes = gQtdVariacoes + 1;
+	
+	divVariacao.innerHTML = divVariacao.innerHTML + '<div class="card divMais" id="divVarMais" onclick="adicionarVar(\''+pSeq+'\')"><img class="imgMais" src="https://drive.google.com/thumbnail?id=1ZyuQrATlYWaw7_EgEq0l2AqopkaBJxbs"></img></div>';
+}
+
+function changeInpVar(pSeq, pIndVar, pValue) {
+	var pSeqVar = pSeq+'var'+pIndVar;
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+
+	var aVariacoes = aValores[6].split(";");
+
+	if (aVariacoes[pIndVar] == null){
+		return;}
+	var aVariacao = aVariacoes[pIndVar].split("_");
+	
+	if (pValue == ''){
+		removerVlrElementosVar(pSeq, pSeqVar, aVariacao);
+	} else {
+		aVariacao[0] = pValue;
+		aVariacao[1] = '';
+		aVariacao[2] = '';
+		document.getElementById("sel"+pSeqVar).value = "";
+		document.getElementById("ext"+pSeqVar).value = "";
+		document.getElementById("lab"+pSeqVar).innerHTML = "";
+		carregarCarta(pSeq, pSeqVar, aVariacao[0], aValores[1]);
+	}
+	aVariacoes[pIndVar] = aVariacao.join('_');
+	aValores[6] = aVariacoes.join(';');
+	
+	localStorage.setItem(pSeq, aValores.join('|'));
+}
+
+function changeExtVar(pSeq, pIndVar, pExtVar) {
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[6].split(";");
+	var aVariacao = aVariacoes[pIndVar].split("_");
+	
+	aVariacao[2] = pExtVar.value;
+	aVariacoes[pIndVar] = aVariacao.join('_');	
+	aValores[6] = aVariacoes.join(';');
+	
+	localStorage.setItem(pSeq, aValores.join('|'));
+	
+	if (pExtVar.value == '') {
+		document.getElementById('sel'+pSeq+'var'+pIndVar).style.display = "inline-block";
+		pExtVar.style.display = "none";
+	}
+}
+
+function changeSelVar(pSeq, pIndVar, pValue) {
+	carregarRaridade(pSeq+'var'+pIndVar, pValue);
+	
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[6].split(";");
+	var aVariacao = aVariacoes[pIndVar].split("_");
+	
+	aVariacao[1] = pValue;
+	aVariacoes[pIndVar] = aVariacao.join('_');	
+	aValores[6] = aVariacoes.join(';');
+	
+	localStorage.setItem(pSeq, aValores.join('|'));
+}
+
+function carregarVlrElementosVar(pSeqVar, pVariacao){
+	let vSelect = document.getElementById("sel"+pSeqVar);
+	vSelect.value = pVariacao[1];
+	vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
+	
+	let vExtra = document.getElementById("ext"+pSeqVar);
+	vExtra.value = pVariacao[2];
+	vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
+	
+	carregarRaridade(pSeqVar, pVariacao[1]);
+}
+
+function removerVlrElementosVar(pSeq, pSeqVar, pVariacao){
+	zoomOut(pSeqVar);
+	pVariacao[0] = '';
+	pVariacao[1] = '';
+	pVariacao[2] = '';
+
+	document.getElementById("inp"+pSeqVar).value = '';
+	document.getElementById("sel"+pSeqVar).value = "";
+	document.getElementById("ext"+pSeqVar).value = "";
+	document.getElementById("lab"+pSeqVar).innerHTML = "";
+
+	carregarImagem(pSeq, pSeqVar, '', false);
+}
+
+function ajustarTamFonte(){
+	var i = 0;
+	
+	let aTamFonte11 = [1037, 1200, 1201];
+	for (i = 0; i < aTamFonte11.length; i++){
+		document.getElementById('mid'+aTamFonte11[i]).style.fontSize = "11px";
+		document.getElementById('top'+aTamFonte11[i]).style.fontSize = "11px";}
+	
+	let aTamFonte12 = [1035, 1139, 1140, 1219];
+	for (i = 0; i < aTamFonte12.length; i++){
+		document.getElementById('mid'+aTamFonte12[i]).style.fontSize = "12px";
+		document.getElementById('top'+aTamFonte12[i]).style.fontSize = "12px";}
+		
+	let aTamFonte13 = [714, 716, 720, 1088, 1137, 1138, 1251, 1252];
+	for (i = 0; i < aTamFonte13.length; i++){
+		document.getElementById('mid'+aTamFonte13[i]).style.fontSize = "13px";
+		document.getElementById('top'+aTamFonte13[i]).style.fontSize = "13px";}
+		
+	let aTamFonte14 = [375, 454, 1038, 1130, 1239, 1253];
+	for (i = 0; i < aTamFonte14.length; i++){
+		document.getElementById('mid'+aTamFonte14[i]).style.fontSize = "14px";
+		document.getElementById('top'+aTamFonte14[i]).style.fontSize = "14px";}
+		
+	let aTamFonte15 = [453, 455, 527, 610, 717, 910, 1050, 1238, 1240, 1248];
+	for (i = 0; i < aTamFonte15.length; i++){
+		document.getElementById('mid'+aTamFonte15[i]).style.fontSize = "15px";
+		document.getElementById('top'+aTamFonte15[i]).style.fontSize = "15px";}
+}
+
 
 // LOCAL STORAGE
 function clickImportar() {
@@ -800,6 +897,7 @@ function clickImportar() {
 			Object.keys(data).forEach(function (k) {
 				localStorage.setItem(k, data[k]);
 			})
+			window.location.reload();
 		};
 	} else {
 		alert("Sorry, your browser does not support Web Storage...");
