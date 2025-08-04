@@ -17,8 +17,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 /*-- Material Icons Font --*/
 @font-face{font-family:"Material Icons Round";font-display:swap;font-style:normal;font-weight:400;src:url(https://fonts.gstatic.com/s/materialiconsround/v65/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2) format("woff2")}.mir{font-family:"Material Icons Round";font-weight:400;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;-webkit-font-feature-settings:liga;-webkit-font-smoothing:antialiased}@font-face{font-family:"PBT Icons";font-display:block;font-style:normal;font-weight:400;src:url(https://fonts.gstatic.com/s/materialiconsround/v65/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2) format("woff2")}
@@ -63,13 +61,13 @@ html{position:relative;word-break:break-word;word-wrap:break-word;text-rendering
 body{position:relative;background:var(--body-bg);background-color:var(--body-bg-color);font-family:var(--body-font);font-size:14px;color:var(--text-color);font-weight:400;font-style:normal;line-height:1.4em}
 h1,h2,h3,h4,h5,h6{font-family:var(--title-font);font-weight:700}
 a,input,button{transition:all .0s ease}
-.row-x1{width:1390px;max-width:100%}
+.row-x1{width:1400px;max-width:100%}
 //.row-x1{width:1175px;max-width:100%}
 .flex-c{display:flex;justify-content:center}
 .flex-col{display:flex;flex-direction:column}
-#content-wrapper{float:left;width:100%;overflow:hidden;padding:50px 0; min-height: 900px;}
-.title-wrap{display:flex;justify-content:space-between;height:30px;margin:0 0 20px;border-bottom:2px solid var(--border-color)}
-.title-wrap > .title{position:relative;height:30px;font-size:15px;color:var(--widget-title-color);font-weight:700;text-transform:uppercase;line-height:1;margin:0}
+#content-wrapper{float:left;width:100%;overflow:hidden;padding:50px 0; min-height: 1000px;}
+.title-wrap{display:flex;justify-content:space-between;height:30px; margin:10px 0 20px; border-bottom:2px solid var(--border-color)}
+.title-wrap > .title{position:relative;height:30px;font-size:20px;color:var(--widget-title-color);font-weight:800;text-transform:uppercase;line-height:1;margin:0}
 .title-wrap > .title:after{position:absolute;content:'';left:0;bottom:0;width:130px;height:3px;background-image:linear-gradient(90deg, #E30C55 10%, #8C82E2 80%);margin:0}
 .rtl .title-wrap > .title:after{left:unset;right:0}
 .title-wrap > .title-link{font-size:13px;color:var(--meta-color);line-height:1;font-weight:600}
@@ -100,41 +98,64 @@ a,input,button{transition:all .0s ease}
 
 span.name-gen, span.number-poke { font-weight: bold;}
 div.inner-menu{ text-align: center;text-transform: uppercase;font-size:15px;}
-.inner-menu.i {display: flex;line-height: 19px;justify-content: center;flex-wrap: wrap;}
+.inner-menu.i {margin-top: 40px;display: flex;line-height: 19px;justify-content: center;flex-wrap: wrap;}
 .inner-menu.ii {margin-bottom:40px;display: flex;line-height: 19px;justify-content: center;flex-wrap: wrap;}
 .is-page .post-body div.inner-menu a {white-space: nowrap;color: var(--text-color) !important;  padding: 5px 15px;  border-radius: 60px;  font-family: 'Montserrat';  font-weight: 600;  text-decoration: none;  margin: 3px 10px;}
-.is-page .post-body div.inner-menu a:hover {background-color: var(--main-color); color: white !important;font-weight: 700; text-decoration: none;}
+.is-page .post-body div.inner-menu a:hover {background-color: var(--main-color); color: white !important; text-decoration: none;}
+
 div.card { position:relative;	width: 195px;	height:250px; box-shadow: 0px 0px 25px -5px rgba(183, 189, 193, 0.4); border-radius: 12px; text-align: center; margin: 0px 5px 10px 5px; display: inline-block; vertical-align: middle; }
-div.card:hover {box-shadow: 0px 0px 41px -10px rgba(183, 189, 193, 0.9); bottom: 2px;}
+
+div.card:hover {box-shadow: 0px 0px 41px -10px rgba(183, 189, 193, 0.9);}
+/* bottom: 2px; */
 html.is-dark div.card {box-shadow: 0px 0px 25px -5px rgba(0, 0, 0, 0.6);}
 html.is-dark div.card:hover {box-shadow: 0px 0px 41px -10px rgba(0, 0, 0, 0.9);}
 div.card-inner {margin: 5px 5px 5px 5px; border: 0px solid purple; line-height: 1;}
-div.card-inner:before {  content: "";  width: 110px;  height: 110px;  position: absolute; top: 20.3%; left: 22%; z-index: 0;  -webkit-mask-image: url('https://raw.githubusercontent.com/lbns14/Projeto-Pokedex/main/pokeball.svg');  background-size: 100%;  opacity:.3;  background-color: gray;  opacity: .2; } 
+div.card-inner:before {  content: "";  width: 110px;  height: 110px;  position: absolute; top: 20.3%; left: 22%; z-index: 0; -webkit-mask-image: url('https://raw.githubusercontent.com/lbns14/Projeto-Pokedex/main/pokeball.svg'); background-size: 100%; opacity:.3; background-color: gray; opacity: .2; } 
+/* -webkit-mask-image: url('https://raw.githubusercontent.com/lbns14/Projeto-Pokedex/main/pokeball.svg') */
 
 .num {border: 0px solid orange; font-weight:500; font-size:11px; line-height: 15px; color: var(--meta-color); white-space:nowrap;}
-img.card-avatar { width: 140px; position: relative; transition: all .2s ease-in-out; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out;}
-.pagina{width:660px; display: inline-table;}
-.paginaTitulo{font-weight: 600;}
+img.card-avatar{ width: 140px; position: relative; transition: all .2s ease-in-out; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out;}
+.pagina{width:670px; display: inline-table;}
+.paginaTitulo{font-weight: 600; margin:25px 0 13px;}
 
-.b-left{float:left; position:absolute; left:0;}
-.zoom {position: absolute; z-index: 98;	transform: translate(9%, -31.2%);}
-.divTop{height: 31px; display: flex; flex-direction: column; justify-content: flex-end;}
+.topmenu{height:70px; display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-end; font-size: 36px; font-weight: 600; font-family: var(--body-font);}
+
+#toogleConfig.hidden {transition: 0.7s ease-out; overflow: hidden; height: 0;}
+#toogleConfig.toggle {height: 150px;}
+
+.menuConfig{padding: 20px; display: flex; position: relative; justify-content: space-around; border: 2px solid rgba(155, 155, 155, 0.1); border-top: 0; border-radius: 0 0 12px 12px;}
+.configInterno{border: 0px solid blue; width: 40%; font-weight:600;}
+
+.selectInterno{border: 0px solid; width: 100px; text-align: center;}
+.labelInterno{margin-left:50px; font-size: 15px; font-weight:500;}
+.buttonInterno{margin-left:50px; font-family:var(--text-font); font-size: 15px;}
+.buttonInterno:hover{color: var(--main-color);}
+
+.reservado{position: relative; top: 194px; line-height: 1;}
+.topLeft{float:left; position:absolute; left:0;}
+.topRight{float:right; position:absolute; right:0;}
+.zoom{position: absolute; z-index: 98;	transform: translate(9%, -31.2%);}
+.divTop{height: 31px; display: flex; flex-direction: column; justify-content: flex-start;}
 .divMid{height: 31px; display: flex; flex-direction: column; justify-content: space-between;}
-.divBot{position: absolute; bottom: 0px; left: 0px;	right: 0px; align-items: center;}
-.labelA{border: 0px solid gold; height: 15px; width: 0px; white-space: nowrap; line-height: 0.5; letter-spacing: -2px; padding-top: 2px; padding-left: 2px; float: left;}
+.divBot{position: absolute; bottom: 3px; left: 0px;	right: 0px; }
+.labelA{border: 0px solid gold; height: 15px; width: 0px; white-space: nowrap; line-height: 0.5; letter-spacing: -2px; padding-top: 3px; padding-left: 2px; float: left;}
 .inputA{border: 0px solid blue; min-width: 30px; field-sizing: content; font-size: 11px; float: left;}
-.selectA{border: 0px solid red; height: 15px; min-width: 60px; font-size: 11px; letter-spacing: -.3px; text-align: right; float: right; field-sizing: content; }
-.selectB{border: 0px solid red; height: 15px; min-width: 30px; font-size: 11px; letter-spacing: -.3px; text-align: right; float: right; display: none; }
-.buttonA{border: 0px solid red; height: 15px; line-height: 0.3; font-family:'Montserrat'; font-size: 19px; font-weight: 500; position: absolute; left:0; top:-21px;}
-.fecharVar{position: absolute; top: 5px; right: 10px; padding: 5px;}
+.selectA{border:0px solid red; height:15px; min-width:60px; font-size:11px; letter-spacing:-.3px; text-align:right; float:right; opacity:1 !important; color:#000000 !important; field-sizing:content; }
+.selectB{border:0px solid red; height:15px; min-width:30px; font-size:11px; letter-spacing:-.3px; text-align:right; float:right; opacity: 1 !important; color:#000000 !important; display: none; }
+.butVar{border: 0px solid red; height: 21px; line-height: 0.3; font-family:'Montserrat'; font-size: 19px; font-weight: 500; position: absolute; left:0; bottom:22px; background:white; border-radius:3px;}
+.butFechar{position: absolute; top: 5px; right: 7px; padding: 5px;}
 
-.divVar{border: 0px solid rgba(183, 189, 193, 0.9); box-shadow: 0px 0px 41px -10px rgba(183, 189, 193, 0.9); border-radius: 10px; background-color: #ffffff; padding: 10px; width: 100%; position: absolute; top: 450px; z-index: 99; display: none;}
-.varSel{position: relative; right: 15px;}
-.varInp{position: relative; left: 15px;}
+/*.desabilitado {pointer-events: none; touch-action: none; tabindex:-1; }*/
 
-.imgMais{position: relative; top: 58px; border-radius: 12px; width: 135px; display: inline; vertical-align: middle;}
-.divMais:active {top: 5px; box-shadow:}
-div.NovaVar:before{position: absolute; top: 28%;}
+.divVar{border: 0px solid rgba(183, 189, 193, 0.9); box-shadow: 0px 0px 41px -10px rgba(183, 189, 193, 0.9); border-radius: 10px; background-color: #ffffff; padding: 20px 20px 40px 20px; width: 100%; position: absolute; top: 450px; z-index: 99; display: none;}
+img.variacao{width:155px; }
+div.NovaVar{margin: 16px 5px 5px 5px; }
+div.NovaVar:before{position: absolute; top: 29.5%; }
+/*.varSel{position: relative; right: 15px;}
+.varInp{position: relative; left: 15px;}*/
+
+.imgMais{position:relative; top:25.1%; border-radius:12px; width:135px; display:inline; vertical-align:middle;}
+.divMais:active{top:5px; }
 
 .title.kanto:after {background-image: linear-gradient(90deg, #ED0303 10%, #3381F4 80%);width:100%;}
 .title.johto:after {background-image: linear-gradient(90deg, #F3BD2D 10%, #9BA8AF 80%);width:100%;}
@@ -148,7 +169,7 @@ div.NovaVar:before{position: absolute; top: 28%;}
 .title.paldea:after {background-image: linear-gradient(90deg, #E90D0D 10%, #B018B8 80%);width:100%;}
 
 @media screen and (max-width: 500px){
-  .title {font-size:16px !important;}
+  .title {font-size: 20px; font-weight: 800;}
   div.card-inner {font-size:15px !important;}
   img.card-avatar {width:90px !important;}
   div.card-inner:before {width:90px;height:90px; vertical-align: middle; text-align: center;}
@@ -158,39 +179,54 @@ div.NovaVar:before{position: absolute; top: 28%;}
 }
 
 </style>
-
 </head>
-
+<!-- 
+onload="carregarPokedex()"
+onload="gerar('3x3')"
+onload="gerar('linha')"
+ -->
 <body class="is-single is-page" onload="carregarPokedex()">
 	<div class="flex-c" id="content-wrapper">
-	<div class="container row-x1 flex-sb" style="transform: none;">
-	<main class="has-margin" id="main-wrapper" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+	<div class="row-x1" style="transform: none;">
+	
 	<div class="blog-posts item-post-wrap flex-col">
 	<div class="item-post-inner flex-col">
-	<div class="post-body entry-content" id="post-body">
-		<div class="divVar" id="divVariacao" style="text-align: center;">      </div>
+	<div class="post-body" id="post-body">
+	
+		<div class="topmenu">Pokédex</div>
+		<div class="topLeft">
+			<!-- <button id="bDivFiltro" onclick="clickDivFiltro(); blur(); " type="button" style="padding:5px">Filtro</button>  -->
+			<button id="bContador" onclick="clickContador()" type="button" style="padding:5px">Contador</button>
+		</div>
+		<div class="topRight">
+			<!-- <button id="bEdicaoVisualizacao" onclick="clickEdicaoVisualizacao(); blur();" type="button" style="padding:5px">Edicao / Visualizacao</button> -->
+			<button id="bConfig" onclick="clickConfig(); blur();" type="button" style="padding:5px; ">Config️</button>
+		</div>
+		<div class="title-wrap" style="margin: 0;"><h2/></div>
 		
-<!--
-			<div class="card" >          
-				<div class="card-inner">
-					<div class="divTop" id="top9999" style="visibility: hidden;">Bulbasaur
-					<div class="num">Nº 9999</div></div>
-					<div style="display: inline-block;">
-						<img id="img9999" class="card-avatar" loading="lazy" src="https://drive.google.com/thumbnail?id=1ylTHUEf086ASe5cOgMnPX-KPerFGgU4M" onclick="clickPokemon('9999')" onmousemove="zoomIn('9999')" onmouseout="zoomOut('9999')"> 
-						<img id="zoo9999" class="zoom">
-					</div>
-					<div class="divMid" id="mid9999">
-						<div class="num">Nº 9999</div>
-										Bulbasaur</div>
-					<div class="divBot">
-						<input type="text" id="inp9999" class="inputA" onchange="changeInp('9999', this.value)" onclick="select()"/>
-						<label id="lab9999" class="labelA"></label>
-						<select id="sel9999" class="selectA" onchange="changeSel('9999', this.value)"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select> 
-						<select id="ext9999" class="selectB" onchange="changeExt('9999', this.value)"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select>
-					</div>
+		
+		
+		<div id="toogleConfig" class="hidden">
+			<div id="divConfig" class="menuConfig">
+				<div class="configInterno">
+					<i>Visualização</i>
+					</br><label class="labelInterno">Disposição:<label style="color: Gainsboro">  .................................</label></label><select id="selDisposicao" class="selectInterno" onchange="changeDisposicao(this.value); blur();"><option value="3x3">3 x 3</option><option value="linha">Linha</option></select>
+					</br><label class="labelInterno">Detalhamento:<label style="color: Gainsboro">   ..........................</label></label><select id="selDetalhamento" class="selectInterno" onchange="changeDetalhamento(this.value); blur();"><option value="completo">Completo</option><option value="minimo">Mínimo</option><option value="nenhum">Nenhum</option></select>
+					</br><label class="labelInterno">Zoom:<label style="color: Gainsboro">   ...........................................</label></label><select id="selZoom" class="selectInterno" onchange="changeZoom(this.value); blur();"><option value="duplicar">Duplicar</option><option value="expandir">Expandir</option></select>
+				</div>					
+				<div class="configInterno">
+					<i>Backup</i>
+					</br>
+					<select id="selBackup" onchange="blur();" style="border: 0px solid;"><option value="localstorage">localStorage</option><option value="GitHub">GitHub</option></select>
+					</br>
+					<button id="bImportar" class="buttonInterno" onclick="clickImportar()" type="button">Importar</button>
+					</br>
+					<button id="bExportar" class="buttonInterno" onclick="clickExportar()" type="button">Exportar</button>
+					<input type="text" value="" id="iLocalStorage" disabled>
 				</div>
 			</div>
--->
+		</div>
+		
 
 		<div class="inner-menu i">
 			<a href="#kanto">Kanto</a>
@@ -205,39 +241,21 @@ div.NovaVar:before{position: absolute; top: 28%;}
 			<a href="#paldea">Paldea</a>
 		</div>
 		<div class="inner-menu ii">
+			<a href="#megaevolucao">Mega Evolução</a>
 			<a href="#formasalola">Formas de Alola</a>
 			<a href="#formasgalar">Formas de Galar</a>
+			<a href="#gigamax">Formas Gigamax</a>
 			<a href="#formashisui">Formas de Hisui</a>
 			<a href="#formaspaldea">Formas de Paldea</a>
 		</div>
 
-		<div class="b-left">
-			<button id="bContador" onclick="clickContador()" type="button" style="padding:5px">Contador</button>
-			<button id="bExportar" onclick="clickExportar()" type="button" style="padding:5px">Exportar</button>
-			<button id="bImportar" onclick="clickImportar()" type="button" style="padding:5px">Importar</button>
-			<input type="text" value="" id="iLocalStorage" disabled>
-		</div>
+		<div class="divVar" id="divVariacao" style="text-align: center;">      </div>
 
-		<!-- style="background: blue; 
-		style="color: red;" Dudunsparce Forma Três Segmentos 
-		{"xSequencial":"xNome-xCodigo-xAdicionado-xNumeracao-xRaridade-xExtra", -->
+		<div class="geral" id="divGeral"></div>
 
-		<div class="corpo" id="divCorpo">
-
-
-
-
-
-
-
- 
-
-		</div>
-		
 	</div>
 	</div>
 	</div>
-	</main>
 	</div>
 	</div>
 
@@ -250,98 +268,357 @@ var gContadorFolha = 0;
 var gContadorPagina = 0;
 var gCartasAdicionadas = 0;
 var gQtdVariacoes = 0;
-const cImagemVazia = 'https://drive.google.com/thumbnail?id=1ylTHUEf086ASe5cOgMnPX-KPerFGgU4M';
+var gModoZoom = 'duplicar';
+var gAlturaZoom = '-31.2%';
+var gLarguraZoom = '9%';
+var gAlturaZoomVar = '-29.3%';
+var gLarguraZoomVar = '7.3%';
+const cImagemVazia = 'Imagens/0000.png';
+//const cImagemVazia = 'https://drive.google.com/thumbnail?id=1ylTHUEf086ASe5cOgMnPX-KPerFGgU4M';
 	
 	
 // CARREGAR POKEDEX
 function carregarPokedex(){
-	gContadorFolha = 0;
-	gContadorPagina = 0;
-	var corpo = document.getElementById('divCorpo');
-	
-	corpo.innerHTML = '<div class="list-container" id="kanto" ><div class="title-wrap related-title" id="I" style="margin-top: 10px;" ><h2/><h2 class="title kanto" style="font-size: 20px; font-weight: 800;">1ª Geração: Kanto</h2></div><center id="cenKanto"><div class="pagina"></div></center></div>';
-	carregarPokemon('Kanto', 1, 153);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="johto"><div class="title-wrap related-title" id="II" style="margin-top: 30px;"><h2/><h2 class="title johto" style="font-size: 20px; font-weight: 800;">2ª Geração: Johto</h2></div><center id="cenJohto"></center></div>';
-	carregarPokemon('Johto', 154, 261);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="hoenn"><div class="title-wrap related-title" id="III" style="margin-top: 30px;"><h2/><h2 class="title hoenn" style="font-size: 20px; font-weight: 800;">3ª Geração: Hoenn</h2></div><center id="cenHoenn"></center></div>';
-	carregarPokemon('Hoenn', 262, 423);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="sinnoh"><div class="title-wrap related-title" id="IV" style="margin-top: 30px;"><h2 class="title sinnoh" style="font-size: 20px; font-weight: 800;">4ª Geração: Sinnoh</h2></div><center id="cenSinnoh"></center></div>';
-	carregarPokemon('Sinnoh', 424, 549);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="unova"><div class="title-wrap related-title" id="V" style="margin-top: 30px;"><h2 class="title unova" style="font-size: 20px; font-weight: 800;">5ª Geração: Unova</h2></div><center id="cenUnova"></center></div>';
-	carregarPokemon('Unova', 550, 729);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="kalos"><div class="title-wrap related-title" id="VI" style="margin-top: 30px;"><h2/><h2 class="title kalos" style="font-size: 20px; font-weight: 800;">6ª Geração: Kalos</h2></div><center id="cenKalos"></center></div>';
-	carregarPokemon('Kalos', 730, 819);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="alola"><div class="title-wrap related-title" id="VII" style="margin-top: 30px;"><h2 class="title alola" style="font-size: 20px; font-weight: 800;">7ª Geração: Alola</h2></div><center id="cenAlola"></center></div>';
-	carregarPokemon('Alola', 820, 927);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="formasalola"><div class="title-wrap related-title" id="VII-" style="margin-top: 30px;"><h2 class="title alola" style="font-size: 20px; font-weight: 800;">7ª Geração: Formas de Alola</h2></div><center id="cenFormasAlola"></center></div>';
-	carregarPokemon('FormasAlola', 928, 945);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="galar"><div class="title-wrap related-title" id="VIII" style="margin-top: 30px;"><h2 class="title galar" style="font-size: 20px; font-weight: 800;">8ª Geração: Galar</h2></div><center id="cenGalar"></center></div>';
-	carregarPokemon('Galar', 946, 1053);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="formasgalar"><div class="title-wrap related-title" id="VIII-" style="margin-top: 30px;"><h2 class="title galar" style="font-size: 20px; font-weight: 800;">8ª Geração: Formas de Galar</h2></div><center id="cenFormasGalar"></center></div>';
-	carregarPokemon('FormasGalar', 1054, 1071);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="hisui"><div class="title-wrap related-title" id="H" style="margin-top: 30px;"><h2/><h2 class="title hisui" style="font-size: 20px; font-weight: 800;">8ª Geração: Hisui</h2></div><center id="cenHisui"></center></div>';
-	carregarPokemon('Hisui', 1072, 1089);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="formashisui"><div class="title-wrap related-title" id="H-" style="margin-top: 30px;"><h2 class="title hisui" style="font-size: 20px; font-weight: 800;">8ª Geração: Formas de Hisui</h2></div><center id="cenFormasHisui"></center></div>';
-	carregarPokemon('FormasHisui', 1090, 1107);
-	
-	corpo.innerHTML = corpo.innerHTML + '<div class="list-container" id="paldea"><div class="title-wrap related-title" id="IX" style="margin-top: 30px;"><h2 class="title paldea" style="font-size: 20px; font-weight: 800;">9ª Geração: Paldea</h2></div><center id="cenPaldea"></center></div>';
-	carregarPokemon('Paldea', 1108, 1251);
-	
-	corpo.innerHTML = corpo.innerHTML + '  <div class="list-container" id="formaspaldea"><div class="title-wrap related-title" id="IX" style="margin-top: 30px;"><h2 class="title paldea" style="font-size: 20px; font-weight: 800;">9ª Geração: Formas de Paldea</h2></div><center id="cenFormasPaldea"></center></div>';
-	carregarPokemon('FormasPaldea', 1252, 1260);
-	
-	var cenFormasPaldea = document.getElementById('cenFormasPaldea');
-	cenFormasPaldea.innerHTML = cenFormasPaldea.innerHTML + '<div class="pagina"></div>';
-	
-	ajustarTamFonte();
-}
+	gCartasAdicionadas = 0;
 
-function carregarPokemon(pRegiao, pInicial, pFinal){
-	var vContador = 0;
-	var element = document.getElementById('cen'+pRegiao);
-
-	for (var i = pInicial; i <= pFinal; i++){
+	carregarConfiguracao();
+	
+	for (var i = 1; i <= localStorage.length; i++){
 		let vItem = localStorage.getItem(i);
 		// split do localStorage nao pode ser ,-:/\
-		const vValores = vItem.split("|");
-		
-		if (vContador % 9 === 0){
-			gContadorPagina = gContadorPagina + 1;
-			if (gContadorPagina % 2 !== 0) {gContadorFolha = gContadorFolha + 1;}
-			element.innerHTML = element.innerHTML + '<div class="pagina" id="pag'+gContadorPagina+'"><br/><h4 class="paginaTitulo">Folha '+gContadorFolha+'</h4></div>';
-			element = document.getElementById('pag'+gContadorPagina);
-		}
-		
-		gerarPokemon(element, i, vValores);
-		
-		if ((vContador+1) % 9 === 0){
-			element = document.getElementById('cen'+pRegiao);
-		}
+		const aValores = vItem.split("|");
 
-		if (vValores[5] == 'A') {
-			gCartasAdicionadas = gCartasAdicionadas + 1;
-			carregarCarta(i, i, vValores[2], vValores[1]);
-			carregarVlrElementos(i, vValores);
+		if (aValores[5] == 'S') {
+			if (aValores[1] != '0000') {
+				gCartasAdicionadas = gCartasAdicionadas + 1;}
+				
+			carregarCarta(i, i, aValores[2], aValores[1] + aValores[7]);
+			carregarVlrElementos(i, aValores);
 		}
-		vContador = vContador + 1;
 	}
 }
 
-//"xSequencial" : "0xNome|1xCodigo|2xNumeracao|3xRaridade|4xExtra|5xAdicionado|6xVariacoes" "0xRaridade;1xExtra;2Numeracao"
-function gerarPokemon(pElement, pSeq, pValores){
+// 0_Disposicao | 1_Detalhamento | 2_Zoom
+function carregarConfiguracao(){
+	let vConf = localStorage.getItem(0);
+	let aConf = vConf.split("|");
+	
+	document.getElementById("selDisposicao").value = aConf[0];
+	document.getElementById("selDisposicao").setAttribute('value', aConf[0]);
+	document.getElementById("selDetalhamento").value = aConf[1];
+	document.getElementById("selDetalhamento").setAttribute('value', aConf[1]);
+	document.getElementById("selZoom").value = aConf[2];
+	document.getElementById("selZoom").setAttribute('value', aConf[2]);
+	changeDisposicao(aConf[0]);
+	changeDetalhamento(aConf[1]);
+	changeZoom(aConf[2]);
+}
 
-	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn(\''+pSeq+'\')" onmouseout="zoomOut(\''+pSeq+'\')"><img id="zoo'+pSeq+'" class="zoom"></div><div class="divMid" id="mid'+pSeq+'"><div class="num">Nº '+zeroEsquerda(pValores[1], 4)+'</div>'+pValores[0]+'</div><div class="divBot"><button type="button" id="but'+pSeq+'" class="buttonA" style="padding:5px; visibility: hidden;" onclick="clickVariacao(\''+pSeq+'\'); blur()">+</button><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[2]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur()"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur()"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div>   </div>';
+function clickEdicaoVisualizacao(){
+	if (document.getElementById("inp1").readOnly == false){
+		document.getElementById("inp1").readOnly = true;
+		document.getElementById("sel1").disabled = true;
+		document.getElementById("ext1").disabled = true;
+		alert("Campos bloqueados");
+	} else {
+		document.getElementById("inp1").readOnly = false;
+		document.getElementById("sel1").disabled = false;
+		document.getElementById("ext1").disabled = false;
+		alert("Campos liberados");
+	}
+}
+
+function clickDivFiltro(){
+	alert("Em construção");
+}
+
+function clickConfig(){
+	var painel = document.getElementById("toogleConfig");
+	painel.classList.toggle('toggle');
+}
+
+function changeDetalhamento(pValue){
+	//if ( pValue == oldpValue ){
+	//	return; }
+	
+	var changeRuleFunc;
+	if (pValue == "completo"){
+		changeRuleFunc = function(rule){rule.style.height = "250px";};
+		change_css_rules(changeRuleFunc, ['div.card']);
+		changeRuleFunc = function(rule){rule.style.margin = "5px";};
+		change_css_rules(changeRuleFunc, ['div.card-inner']);
+		changeRuleFunc = function(rule){rule.style.margin = "16px 5px 5px 5px";};
+		change_css_rules(changeRuleFunc, ['div.NovaVar']);
+		changeRuleFunc = function(rule){rule.style.display = "flex";};
+		change_css_rules(changeRuleFunc, ['.divTop','.divMid']);
+		changeRuleFunc = function(rule){rule.style.display = "block";};
+		change_css_rules(changeRuleFunc, ['.divBot']);
+		changeRuleFunc = function(rule){rule.style.width = "140px";};
+		change_css_rules(changeRuleFunc, ['img.card-avatar']);
+		changeRuleFunc = function(rule){rule.style.width = "155px";};
+		change_css_rules(changeRuleFunc, ['img.variacao']);
+		changeRuleFunc = function(rule){rule.style.bottom = "22px";};
+		change_css_rules(changeRuleFunc, ['.butVar']);
+		gAlturaZoom = '-31.2%';
+		gLarguraZoom = '9%';
+		gAlturaZoomVar = '-29.3%';
+		gLarguraZoomVar = '7.3%';
+		changeRuleFunc = function(rule){rule.style.margin = "5px";};
+		change_css_rules(changeRuleFunc, ['div.card']);
+	} else {
+		if (pValue == "minimo"){
+			changeRuleFunc = function(rule){rule.style.height = "290px";};
+			change_css_rules(changeRuleFunc, ['div.card']);
+			changeRuleFunc = function(rule){rule.style.margin = "0";};
+			change_css_rules(changeRuleFunc, ['div.card-inner','div.NovaVar']);
+			changeRuleFunc = function(rule){rule.style.display = "none";};
+			change_css_rules(changeRuleFunc, ['.divTop']);
+			changeRuleFunc = function(rule){rule.style.display = "block";};
+			change_css_rules(changeRuleFunc, ['.divBot']);
+			changeRuleFunc = function(rule){rule.style.width = "100%";};
+			change_css_rules(changeRuleFunc, ['img.card-avatar','img.variacao']);
+			changeRuleFunc = function(rule){rule.style.bottom = "22px";};
+			change_css_rules(changeRuleFunc, ['.butVar']);
+			gAlturaZoom = '-24.3%';
+			gLarguraZoom = '5%';
+			gAlturaZoomVar = '-24.3%';
+			gLarguraZoomVar = '5%';
+			changeRuleFunc = function(rule){rule.style.margin = "10px";};
+			change_css_rules(changeRuleFunc, ['div.card']);
+		} else {
+			changeRuleFunc = function(rule){rule.style.height = "268px";};
+			change_css_rules(changeRuleFunc, ['div.card']);
+			changeRuleFunc = function(rule){rule.style.margin = "0";};
+			change_css_rules(changeRuleFunc, ['div.card-inner', 'div.NovaVar']);
+			changeRuleFunc = function(rule){rule.style.display = "none";};
+			change_css_rules(changeRuleFunc, ['.divTop','.divBot']);
+			changeRuleFunc = function(rule){rule.style.width = "100%";};
+			change_css_rules(changeRuleFunc, ['img.card-avatar','img.variacao']);
+			changeRuleFunc = function(rule){rule.style.bottom = "0px";};
+			change_css_rules(changeRuleFunc, ['.butVar']);
+			gAlturaZoom = '-24.3%';
+			gLarguraZoom = '5%';
+			gAlturaZoomVar = '-24.3%';
+			gLarguraZoomVar = '5%';
+			changeRuleFunc = function(rule){rule.style.margin = "10px";};
+			change_css_rules(changeRuleFunc, ['div.card']);
+		}
+	}
+	
+	let vConf = localStorage.getItem(0);
+	let aConf = vConf.split("|");
+	aConf[1] = pValue;
+	localStorage.setItem(0, aConf.join('|'));
+}
+
+function changeDisposicao(pValue){
+	if (pValue == 'linha'){
+		gerarLinha();
+	} else {
+		gerar3x3();
+	}
+	
+	let vConf = localStorage.getItem(0);
+	let aConf = vConf.split("|");
+	aConf[0] = pValue;
+	localStorage.setItem(0, aConf.join('|'));
+	
+	/*else {
+		document.getElementById("divFichario").style.display = "flex";
+		document.getElementById("divLinha").style.display = "none";
+	}*/
+}
+
+function changeZoom(pValue){
+	
+	gModoZoom = pValue;
+	
+	let vConf = localStorage.getItem(0);
+	let aConf = vConf.split("|");
+	aConf[2] = pValue;
+	localStorage.setItem(0, aConf.join('|'));
+}
+
+
+// FUNCAO PARA GERAR ELEMENTOS (NAO MEXER)
+function gerar(pDisposicao){
+
+	function gerarPokemon(pRegiao, pInicial, pFinal){
+		var vContador = 0;
+		var element = document.getElementById('cen'+pRegiao);
+
+		for (var i = pInicial; i <= pFinal; i++){
+			let vItem = localStorage.getItem(i);
+			// split do localStorage nao pode ser ,-:/\
+			const vValores = vItem.split("|");
+			
+			if ( (pDisposicao == 'linha') && (vValores[1] == '0000')) {
+				// NAO FAZ NADA
+			} else {
+				if (pDisposicao == '3x3') {
+					if (vContador % 9 === 0){
+						gContadorPagina = gContadorPagina + 1;
+						if (gContadorPagina % 2 !== 0) {gContadorFolha = gContadorFolha + 1;}
+						element.innerHTML = element.innerHTML + '<div class="pagina" id="pag'+gContadorPagina+'"><h4 class="paginaTitulo">Folha '+gContadorFolha+'</h4>\n\n</div>\n\n';
+						element = document.getElementById('pag'+gContadorPagina);
+					}
+				}	
+				
+				gerarElementos(element, i, vValores);
+				
+				if (pDisposicao == '3x3') {
+					if ((vContador+1) % 9 === 0){
+						element = document.getElementById('cen'+pRegiao);
+					}
+				}
+
+				if (vValores[5] == 'S') {
+					gCartasAdicionadas = gCartasAdicionadas + 1;
+					carregarCarta(i, i, vValores[2], vValores[1] + vValores[7]);
+					carregarVlrElementos(i, vValores);
+				}
+				vContador = vContador + 1;
+			}
+		}
+	}
+
+	gContadorFolha = 0;
+	gContadorPagina = 0;
+	var divGeral = document.getElementById('divGeral');
+
+	if (pDisposicao == 'linha') {
+		divGeral.innerHTML = '\n\n<div class="list-container" id="kanto"><div id="titKanto"></div><center id="cenKanto">\n\n</center></div>';
+	}
+	else {
+		divGeral.innerHTML = '\n\n<div class="list-container" id="kanto"><div id="titKanto"></div><center id="cenKanto"><div class="pagina"></div>\n\n</center></div>';
+	}
+	
+	gerarPokemon('Kanto', 1, 153);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="johto"><div id="titJohto"></div><center id="cenJohto">\n\n</center></div>';
+	gerarPokemon('Johto', 154, 261);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="hoenn"><div id="titHoenn"></div><center id="cenHoenn">\n\n</center></div>';
+	gerarPokemon('Hoenn', 262, 423);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="sinnoh"><div id="titSinnoh"></div><center id="cenSinnoh">\n\n</center></div>';
+	gerarPokemon('Sinnoh', 424, 549);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="unova"><div id="titUnova"></div><center id="cenUnova">\n\n</center></div>';
+	gerarPokemon('Unova', 550, 729);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="kalos"><div id="titKalos"></div><center id="cenKalos">\n\n</center></div>';
+	gerarPokemon('Kalos', 730, 819);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="megaevolucao"><div id="titMegaEvolucao"></div><center id="cenMegaEvolucao">\n\n</center></div>';
+	gerarPokemon('MegaEvolucao', 820, 873);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="alola"><div id="titAlola"></div><center id="cenAlola">\n\n</center></div>';
+	gerarPokemon('Alola', 874, 981);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="formasalola"><div id="titFormasAlola"></div><center id="cenFormasAlola">\n\n</center></div>';
+	gerarPokemon('FormasAlola', 982, 999);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="galar"><div id="titGalar"></div><center id="cenGalar">\n\n</center></div>';
+	gerarPokemon('Galar', 1000, 1107);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="formasgalar"><div id="titFormasGalar"></div><center id="cenFormasGalar">\n\n</center></div>';
+	gerarPokemon('FormasGalar', 1108, 1125);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="gigamax"><div id="titGigamax"></div><center id="cenGigamax">\n\n</center></div>';
+	gerarPokemon('Gigamax', 1126, 1161);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="hisui"><div id="titHisui"></div><center id="cenHisui">\n\n</center></div>';
+	gerarPokemon('Hisui', 1162, 1179);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="formashisui"><div id="titFormasHisui"></div><center id="cenFormasHisui">\n\n</center></div>';
+	gerarPokemon('FormasHisui', 1180, 1197);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="paldea"><div id="titPaldea"></div><center id="cenPaldea">\n\n</center></div>';
+	gerarPokemon('Paldea', 1198, 1341);
+	
+	divGeral.innerHTML = divGeral.innerHTML + '\n\n<div class="list-container" id="formaspaldea"><div id="titFormasPaldea"></div><center id="cenFormasPaldea">\n\n</center></div>';
+	gerarPokemon('FormasPaldea', 1342, 1350);
+	
+	var cenFormasPaldea = document.getElementById('cenFormasPaldea');
+	
+	if (pDisposicao == '3x3') {
+		cenFormasPaldea.innerHTML = cenFormasPaldea.innerHTML + '<div class="pagina"></div>\n\n';}
+	
+	tratarTitulos(pDisposicao, true);
+	//ajustarTamFonte();
+}
+
+//"xSequencial" : "0xNome|1xCodigo|2xNumeracao|3xRaridade|4xExtra|5xAdicionado|6xVariacoes|7xFormas" "0xRaridade;1xExtra;2Numeracao"
+function gerarElementos(pElement, pSeq, pValores){
+	var vCodigo = '';
+	if (pValores[1] != '0000'){
+		vCodigo = 'Nº '+pValores[1];}
+
+	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">'+vCodigo+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn(\''+pSeq+'\')" onmouseout="zoomOut(\''+pSeq+'\')"><img id="zoo'+pSeq+'" class="zoom"></div><div class="divMid" id="mid'+pSeq+'"><div class="num">'+vCodigo+'</div>'+pValores[0]+'</div><button type="button" id="but'+pSeq+'" class="butVar" style="padding:5px; visibility: hidden;" onclick="clickVariacao(\''+pSeq+'\'); blur();">+</button><div class="divBot"><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[2]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur();"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur();"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>\n\n';
+}
+
+function tratarTitulos(pDisposicao, pSeparar){
+	if (pSeparar){
+		if (pDisposicao == '3x3') {
+			document.getElementById('titKanto').innerHTML = '<div class="title-wrap" id="I" style="margin-top: 30px;"><h2/><h2 class="title kanto">1ª Geração: Kanto</h2></div>'; }
+		else {
+			document.getElementById('titKanto').innerHTML = '<div class="title-wrap" id="I" style="margin-top: 30px;"><h2 class="title kanto">1ª Geração: Kanto</h2></div>'; }
+			
+		if (pDisposicao == '3x3') {
+			document.getElementById('titJohto').innerHTML = '<div class="title-wrap" id="II" style="margin-top: 30px;"><h2/><h2 class="title johto">2ª Geração: Johto</h2></div>'; }
+		else {
+			document.getElementById('titJohto').innerHTML = '<div class="title-wrap" id="II" style="margin-top: 30px;"><h2 class="title johto">2ª Geração: Johto</h2></div>'; }
+			
+		if (pDisposicao == '3x3') {
+			document.getElementById('titHoenn').innerHTML = '<div class="title-wrap" id="III" style="margin-top: 30px;"><h2/><h2 class="title hoenn">3ª Geração: Hoenn</h2></div>'; }
+		else {
+			document.getElementById('titHoenn').innerHTML = '<div class="title-wrap" id="III" style="margin-top: 30px;"><h2 class="title hoenn">3ª Geração: Hoenn</h2></div>'; }
+		
+		document.getElementById('titSinnoh').innerHTML = '<div class="title-wrap" id="IV" style="margin-top: 30px;"><h2 class="title sinnoh">4ª Geração: Sinnoh</h2></div>';
+		document.getElementById('titUnova').innerHTML = '<div class="title-wrap" id="V" style="margin-top: 30px;"><h2 class="title unova">5ª Geração: Unova</h2></div>';
+		
+		if (pDisposicao == '3x3') {
+			document.getElementById('titKalos').innerHTML = '<div class="title-wrap" id="VI" style="margin-top: 30px;"><h2/><h2 class="title kalos">6ª Geração: Kalos</h2></div>'; }
+		else {
+			document.getElementById('titKalos').innerHTML = '<div class="title-wrap" id="VI" style="margin-top: 30px;"><h2 class="title kalos">6ª Geração: Kalos</h2></div>'; }
+		
+		document.getElementById('titMegaEvolucao').innerHTML = '<div class="title-wrap" id="VI-" style="margin-top: 30px;"><h2 class="title kalos">6ª Geração: Mega Evolução</h2></div>';
+		document.getElementById('titAlola').innerHTML = '<div class="title-wrap" id="VII" style="margin-top: 30px;"><h2 class="title alola">7ª Geração: Alola</h2></div>';
+		document.getElementById('titFormasAlola').innerHTML = '<div class="title-wrap" id="VII-" style="margin-top: 30px;"><h2 class="title alola">7ª Geração: Formas de Alola</h2></div>';
+		document.getElementById('titGalar').innerHTML = '<div class="title-wrap" id="VIII" style="margin-top: 30px;"><h2 class="title galar">8ª Geração: Galar</h2></div>';
+		document.getElementById('titFormasGalar').innerHTML = '<div class="title-wrap" id="VIII-" style="margin-top: 30px;"><h2 class="title galar">8ª Geração: Formas de Galar</h2></div>';
+		
+		if (pDisposicao == '3x3') {
+			document.getElementById('titGigamax').innerHTML = '<div class="title-wrap" id="VIII--" style="margin-top: 30px;"><h2/><h2 class="title galar">8ª Geração: Gigamax</h2></div>';}
+		else {
+			document.getElementById('titGigamax').innerHTML = '<div class="title-wrap" id="VIII--" style="margin-top: 30px;"><h2 class="title galar">8ª Geração: Gigamax</h2></div>';
+		}
+		
+		if (pDisposicao == '3x3') {
+			document.getElementById('titHisui').innerHTML = '<div class="title-wrap" id="H" style="margin-top: 30px;"><h2/><h2 class="title hisui">8ª Geração: Hisui</h2></div>'; }
+		else {
+			document.getElementById('titHisui').innerHTML = '<div class="title-wrap" id="H" style="margin-top: 30px;"><h2 class="title hisui">8ª Geração: Hisui</h2></div>'; }
+		
+		document.getElementById('titFormasHisui').innerHTML = '<div class="title-wrap" id="H-" style="margin-top: 30px;"><h2 class="title hisui">8ª Geração: Formas de Hisui</h2></div>';
+		document.getElementById('titPaldea').innerHTML = '<div class="title-wrap" id="IX" style="margin-top: 30px;"><h2 class="title paldea">9ª Geração: Paldea</h2></div>';
+		document.getElementById('titFormasPaldea').innerHTML = '<div class="title-wrap" id="IX" style="margin-top: 30px;"><h2 class="title paldea">9ª Geração: Formas de Paldea</h2></div>';
+	} else {
+		document.getElementById('titKanto').innerHTML = '';
+		document.getElementById('titJohto').innerHTML = '';
+		document.getElementById('titHoenn').innerHTML = '';
+		document.getElementById('titSinnoh').innerHTML = '';
+		document.getElementById('titUnova').innerHTML = '';
+		document.getElementById('titKalos').innerHTML = '';
+		document.getElementById('titAlola').innerHTML = '';
+		document.getElementById('titFormasAlola').innerHTML = '';
+		document.getElementById('titGalar').innerHTML = '';
+		document.getElementById('titFormasGalar').innerHTML = '';
+		document.getElementById('titHisui').innerHTML = '';
+		document.getElementById('titFormasHisui').innerHTML = '';
+		document.getElementById('titPaldea').innerHTML = '';
+		document.getElementById('titFormasPaldea').innerHTML = '';
+	}
 }
 
 function carregarCarta(pSeq, pIdElemento, pNumeracao, pCodigo) {
@@ -425,9 +702,24 @@ function carregarCarta(pSeq, pIdElemento, pNumeracao, pCodigo) {
 			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/surging-sparks/pt-br/SV08_PTBR_'+vCodigoTratado+'.png';
 			break;
 		// Evoluções Prismáticas
-        case '':
+        case '131':
 			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv08.5/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = ''+aValoresInput[0]+'.png';
+			break;
+		// Amigos de Jornada
+        case '159':
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv09/'+vCodigoTratado+'/high.webp';
+			break;
+		// Rivais Predestinados
+        case '182':
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv10/'+vCodigoTratado+'/high.webp';
+			break;
+		// Raio Preto
+        case '086b':
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv10.5b/'+vCodigoTratado+'/high.webp';
+			break;
+		// Fogo Branco
+        case '086w':
+			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv10.5w/'+vCodigoTratado+'/high.webp';
 			break;
 
 		default:
@@ -443,57 +735,20 @@ function carregarImagem(pSeq, pIdElemento, pCodigo, pCarregar) {
 	if (document.getElementById("but"+pIdElemento) != null){
 		document.getElementById("but"+pIdElemento).style.visibility = "hidden";}
 
+	let vImagemElemento = document.getElementById('img'+pIdElemento);
+	
 	if ( !Boolean(pCarregar) ) {
-		document.getElementById('img'+pIdElemento).src = cImagemVazia;
+		vImagemElemento.src = cImagemVazia;
 		return;
 	}
 	
 	if (pIdElemento.toString().includes("var")){
-		document.getElementById("img"+pIdElemento).style.top = "35px";}
+		vImagemElemento.style.top = "35px";}
 
-	switch(pSeq.toString()) {
-	case '376':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1lHPi8L8ilL7eC-orIRQ_xaa42GNLM5V1';
-		break;
-	case '377':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=10WCpN6IQZ4KLY4CDHp3BRPfVFdsVZs8J';
-		break;
-	case '378':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=14up8wtAQcNrhChmiDSXAkfV3S0THK50l';
-		break;
-	case '618':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1DqFJXdUOaBZcG3TyzXYph-QOFqaqzy70';
-		break;
-	case '1017':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1WC3K24w52w1Zjqxf-jZ1x6lVJzWDLA5X';
-		break; 
-	case '1074':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1horu8Zv6eME83xtsw6vawnImVQeoi8Tf';
-		break;
-	case '145':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=161U2dPC3MADYLmqWxzOJ80ZjlvBpLI6T';
-		break;
-	case '148':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1G8UokVIBXt93va5A72iJ18RQRrnDyu9V';
-		break;
-	case '151':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1nOX8PmHpmNPvEspXG6tHeLskDZOzHnN5';
-		break;
-	case '529':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1CwkorMCoMszfalVyZvEDXAfHGVJfarxY';
-		break;
-	case '530':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1ZTHa4zUsEesoMvKIBPX4aru8_9ufP-rL';
-		break;
-	case '531':
-		document.getElementById('img'+pIdElemento).src = 'https://drive.google.com/thumbnail?id=1xyRMx03LiQwsstDGJot1RbVyPhobUz9Q';
-		break;
-
-	default:
-		var vCodigo = pCodigo.replace(/^0+/, '');
-		vCodigo = zeroEsquerda(vCodigo, 3);
-		document.getElementById('img'+pIdElemento).src = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/'+vCodigo+'.png'; 
-	} 
+	if (pCodigo == '0000') {
+		vImagemElemento.src = 'Imagens/reservado.png';}
+	else {	
+		vImagemElemento.src = 'Imagens/Pokemon/'+pCodigo+'.png';}
 }
 
 
@@ -506,7 +761,11 @@ function clickPokemon(pSeq) {
 		return;
 	}
 	
-	if (vValores[5] == 'F'){
+	/*if ((vValores[1] == '0000') && (vValores[5] == 'N')) {
+		return;
+	}*/
+
+	if (vValores[5] == 'N') {
 		adicionarPokemon(pSeq, vValores);
 	} else {
 		removerPokemon(pSeq, vValores);
@@ -514,32 +773,47 @@ function clickPokemon(pSeq) {
 }
 
 function adicionarPokemon(pSeq, pValores){
-	if (pValores[5] == 'F'){
+	if (pValores[1] != '0000') {
 		gCartasAdicionadas = gCartasAdicionadas + 1;}
 		
-	pValores[5] = 'A';
-	carregarCarta(pSeq, pSeq, pValores[2], pValores[1]);
+	pValores[5] = 'S';
 	
 	localStorage.setItem(pSeq, pValores.join('|'));
+	
+	carregarCarta(pSeq, pSeq, pValores[2], pValores[1] + pValores[7]);
+}
+
+function alterarPokemon(pSeq, pValores){
+	if (pValores[5] == 'N') {
+		adicionarPokemon(pSeq, pValores);
+	} else {
+		localStorage.setItem(pSeq, pValores.join('|'));
+		carregarCarta(pSeq, pSeq, pValores[2], pValores[1] + pValores[7]);
+	}
 }
 
 function removerPokemon(pSeq, pValores){
 	zoomOut(pSeq);
-	pValores[5] = 'F';
+	pValores[5] = 'N';
 	pValores[2] = '';
 	pValores[3] = '';
 	pValores[4] = '';	
 	removerVlrElementos(pSeq);
 	carregarImagem(pSeq, pSeq, '', false);
-	gCartasAdicionadas = gCartasAdicionadas - 1;
+	if (pValores[1] != '0000') {
+		gCartasAdicionadas = gCartasAdicionadas - 1;}
+		
 	localStorage.setItem(pSeq, pValores.join('|'));
 }
 
 function carregarVlrElementos(pSeq, pValores){
+	
+	document.getElementById("inp"+pSeq).value = pValores[2];
+
 	let vSelect = document.getElementById("sel"+pSeq);
 	vSelect.value = pValores[3];
 	vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
-	
+
 	let vExtra = document.getElementById("ext"+pSeq);
 	vExtra.value = pValores[4];
 	vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
@@ -548,7 +822,7 @@ function carregarVlrElementos(pSeq, pValores){
 }
 
 function removerVlrElementos(pSeq) {
-	document.getElementById("inp"+pSeq).value = '';
+	document.getElementById("inp"+pSeq).value = "";
 	document.getElementById("ext"+pSeq).value = "";
 	document.getElementById("sel"+pSeq).value = "";
 	document.getElementById("lab"+pSeq).innerHTML = "";
@@ -558,8 +832,15 @@ function changeInp(pSeq, pValue) {
 	var vItem = localStorage.getItem(pSeq); 
 	var vValores = vItem.split("|");
 	
-	vValores[2] = pValue;
-	adicionarPokemon(pSeq, vValores);
+	if (pValue == '') {
+		removerVlrElementos(pSeq);
+		vValores[2] = '';
+		vValores[3] = '';
+		vValores[4] = '';
+	} else {
+		vValores[2] = pValue;}
+	
+	alterarPokemon(pSeq, vValores);
 }	
 
 function changeExt(pSeq, pExt) {
@@ -582,19 +863,19 @@ function changeSel(pSeq, pSelValue) {
 	let vValores = vItem.split("|");
 	
 	vValores[3] = pSelValue;
-	adicionarPokemon(pSeq, vValores);
+	alterarPokemon(pSeq, vValores);
 }
 
-//   ●♦★✩    🌟⭐◆
+//   ●♦★✩    🌟⭐◆ ⯁ ⬥ ⬤
 function carregarRaridade(pSeq, pRaridade) {
 	switch(pRaridade) {
 		case 'comum':
-			document.getElementById('lab'+pSeq).innerHTML = "●";
+			document.getElementById('lab'+pSeq).innerHTML = "<div style='font-size:10px; line-height: 0.8;'>⬤</div>";
 			document.getElementById('ext'+pSeq).style.display = "inline-block";
 			document.getElementById('sel'+pSeq).style.display = "none";
 			break;
 		case 'incomum':
-			document.getElementById('lab'+pSeq).innerHTML = "♦";
+			document.getElementById('lab'+pSeq).innerHTML = "<div style='font-size:14px; line-height: 0.7;'>⯁</div>";
 			document.getElementById('ext'+pSeq).style.display = "inline-block";
 			document.getElementById('sel'+pSeq).style.display = "none";
 			break;
@@ -603,7 +884,7 @@ function carregarRaridade(pSeq, pRaridade) {
 			document.getElementById('ext'+pSeq).style.display = "inline-block";
 			document.getElementById('sel'+pSeq).style.display = "none";
 			break;
-		case 'promo':
+		case 'promocional':
 			document.getElementById('lab'+pSeq).innerHTML = "✩";
 			document.getElementById('ext'+pSeq).value = "";
 			
@@ -616,16 +897,16 @@ function carregarRaridade(pSeq, pRaridade) {
 			document.getElementById('lab'+pSeq).innerHTML = "<div style='color:#A7A9AD;'>★★</div>";
 			document.getElementById('ext'+pSeq).value = "";
 			break;
-		case 'fullart':
+		case 'ilustracaorara':
 			document.getElementById('lab'+pSeq).innerHTML = "<div style='color:#FCB912;'>★</div>";
 			document.getElementById('ext'+pSeq).value = "";
 			break;
-		case 'fullartesp':
+		case 'ilustracaoraraespecial':
 			document.getElementById('lab'+pSeq).innerHTML = "<div style='color:#FCB912;'>★★</div>";
 			document.getElementById('ext'+pSeq).value = "";
 			break;
 		case 'rarasecreta':
-			document.getElementById('lab'+pSeq).innerHTML = "<div style='width: 23px; position: relative; top: -6px; color:#FCB912;'>★<br>★★</div>";
+			document.getElementById('lab'+pSeq).innerHTML = "<div style='width: 23px; position: relative; top: -4px; color:#FCB912;'>★<br>★★</div>";
 			document.getElementById('ext'+pSeq).value = "";
 			break;
 
@@ -634,34 +915,64 @@ function carregarRaridade(pSeq, pRaridade) {
 	}
 }
 
-var xModoZoom = 1;
-
 function zoomIn(pSeq) {
-	var vAltura = '-31.2%';
+	var xAltura = gAlturaZoom;
+	var xLargura = gLarguraZoom;
+	
+	if (gModoZoom == 'duplicar') {
+		let vWindowWidth = window.innerWidth;
+		let vImgRigth = document.getElementById("img"+pSeq).getBoundingClientRect().right;
+		let vEspaco = vWindowWidth - vImgRigth;
+		
+		//if (vEspaco < 450|760) {
+		if (vEspaco < 700) {
+			if (document.getElementById('selDetalhamento').value == 'completo') {
+				xLargura = '-145%';
+			} else {
+				xLargura = '-155%';
+			}
+		}
+	}
+	
+	zoomInNucleo(pSeq, xAltura, xLargura);
+}
+
+function zoomInVar(pSeq) {
+	var xAltura = gAlturaZoomVar;
+	var xLargura = gLarguraZoomVar;
+	
+	if (gModoZoom == 'duplicar') {
+		let vWindowWidth = window.innerWidth;
+		let vImgRigth = document.getElementById("img"+pSeq).getBoundingClientRect().right;
+		let vEspaco = vWindowWidth - vImgRigth;
+		
+		//if (vEspaco < 450|760) {
+		if (vEspaco < 700) {
+			if (document.getElementById('selDetalhamento').value == 'completo') {
+				xLargura = '-147%';
+			} else {
+				xLargura = '-155%';
+			}
+		}
+	}
+	
+	zoomInNucleo(pSeq, xAltura, xLargura);
+}
+
+function zoomInNucleo(pSeq, pAltura, pLargura) {
 	
 	if (document.getElementById("top"+pSeq).style.visibility == "hidden") {
 		return;
 	}
-	
-	if (pSeq.includes("var")){
-		vAltura = '-28.1%';
-	}
 
-	if (xModoZoom == 1) {
-		var vWindowWidth = window.innerWidth;
-		var vImgRigth = document.getElementById("img"+pSeq).getBoundingClientRect().right;
-		var vEspaco = vWindowWidth - vImgRigth;
+	if (gModoZoom == 'duplicar') {
 		var element = document.getElementById("zoo"+pSeq);
 		element.src = document.getElementById("img"+pSeq).src;
 		element.style.maxWidth = "200%";
 		element.style.display = "inline-block";
 		
-		//if (vEspaco < 450) {
-		if (vEspaco < 760) {
-			element.style.transform = "translate(-145%, "+vAltura+")";
-		} else {
-			element.style.transform = "translate(9%, "+vAltura+")";
-		}
+		element.style.transform = "translate("+pLargura+", "+pAltura+")";
+		
 	} else {
 		var element = document.getElementById("img"+pSeq);
 		element.style.zIndex = "99";
@@ -675,7 +986,7 @@ function zoomOut(pSeq) {
 			return; }
 	}
 		
-	if (xModoZoom == 1) {
+	if (gModoZoom == 'duplicar') {
 		var element = document.getElementById("zoo"+pSeq);
 		element.style.display = "none";
 	} else {
@@ -703,7 +1014,7 @@ function clickVariacao(pSeq){
 	var aVariacao = ''; 
 	var vSeqVar = '';
 
-	divVariacao.innerHTML = '<h4 style="margin: 0 0 10px 0;">Variações</h4><button class="fecharVar" onclick="fecharVariacao(\''+pSeq+'\'); blur();">❌</button>';
+	divVariacao.innerHTML = '<h4 style="margin: 0 0 10px 0;">Variações</h4><button class="butFechar" onclick="fecharVariacao(\''+pSeq+'\'); blur();">❌</button>';
 	for (var i = 0; i < aVariacoes.length; i++){
 		if (aVariacoes[i] != ''){
 			aVariacao = aVariacoes[i].split("_");
@@ -713,15 +1024,15 @@ function clickVariacao(pSeq){
 			gerarVariacao(divVariacao, pSeq, aVariacao[0]);
 
 			if (aVariacao[0] != '') {
-				carregarCarta(pSeq, vSeqVar, aVariacao[0], aValores[1]);}
+				carregarCarta(pSeq, vSeqVar, aVariacao[0], aValores[1] + aValores[7]);}
 
 			carregarVlrElementosVar(vSeqVar, aVariacao);
 			
 			gQtdVariacoes = gQtdVariacoes + 1;
 		}
 	}
-	
-	divVariacao.innerHTML = divVariacao.innerHTML + '<div class="card divMais" id="divVarMais" onclick="adicionarVar(\''+pSeq+'\')"><img class="imgMais" src="https://drive.google.com/thumbnail?id=1ZyuQrATlYWaw7_EgEq0l2AqopkaBJxbs"></img></div>';
+
+	divVariacao.innerHTML = divVariacao.innerHTML + '<div class="card divMais" id="divVarMais" onclick="adicionarVar(\''+pSeq+'\')"><img class="imgMais" src="Imagens/mais.png"></img></div>';
 }
 
 function fecharVariacao(pSeq){
@@ -745,14 +1056,14 @@ function fecharVariacao(pSeq){
 }
 
 // "0xRaridade;1xExtra;2Numeracao"
-function gerarVariacao(pElement, pSeq, pVariacao){
+function gerarVariacao(pElement, pSeq, pNumeracao){
 	var vSeqVar = pSeq+'var'+gQtdVariacoes;
-	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner NovaVar"><div id="top'+vSeqVar+'" style="visibility: hidden;"></div><div style="display: inline-block;"><img id="img'+vSeqVar+'" class="card-avatar" style="width: 165px;" loading="lazy" src="'+cImagemVazia+'" onmousemove="zoomIn(\''+vSeqVar+'\')" onmouseout="zoomOut(\''+vSeqVar+'\')"><img id="zoo'+vSeqVar+'" class="zoom"></div><div class="divBot"><input type="text" id="inp'+vSeqVar+'" class="inputA varInp" value="'+pVariacao+'" onchange="changeInpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value)" onclick="select()"/><label id="lab'+vSeqVar+'" class="labelA varInp"></label><select id="sel'+vSeqVar+'" class="selectA varSel" onchange="changeSelVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur()"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promo">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="fullart">Ilustração Rara</option><option value="fullartesp">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+vSeqVar+'" class="selectB varSel" onchange="changeExtVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this); blur()"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>';
+	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner NovaVar"><div id="top'+vSeqVar+'" style="visibility: hidden;"></div><div style="display: inline-block;"><img id="img'+vSeqVar+'" class="card-avatar variacao" loading="lazy" src="'+cImagemVazia+'" onmousemove="zoomInVar(\''+vSeqVar+'\')" onmouseout="zoomOut(\''+vSeqVar+'\')"><img id="zoo'+vSeqVar+'" class="zoom"></div><div class="divBot"><input type="text" id="inp'+vSeqVar+'" class="inputA varInp" value="'+pNumeracao+'" onchange="changeInpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value)" onclick="select()"/><label id="lab'+vSeqVar+'" class="labelA varInp"></label><select id="sel'+vSeqVar+'" class="selectA varSel" onchange="changeSelVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur()"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+vSeqVar+'" class="selectB varSel" onchange="changeExtVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this); blur()"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>';
 }
 
-function adicionarVar(pSeq){	
+function adicionarVar(pSeq){
 	var divVariacao = document.getElementById('divVariacao');
-	
+
 	document.getElementById('divVarMais').remove();
 	gerarVariacao(divVariacao, pSeq, '');
 	
@@ -760,14 +1071,18 @@ function adicionarVar(pSeq){
 	var aValores = vItem.split("|");
 	var aVariacoes = aValores[6].split(";");
 	
-	aVariacoes.push("__");
-	aValores[6] = aVariacoes.join(';');
+	if (aVariacoes == "") {
+		aVariacoes = "__";
+	} else {
+		aVariacoes.push("__");
+		aValores[6] = aVariacoes.join(';');
+	}
 
 	localStorage.setItem(pSeq, aValores.join('|'));
 	
 	gQtdVariacoes = gQtdVariacoes + 1;
 	
-	divVariacao.innerHTML = divVariacao.innerHTML + '<div class="card divMais" id="divVarMais" onclick="adicionarVar(\''+pSeq+'\')"><img class="imgMais" src="https://drive.google.com/thumbnail?id=1ZyuQrATlYWaw7_EgEq0l2AqopkaBJxbs"></img></div>';
+	divVariacao.innerHTML = divVariacao.innerHTML + '<div class="card divMais" id="divVarMais" onclick="adicionarVar(\''+pSeq+'\')"><img class="imgMais" src="Imagens/mais.png"></img></div>';
 }
 
 function changeInpVar(pSeq, pIndVar, pValue) {
@@ -785,12 +1100,13 @@ function changeInpVar(pSeq, pIndVar, pValue) {
 		removerVlrElementosVar(pSeq, pSeqVar, aVariacao);
 	} else {
 		aVariacao[0] = pValue;
+		document.getElementById("inp"+pSeqVar).setAttribute('value', pValue);
 		aVariacao[1] = '';
 		aVariacao[2] = '';
-		document.getElementById("sel"+pSeqVar).value = "";
-		document.getElementById("ext"+pSeqVar).value = "";
+		document.getElementById("sel"+pSeqVar).setAttribute('value', "");
+		document.getElementById("ext"+pSeqVar).setAttribute('value', "");
 		document.getElementById("lab"+pSeqVar).innerHTML = "";
-		carregarCarta(pSeq, pSeqVar, aVariacao[0], aValores[1]);
+		carregarCarta(pSeq, pSeqVar, aVariacao[0], aValores[1] + aValores[7]);
 	}
 	aVariacoes[pIndVar] = aVariacao.join('_');
 	aValores[6] = aVariacoes.join(';');
@@ -799,6 +1115,11 @@ function changeInpVar(pSeq, pIndVar, pValue) {
 }
 
 function changeExtVar(pSeq, pIndVar, pExtVar) {
+	let vSeqVar = pSeq+'var'+pIndVar;
+	let vExtra = document.getElementById("ext"+vSeqVar);
+	vExtra.setAttribute('value', pExtVar.value);
+	vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
+	
 	var vItem = localStorage.getItem(pSeq); 
 	var aValores = vItem.split("|");
 	var aVariacoes = aValores[6].split(";");
@@ -811,13 +1132,18 @@ function changeExtVar(pSeq, pIndVar, pExtVar) {
 	localStorage.setItem(pSeq, aValores.join('|'));
 	
 	if (pExtVar.value == '') {
-		document.getElementById('sel'+pSeq+'var'+pIndVar).style.display = "inline-block";
+		document.getElementById('sel'+vSeqVar).style.display = "inline-block";
 		pExtVar.style.display = "none";
 	}
 }
 
 function changeSelVar(pSeq, pIndVar, pValue) {
-	carregarRaridade(pSeq+'var'+pIndVar, pValue);
+	let vSeqVar = pSeq+'var'+pIndVar;
+	carregarRaridade(vSeqVar, pValue);
+	
+	let vSelect = document.getElementById("sel"+vSeqVar);
+	vSelect.setAttribute('value', pValue);
+	vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
 	
 	var vItem = localStorage.getItem(pSeq); 
 	var aValores = vItem.split("|");
@@ -829,29 +1155,39 @@ function changeSelVar(pSeq, pIndVar, pValue) {
 	aValores[6] = aVariacoes.join(';');
 	
 	localStorage.setItem(pSeq, aValores.join('|'));
+	
+	
 }
 
 function carregarVlrElementosVar(pSeqVar, pVariacao){
 	let vSelect = document.getElementById("sel"+pSeqVar);
-	vSelect.value = pVariacao[1];
-	vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
+		vSelect.value = pVariacao[1];
+		vSelect.setAttribute('value', pVariacao[1]);
+		vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
 	
 	let vExtra = document.getElementById("ext"+pSeqVar);
-	vExtra.value = pVariacao[2];
-	vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
+		vExtra.value = pVariacao[2];
+		vExtra.setAttribute('value', pVariacao[2]);
+		vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
 	
 	carregarRaridade(pSeqVar, pVariacao[1]);
 }
 
 function removerVlrElementosVar(pSeq, pSeqVar, pVariacao){
 	zoomOut(pSeqVar);
-	pVariacao[0] = '';
-	pVariacao[1] = '';
-	pVariacao[2] = '';
+	pVariacao[0] = "";
+	pVariacao[1] = "";
+	pVariacao[2] = "";
 
-	document.getElementById("inp"+pSeqVar).value = '';
-	document.getElementById("sel"+pSeqVar).value = "";
-	document.getElementById("ext"+pSeqVar).value = "";
+	let vInput = document.getElementById("inp"+pSeqVar);
+		vInput.value = "";
+		vInput.setAttribute("value", "");
+	let vSelect = document.getElementById("sel"+pSeqVar);
+		vSelect.value = "";
+		vSelect.setAttribute("value", "");
+	let vExtra = document.getElementById("ext"+pSeqVar);
+		vExtra.value = "";
+		vExtra.setAttribute("value", "");
 	document.getElementById("lab"+pSeqVar).innerHTML = "";
 
 	carregarImagem(pSeq, pSeqVar, '', false);
@@ -860,29 +1196,29 @@ function removerVlrElementosVar(pSeq, pSeqVar, pVariacao){
 function ajustarTamFonte(){
 	var i = 0;
 	
-	let aTamFonte11 = [1037, 1200, 1201];
+	let aTamFonte11 = [1038, 1201, 1202];
 	for (i = 0; i < aTamFonte11.length; i++){
-		document.getElementById('mid'+aTamFonte11[i]).style.fontSize = "11px";
+		//document.getElementById('mid'+aTamFonte11[i]).style.fontSize = "11px";
 		document.getElementById('top'+aTamFonte11[i]).style.fontSize = "11px";}
 	
-	let aTamFonte12 = [1035, 1139, 1140, 1219];
+	let aTamFonte12 = [1036, 1140, 1141, 1220];
 	for (i = 0; i < aTamFonte12.length; i++){
-		document.getElementById('mid'+aTamFonte12[i]).style.fontSize = "12px";
+		//document.getElementById('mid'+aTamFonte12[i]).style.fontSize = "12px";
 		document.getElementById('top'+aTamFonte12[i]).style.fontSize = "12px";}
 		
-	let aTamFonte13 = [714, 716, 720, 1088, 1137, 1138, 1251, 1252];
+	let aTamFonte13 = [715, 717, 721, 1089, 1138, 1139, 1252, 1253];
 	for (i = 0; i < aTamFonte13.length; i++){
-		document.getElementById('mid'+aTamFonte13[i]).style.fontSize = "13px";
+		//document.getElementById('mid'+aTamFonte13[i]).style.fontSize = "13px";
 		document.getElementById('top'+aTamFonte13[i]).style.fontSize = "13px";}
 		
-	let aTamFonte14 = [375, 454, 1038, 1130, 1239, 1253];
+	let aTamFonte14 = [376, 455, 1039, 1131, 1240, 1254];
 	for (i = 0; i < aTamFonte14.length; i++){
-		document.getElementById('mid'+aTamFonte14[i]).style.fontSize = "14px";
+		//document.getElementById('mid'+aTamFonte14[i]).style.fontSize = "14px";
 		document.getElementById('top'+aTamFonte14[i]).style.fontSize = "14px";}
 		
-	let aTamFonte15 = [453, 455, 527, 610, 717, 910, 1050, 1238, 1240, 1248];
+	let aTamFonte15 = [454, 456, 528, 611, 718, 911, 1051, 1239, 1241, 1249];
 	for (i = 0; i < aTamFonte15.length; i++){
-		document.getElementById('mid'+aTamFonte15[i]).style.fontSize = "15px";
+		//document.getElementById('mid'+aTamFonte15[i]).style.fontSize = "15px";
 		document.getElementById('top'+aTamFonte15[i]).style.fontSize = "15px";}
 }
 
@@ -921,7 +1257,9 @@ function clickExportar() {
 }
 
 function clickContador() { 
-	var qtdFaltante = 1171 - gCartasAdicionadas;
+	// 1350 contando com os reservados
+	var qtdFaltante = 1253 - gCartasAdicionadas;
+	
 	alert('Cartas adicionadas: '+ gCartasAdicionadas +'\n'+'Cartas faltantes: '+qtdFaltante);
 	document.getElementById("bContador").blur();
 }
@@ -933,10 +1271,46 @@ function zeroEsquerda(pValor, pQtd) {
   return '0'.repeat(resto > 0 ? resto : '0') + pValor;
 }
 
+function change_css_rules(changeRuleFunc, selectorFunc) {
+    [].concat.apply([], // flattens arrays
+        Array.from(document.styleSheets).map(function(sheet) { // each ss
+            return Array.from(sheet.cssRules).filter(function(rule) { // each rule
+				return selectorFunc.includes(rule.selectorText);
+            });
+        })
+    ).map(changeRuleFunc); // change the selected rules
+}
+
 /*
-	//if ([0, 9, 18].includes(i)){
+FUNCAO ORIGINAL
+// general function for selecting rules and applying changes
+function change_css_rules(changeRuleFunc, selectorFunc) {
+    [].concat.apply([], // flattens arrays
+        Array.from(document.styleSheets).map(function(sheet) { // each ss
+            return Array.from(sheet.cssRules).filter(function(rule) { // each rule
+                return selectorFunc(rule); // only select desired rules
+            });
+        })
+    ).map(changeRuleFunc); // change the selected rules
+}
+Example use:
+var my_changeRuleFunc = function(rule) {
+    rule.style.fontSize = '20px';
+}
+var my_selectorFunc = function(rule) {
+    return rule.selectorText == '.myClass'; // return true to select this rule
+}
+change_css_rules(my_changeRuleFunc, my_selectorFunc); // apply change to selected rules
+
+	if ([0, 9, 18].includes(i)){
+	
+	window.getComputedStyle(painel, null).display == "flex"
 */
 
 </script>
+
+<script type="text/javascript" src="3x3.js"> </script>
+<script type="text/javascript" src="linha.js"> </script>
+
 
 </body></html>
