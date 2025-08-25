@@ -3,7 +3,7 @@
 <html lang="pt_br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Pokédex</title>
-<link href="https://drive.google.com/thumbnail?id=1KkYLpTm4K12-IoS55IztjH1at3mi8oDk" rel="icon" type="image/x-icon">
+<link href="favico.png" rel="icon" type="image/x-icon">
 
 
 <meta content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes" name="viewport">
@@ -193,7 +193,7 @@ onload="gerar('linha')"
 	<div class="item-post-inner flex-col">
 	<div class="post-body" id="post-body">
 	
-		<div class="topmenu">Pokédex</div>
+		<div class="topmenu" id="pokedex">Pokédex</div>
 		<div class="topLeft">
 			<!-- <button id="bDivFiltro" onclick="clickDivFiltro(); blur(); " type="button" style="padding:5px">Filtro</button>  -->
 			<button id="bContador" onclick="clickContador()" type="button" style="padding:5px">Contador</button>
@@ -280,6 +280,17 @@ const cImagemVazia = 'Imagens/0000.png';
 // CARREGAR POKEDEX
 function carregarPokedex(){
 	gCartasAdicionadas = 0;
+
+	if (localStorage.getItem(0) == null) {
+		fetch('localStorage_vazio.txt')
+		.then(response => response.json()) // Parse the response as JSON
+		.then(data => {			
+			importarDados(data); // Work with the parsed data
+		})
+		.catch(error => {
+			alert('Error fetching data: '+error);
+		});
+	}
 
 	carregarConfiguracao();
 	
@@ -1225,34 +1236,45 @@ function ajustarTamFonte(){
 
 // LOCAL STORAGE
 function clickImportar() {
-	if (typeof(Storage) !== "undefined") {
-		var storagedata=prompt("Digite os dados do LocalStorage: ");
-		if (storagedata != null) {
-			localStorage.clear();
-			var data = JSON.parse(storagedata);
-			Object.keys(data).forEach(function (k) {
-				localStorage.setItem(k, data[k]);
-			})
-			window.location.reload();
-		};
-	} else {
+	if (typeof(Storage) == "undefined") {
 		alert("Sorry, your browser does not support Web Storage...");
+		return;
 	}
+	
+	var storagedata=prompt("Digite os dados do LocalStorage: ");
+	var data = JSON.parse(storagedata);
+	importarDados(data);
+	
 	document.getElementById("bImportar").blur();
 }
 
-function clickExportar() {
-	if (typeof(Storage) !== "undefined") {
-		var copyText = document.getElementById("iLocalStorage");
-		copyText.value = JSON.stringify(localStorage);
-		copyText.select();
-		copyText.setSelectionRange(0, 99999);
-		navigator.clipboard.writeText(copyText.value);
-		copyText.value = null;
-		alert("LocalStorage copiado com sucesso!");
-	} else {
-		alert("Sorry, your browser does not support Web Storage...");
+function importarDados(aDados){
+	if (aDados == null) {
+		return;
 	}
+	
+	localStorage.clear();
+	Object.keys(aDados).forEach(function (k) {
+		localStorage.setItem(k, aDados[k]);
+	})
+	
+	window.location.reload();
+}
+
+function clickExportar() {
+	if (typeof(Storage) == "undefined") {
+		alert("Sorry, your browser does not support Web Storage...");
+		return;
+	}
+	
+	var copyText = document.getElementById("iLocalStorage");
+	copyText.value = JSON.stringify(localStorage);
+	copyText.select();
+	copyText.setSelectionRange(0, 99999);
+	navigator.clipboard.writeText(copyText.value);
+	copyText.value = null;
+	alert("LocalStorage copiado com sucesso!");
+
 	document.getElementById("bExportar").blur();
 }
 
