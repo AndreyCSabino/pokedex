@@ -257,8 +257,8 @@ onload="gerar('linha')"
 				<div class="field wide" style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px; margin-bottom:6px">
 					<button class="btn ghost" id="btnImportarGitHub" onclick="clickImportarGitHub()">GitHub</button>
 					<button class="btn ghost" id="btnImportarTxt" onclick="clickImportarJSON()">Arquivo JSON</button>
-					<button class="btn ghost" id="btnExportarGitHub" onclick="clickExportarGitHub()">GitHub</button>
 					<button class="btn ghost" id="btnExportarJSON" onclick="clickExportarJSON()">Arquivo JSON</button>
+					<!-- <button class="btn ghost" id="btnExportarGitHub" onclick="clickExportarGitHub()">GitHub</button> -->
 				</div>
 			</div>
 		</dialog>
@@ -1286,7 +1286,7 @@ function clickDlgBackup(pAcao){
 		
 		document.getElementById('btnImportarGitHub').hidden = false;
 		document.getElementById('btnImportarTxt').hidden = false;
-		document.getElementById('btnExportarGitHub').hidden = true;
+		//document.getElementById('btnExportarGitHub').hidden = true;
 		document.getElementById('btnExportarJSON').hidden = true;
 		
 		dlgBackup.showModal();
@@ -1295,10 +1295,10 @@ function clickDlgBackup(pAcao){
 		if (pAcao == 'Exportar'){
 			document.getElementById('dlgTitle').textContent = 'Exportar';
 			
-			document.getElementById('btnExportarGitHub').hidden = false;
-			document.getElementById('btnExportarJSON').hidden = false;
 			document.getElementById('btnImportarGitHub').hidden = true;
 			document.getElementById('btnImportarTxt').hidden = true;
+			//document.getElementById('btnExportarGitHub').hidden = false;
+			document.getElementById('btnExportarJSON').hidden = false;
 			
 			dlgBackup.showModal();
 			
@@ -1321,14 +1321,16 @@ function clickImportarOld(){
 };
 
 function clickImportarGitHub(){
-	fetch('localStorage.json')
-	.then(response => response.json())
-	.then(data => {			
-		importarDados(data);
-	})
-	.catch(error => {
-		alert('Error fetching data: '+error);
-	});
+	if (confirm("Isso irá sobreescrever o localStorage com os dados do repositório.\nDeseja Continuar?") == true) {
+		fetch('localStorage.json')
+		.then(response => response.json())
+		.then(data => {			
+			importarDados(data);
+		})
+		.catch(error => {
+			alert('Error fetching data: '+error);
+		});
+	}
 }
 
 function clickImportarJSON(){
@@ -1365,6 +1367,10 @@ function importarDados(pDados){
 	window.location.reload();
 }
 
+function clickExportarGitHub() {
+	
+}
+
 function clickExportarJSON() {
 	if (typeof(Storage) == "undefined") {
 		alert("Sorry, your browser does not support Web Storage...");
@@ -1372,20 +1378,6 @@ function clickExportarJSON() {
 	}
 	
 	download('localStorage.json', JSON.stringify(localStorage));
-	
-	
-	//*pedir se vai exportar pra area ou pro github:
-	
-	
-	// se exportar pra area:
-	//	navigator.clipboard.writeText(JSON.stringify(localStorage));
-	
-	// se exportar pro github:
-		
-	
-	
-	//alert("LocalStorage copiado com sucesso!");
-	//document.getElementById("bExportar").blur();
 }
 
 function download(filename, text){
