@@ -319,8 +319,9 @@ function carregarPokedex(){
 
 	if (localStorage.getItem(0) == null) {
 		fetch('localStorage_vazio.txt')
+		.then(response => response.json())
 		.then(data => {			
-			importarDados(data); // Work with the parsed data
+			importarDados(data, false); // Work with the parsed data
 		})
 		.catch(error => {
 			alert('Error fetching data: '+error);
@@ -1312,17 +1313,18 @@ function clickImportarOld(){
 		return;
 	}
 	
-	var dataJSON = prompt("Digite os dados do LocalStorage: ");
+	var data = prompt("Digite os dados do LocalStorage: ");
 
-	importarDados(dataJSON);
+	importarDados(data, true);
 	
 	document.getElementById("bImportar").blur();
 };
 
 function clickImportarGitHub(){
 	fetch('localStorage.txt')
+	.then(response => response.json())
 	.then(data => {			
-		importarDados(data);
+		importarDados(data, false);
 	})
 	.catch(error => {
 		alert('Error fetching data: '+error);
@@ -1345,22 +1347,23 @@ function tratarTxt(pFile){
 
 	reader.onload = (e) => {
 		// O conteúdo do arquivo está em e.target.result
-		importarDados(e.target.result);
+		importarDados(e.target.result, true);
 	};
 
 	// Inicia a leitura do arquivo como texto
 	reader.readAsText(pFile);
 }
 
-function importarDados(aDados){
-	if (aDados == null) {
+function importarDados(pDados, pConverterJSON){
+	if (pDados == null) {
 		return;
 	}
 	
 	localStorage.clear();
-	aDados = JSON.parse(aDados);
-	Object.keys(aDados).forEach(function (k) {
-		localStorage.setItem(k, aDados[k]);
+	if (pConverterJSON) {
+		pDados = JSON.parse(pDados); }
+	Object.keys(pDados).forEach(function (k) {
+		localStorage.setItem(k, pDados[k]);
 	})
 	
 	alert('Dados importados com sucesso.');
