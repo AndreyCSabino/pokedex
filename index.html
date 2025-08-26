@@ -39,6 +39,7 @@
 --button-color:#ffffff;
 --button-hover-bg:#E30C55;
 --button-hover-color:#ffffff;
+--line:#e5e7eb;
 }
 html.is-dark{
 --body-bg-color:#27272b;
@@ -95,6 +96,8 @@ a,input,button{transition:all .0s ease}
 
 /* OUTLINE AO FOCO */
 *:focus {outline: 3px solid var(--main-color);}
+dialog:focus {outline: 0px solid gray;}
+.btn:focus {outline: 0px solid gray;}
 
 span.name-gen, span.number-poke { font-weight: bold;}
 div.inner-menu{ text-align: center;text-transform: uppercase;font-size:15px;}
@@ -178,6 +181,24 @@ div.NovaVar:before{position: absolute; top: 29.5%; }
   .inner-menu.ii {flex-wrap: nowrap;overflow: auto;justify-content: flex-start;font-size: 14px !important;}
 }
 
+dialog{border:none; border-radius:16px; max-width:500px; width:96%; padding:0}
+dialog .dialog-body{padding:16px}
+dialog::backdrop{background:#0f172a80}
+.dialog-head{display:flex; align-items:center; justify-content:space-between; padding:12px 16px}
+.dialog-head h3{margin:0;font-size:16px}
+.dialog-grid{display:grid; grid-template-columns:repeat(12,1fr); gap:10px}
+.dialog-grid .field{grid-column:span 6}
+.dialog-grid .field.wide{grid-column:span 12}
+
+.btn{appearance:none; border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:600}
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn.primary{background:var(--brand);color:#fff;border-color:#5b21b6}
+.btn.ghost{background:transparent}
+.btn.exit{background:transparent; border:0px}
+
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;color:var(--muted)}
+
 </style>
 </head>
 <!-- 
@@ -205,7 +226,6 @@ onload="gerar('linha')"
 		<div class="title-wrap" style="margin: 0;"><h2/></div>
 		
 		
-		
 		<div id="toogleConfig" class="hidden">
 			<div id="divConfig" class="menuConfig">
 				<div class="configInterno">
@@ -217,16 +237,32 @@ onload="gerar('linha')"
 				<div class="configInterno">
 					<i>Backup</i>
 					</br>
-					<select id="selBackup" onchange="blur();" style="border: 0px solid;"><option value="localstorage">localStorage</option><option value="GitHub">GitHub</option></select>
+					<!--  • localStorage <select id="selBackup" onchange="blur();" style="border: 0px solid;"><option value="localstorage">localStorage</option><option value="GitHub">GitHub</option></select> 
+					
+					pedir de onde importar: GitHub ou Área de Transferência -->
+					<button id="bImportar" class="buttonInterno" onclick="clickDlgBackup('Importar'); blur();" type="button">Importar</button>
 					</br>
-					<button id="bImportar" class="buttonInterno" onclick="clickImportar()" type="button">Importar</button>
-					</br>
-					<button id="bExportar" class="buttonInterno" onclick="clickExportar()" type="button">Exportar</button>
-					<input type="text" value="" id="iLocalStorage" disabled>
+					<button id="bExportar" class="buttonInterno" onclick="clickDlgBackup('Exportar'); blur();" type="button">Exportar</button>
 				</div>
 			</div>
 		</div>
 		
+		
+		<dialog id="dlgBackup">
+			<div class="dialog-head">
+				<h3 id="dlgTitle">Titulo</h3>
+				<button class="btn exit" onclick="dlgBackup.close(); bImportar.blur(); bExportar.blur();">✕</button>
+			</div>
+			<div class="dialog-body">
+				<div class="field wide" style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px; margin-bottom:6px">
+					<button class="btn ghost" id="btnImportarGitHub" onclick="clickImportarGitHub()">GitHub</button>
+					<button class="btn ghost" id="btnImportarTxt" onclick="clickImportarTxt()">Arquivo de Texto</button>
+					<button class="btn ghost" id="btnExportarGitHub" onclick="clickExportarGitHub()">GitHub</button>
+					<button class="btn ghost" id="btnExportarTxt" onclick="clickExportarTxt()">Arquivo de Texto</button>
+				</div>
+			</div>
+		</dialog>
+		<input type="file" id="input-file" accept=".txt" onchange="tratarInputFile(this)" hidden>
 
 		<div class="inner-menu i">
 			<a href="#kanto">Kanto</a>
@@ -283,7 +319,6 @@ function carregarPokedex(){
 
 	if (localStorage.getItem(0) == null) {
 		fetch('localStorage_vazio.txt')
-		.then(response => response.json()) // Parse the response as JSON
 		.then(data => {			
 			importarDados(data); // Work with the parsed data
 		})
@@ -295,18 +330,22 @@ function carregarPokedex(){
 	carregarConfiguracao();
 	
 	for (var i = 1; i <= localStorage.length; i++){
-		let vItem = localStorage.getItem(i);
-		// split do localStorage nao pode ser ,-:/\
-		const aValores = vItem.split("|");
+		try {
+			let vItem = localStorage.getItem(i);
+			// split do localStorage nao pode ser ,-:/\
+			const aValores = vItem.split("|");
 
-		if (aValores[5] == 'S') {
-			if (aValores[1] != '0000') {
-				gCartasAdicionadas = gCartasAdicionadas + 1;}
-				
-			carregarCarta(i, i, aValores[2], aValores[1] + aValores[7]);
-			carregarVlrElementos(i, aValores);
+			if (aValores[5] == 'S') {
+				if (aValores[1] != '0000') {
+					gCartasAdicionadas = gCartasAdicionadas + 1;}
+					
+				carregarCarta(i, i, aValores[2], aValores[1] + aValores[7]);
+				carregarVlrElementos(i, aValores);
+			}
 		}
-	}
+		catch(err) {
+		}
+	}	
 }
 
 // 0_Disposicao | 1_Detalhamento | 2_Zoom
@@ -1235,17 +1274,82 @@ function ajustarTamFonte(){
 
 
 // LOCAL STORAGE
-function clickImportar() {
+function clickDlgBackup(pAcao){
 	if (typeof(Storage) == "undefined") {
 		alert("Sorry, your browser does not support Web Storage...");
 		return;
 	}
 	
-	var storagedata=prompt("Digite os dados do LocalStorage: ");
-	var data = JSON.parse(storagedata);
-	importarDados(data);
+	if (pAcao == 'Importar'){
+		document.getElementById('dlgTitle').textContent = 'Importar';
+		
+		document.getElementById('btnImportarGitHub').hidden = false;
+		document.getElementById('btnImportarTxt').hidden = false;
+		document.getElementById('btnExportarGitHub').hidden = true;
+		document.getElementById('btnExportarTxt').hidden = true;
+		
+		dlgBackup.showModal();
+		
+	} else {	
+		if (pAcao == 'Exportar'){
+			document.getElementById('dlgTitle').textContent = 'Exportar';
+			
+			document.getElementById('btnExportarGitHub').hidden = false;
+			document.getElementById('btnExportarTxt').hidden = false;
+			document.getElementById('btnImportarGitHub').hidden = true;
+			document.getElementById('btnImportarTxt').hidden = true;
+			
+			dlgBackup.showModal();
+			
+		}
+	}
+}
+
+function clickImportarOld(){
+	
+	if (typeof(Storage) == "undefined") {
+		alert("Sorry, your browser does not support Web Storage...");
+		return;
+	}
+	
+	var dataJSON = prompt("Digite os dados do LocalStorage: ");
+
+	importarDados(dataJSON);
 	
 	document.getElementById("bImportar").blur();
+};
+
+function clickImportarGitHub(){
+	fetch('localStorage.txt')
+	.then(data => {			
+		importarDados(data);
+	})
+	.catch(error => {
+		alert('Error fetching data: '+error);
+	});
+}
+
+function clickImportarTxt(){
+	document.getElementById('input-file').click();
+};
+
+function tratarInputFile(pInput){
+	
+	const file = pInput.files[0]; // Pega o primeiro arquivo selecionado
+
+	tratarTxt(file);
+}
+
+function tratarTxt(pFile){
+	const reader = new FileReader();
+
+	reader.onload = (e) => {
+		// O conteúdo do arquivo está em e.target.result
+		importarDados(e.target.result);
+	};
+
+	// Inicia a leitura do arquivo como texto
+	reader.readAsText(pFile);
 }
 
 function importarDados(aDados){
@@ -1254,10 +1358,12 @@ function importarDados(aDados){
 	}
 	
 	localStorage.clear();
+	aDados = JSON.parse(aDados);
 	Object.keys(aDados).forEach(function (k) {
 		localStorage.setItem(k, aDados[k]);
 	})
 	
+	alert('Dados importados com sucesso.');
 	window.location.reload();
 }
 
@@ -1267,14 +1373,20 @@ function clickExportar() {
 		return;
 	}
 	
-	var copyText = document.getElementById("iLocalStorage");
-	copyText.value = JSON.stringify(localStorage);
-	copyText.select();
-	copyText.setSelectionRange(0, 99999);
-	navigator.clipboard.writeText(copyText.value);
-	copyText.value = null;
+	//download('localStorage.json', JSON.stringify(localStorage));
+	
+	
+	//*pedir se vai exportar pra area ou pro github:
+	
+	
+	// se exportar pra area:
+		navigator.clipboard.writeText(JSON.stringify(localStorage));
+	
+	// se exportar pro github:
+		
+	
+	
 	alert("LocalStorage copiado com sucesso!");
-
 	document.getElementById("bExportar").blur();
 }
 
