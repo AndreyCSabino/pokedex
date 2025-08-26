@@ -1322,6 +1322,7 @@ function clickImportarOld(){
 
 function clickImportarGitHub(){
 	fetch('localStorage.json')
+	.then(response => response.json())
 	.then(data => {			
 		importarDados(data);
 	})
