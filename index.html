@@ -256,13 +256,13 @@ onload="gerar('linha')"
 			<div class="dialog-body">
 				<div class="field wide" style="display:flex; justify-content:flex-end; gap:8px; margin-top:6px; margin-bottom:6px">
 					<button class="btn ghost" id="btnImportarGitHub" onclick="clickImportarGitHub()">GitHub</button>
-					<button class="btn ghost" id="btnImportarTxt" onclick="clickImportarTxt()">Arquivo de Texto</button>
+					<button class="btn ghost" id="btnImportarTxt" onclick="clickImportarJSON()">Arquivo JSON</button>
 					<button class="btn ghost" id="btnExportarGitHub" onclick="clickExportarGitHub()">GitHub</button>
-					<button class="btn ghost" id="btnExportarTxt" onclick="clickExportarTxt()">Arquivo de Texto</button>
+					<button class="btn ghost" id="btnExportarJSON" onclick="clickExportarJSON()">Arquivo JSON</button>
 				</div>
 			</div>
 		</dialog>
-		<input type="file" id="input-file" accept=".txt" onchange="tratarInputFile(this)" hidden>
+		<input type="file" id="input-file" accept=".txt, .json" onchange="tratarInputFile(this)" hidden>
 
 		<div class="inner-menu i">
 			<a href="#kanto">Kanto</a>
@@ -321,7 +321,7 @@ function carregarPokedex(){
 		fetch('localStorage_vazio.txt')
 		.then(response => response.json())
 		.then(data => {			
-			importarDados(data, false); // Work with the parsed data
+			importarDados(data); // Work with the parsed data
 		})
 		.catch(error => {
 			alert('Error fetching data: '+error);
@@ -1287,7 +1287,7 @@ function clickDlgBackup(pAcao){
 		document.getElementById('btnImportarGitHub').hidden = false;
 		document.getElementById('btnImportarTxt').hidden = false;
 		document.getElementById('btnExportarGitHub').hidden = true;
-		document.getElementById('btnExportarTxt').hidden = true;
+		document.getElementById('btnExportarJSON').hidden = true;
 		
 		dlgBackup.showModal();
 		
@@ -1296,7 +1296,7 @@ function clickDlgBackup(pAcao){
 			document.getElementById('dlgTitle').textContent = 'Exportar';
 			
 			document.getElementById('btnExportarGitHub').hidden = false;
-			document.getElementById('btnExportarTxt').hidden = false;
+			document.getElementById('btnExportarJSON').hidden = false;
 			document.getElementById('btnImportarGitHub').hidden = true;
 			document.getElementById('btnImportarTxt').hidden = true;
 			
@@ -1314,31 +1314,28 @@ function clickImportarOld(){
 	}
 	
 	var data = prompt("Digite os dados do LocalStorage: ");
-
-	importarDados(data, true);
+	data = JSON.parse(data);
+	importarDados(data);
 	
 	document.getElementById("bImportar").blur();
 };
 
 function clickImportarGitHub(){
-	fetch('localStorage.txt')
-	.then(response => response.json())
+	fetch('localStorage.json')
 	.then(data => {			
-		importarDados(data, false);
+		importarDados(data);
 	})
 	.catch(error => {
 		alert('Error fetching data: '+error);
 	});
 }
 
-function clickImportarTxt(){
+function clickImportarJSON(){
 	document.getElementById('input-file').click();
 };
 
 function tratarInputFile(pInput){
-	
 	const file = pInput.files[0]; // Pega o primeiro arquivo selecionado
-
 	tratarTxt(file);
 }
 
@@ -1347,21 +1344,18 @@ function tratarTxt(pFile){
 
 	reader.onload = (e) => {
 		// O conteúdo do arquivo está em e.target.result
-		importarDados(e.target.result, true);
+		importarDados(JSON.parse(e.target.result));
 	};
 
 	// Inicia a leitura do arquivo como texto
 	reader.readAsText(pFile);
 }
 
-function importarDados(pDados, pConverterJSON){
+function importarDados(pDados){
 	if (pDados == null) {
-		return;
-	}
-	
+		return;	}
+		
 	localStorage.clear();
-	if (pConverterJSON) {
-		pDados = JSON.parse(pDados); }
 	Object.keys(pDados).forEach(function (k) {
 		localStorage.setItem(k, pDados[k]);
 	})
@@ -1370,27 +1364,35 @@ function importarDados(pDados, pConverterJSON){
 	window.location.reload();
 }
 
-function clickExportar() {
+function clickExportarJSON() {
 	if (typeof(Storage) == "undefined") {
 		alert("Sorry, your browser does not support Web Storage...");
 		return;
 	}
 	
-	//download('localStorage.json', JSON.stringify(localStorage));
+	download('localStorage.json', JSON.stringify(localStorage));
 	
 	
 	//*pedir se vai exportar pra area ou pro github:
 	
 	
 	// se exportar pra area:
-		navigator.clipboard.writeText(JSON.stringify(localStorage));
+	//	navigator.clipboard.writeText(JSON.stringify(localStorage));
 	
 	// se exportar pro github:
 		
 	
 	
-	alert("LocalStorage copiado com sucesso!");
-	document.getElementById("bExportar").blur();
+	//alert("LocalStorage copiado com sucesso!");
+	//document.getElementById("bExportar").blur();
+}
+
+function download(filename, text){
+	const a = document.createElement('a');
+	a.href = URL.createObjectURL(new Blob([text],{type:'application/octet-stream'}));
+	a.download = filename; 
+	a.click(); 
+	URL.revokeObjectURL(a.href);
 }
 
 function clickContador() { 
