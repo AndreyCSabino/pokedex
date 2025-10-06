@@ -98,6 +98,7 @@ a,input,button{transition:all .0s ease}
 *:focus {outline: 3px solid var(--main-color);}
 dialog:focus {outline: 0px solid gray;}
 .btn:focus {outline: 0px solid gray;}
+.selectExp:focus{outline: 0px solid gray;}
 
 span.name-gen, span.number-poke { font-weight: bold;}
 div.inner-menu{ text-align: center;text-transform: uppercase;font-size:15px;}
@@ -118,6 +119,7 @@ div.card-inner:before {  content: "";  width: 110px;  height: 110px;  position: 
 
 .num {border: 0px solid orange; font-weight:500; font-size:11px; line-height: 15px; color: var(--meta-color); white-space:nowrap;}
 img.card-avatar{ width: 140px; position: relative; transition: all .2s ease-in-out; -webkit-transition: all .2s ease-in-out; -moz-transition: all .2s ease-in-out;}
+img.expImage{ width: 23px; float: left;}
 .pagina{width:670px; display: inline-table;}
 .paginaTitulo{font-weight: 600; margin:25px 0 13px;}
 
@@ -141,10 +143,11 @@ img.card-avatar{ width: 140px; position: relative; transition: all .2s ease-in-o
 .divTop{height: 31px; display: flex; flex-direction: column; justify-content: flex-start;}
 .divMid{height: 31px; display: flex; flex-direction: column; justify-content: space-between;}
 .divBot{position: absolute; bottom: 3px; left: 0px;	right: 0px; }
-.labelA{border: 0px solid gold; height: 15px; width: 0px; white-space: nowrap; line-height: 0.5; letter-spacing: -2px; padding-top: 3px; padding-left: 2px; float: left;}
-.inputA{border: 0px solid blue; min-width: 30px; field-sizing: content; font-size: 11px; float: left;}
+.labelA{border: 0px solid gold; height: 15px; width: 0px; white-space: nowrap; line-height: 0.5; letter-spacing: -2px; padding-top: 3px; padding-left: 3px; float: left;}
+.inputA{border: 0px solid blue; min-width: 30px; field-sizing: content; font-size: 11px; float: left; margin-left: 3px;}
 .selectA{border:0px solid red; height:15px; min-width:60px; font-size:11px; letter-spacing:-.3px; text-align:right; float:right; opacity:1 !important; color:#000000 !important; field-sizing:content; }
 .selectB{border:0px solid red; height:15px; min-width:30px; font-size:11px; letter-spacing:-.3px; text-align:right; float:right; opacity: 1 !important; color:#000000 !important; display: none; }
+.selectExp{border:0px solid red; height:14px; min-width:23px; font-size:11px; letter-spacing:-.3px; text-align:left; float:left; opacity:1 !important; color:#000000 !important; field-sizing:content; background:url(''); }
 .butVar{border: 0px solid red; height: 21px; line-height: 0.3; font-family:'Montserrat'; font-size: 19px; font-weight: 500; position: absolute; left:0; bottom:22px; background:white; border-radius:3px;}
 .butFechar{position: absolute; top: 5px; right: 7px; padding: 5px;}
 
@@ -320,7 +323,7 @@ function carregarPokedex(){
 	if (localStorage.getItem(0) == null) {
 		fetch('localStorage_vazio.txt')
 		.then(response => response.json())
-		.then(data => {			
+		.then(data => {
 			importarDados(data); // Work with the parsed data
 		})
 		.catch(error => {
@@ -336,11 +339,11 @@ function carregarPokedex(){
 			// split do localStorage nao pode ser ,-:/\
 			const aValores = vItem.split("|");
 
-			if (aValores[5] == 'S') {
+			if (aValores[6] == 'S') {
 				if (aValores[1] != '0000') {
 					gCartasAdicionadas = gCartasAdicionadas + 1;}
 					
-				carregarCarta(i, i, aValores[2], aValores[1] + aValores[7]);
+				carregarCartaImagem(i, aValores);
 				carregarVlrElementos(i, aValores);
 			}
 		}
@@ -523,9 +526,9 @@ function gerar(pDisposicao){
 					}
 				}
 
-				if (vValores[5] == 'S') {
+				if (vValores[6] == 'S') {
 					gCartasAdicionadas = gCartasAdicionadas + 1;
-					carregarCarta(i, i, vValores[2], vValores[1] + vValores[7]);
+					carregarCartaImagem(i, vValores);
 					carregarVlrElementos(i, vValores);
 				}
 				vContador = vContador + 1;
@@ -600,13 +603,13 @@ function gerar(pDisposicao){
 	//ajustarTamFonte();
 }
 
-//"xSequencial" : "0xNome|1xCodigo|2xNumeracao|3xRaridade|4xExtra|5xAdicionado|6xVariacoes|7xFormas" "0xRaridade;1xExtra;2Numeracao"
+//"xSequencial" : "0xNome|1xCodigo|2xNumeracao|3xExpansao|4xRaridade|5xExtra|6xAdicionado|7xVariacoes|8xFormas" "0Numeracao;1xExpansao;2xRaridade;3xExtra"
 function gerarElementos(pElement, pSeq, pValores){
 	var vCodigo = '';
 	if (pValores[1] != '0000'){
 		vCodigo = 'Nº '+pValores[1];}
 
-	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">'+vCodigo+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn(\''+pSeq+'\')" onmouseout="zoomOut(\''+pSeq+'\')"><img id="zoo'+pSeq+'" class="zoom"></div><div class="divMid" id="mid'+pSeq+'"><div class="num">'+vCodigo+'</div>'+pValores[0]+'</div><button type="button" id="but'+pSeq+'" class="butVar" style="padding:5px; visibility: hidden;" onclick="clickVariacao(\''+pSeq+'\'); blur();">+</button><div class="divBot"><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[2]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur();"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur();"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>\n\n';
+	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">'+vCodigo+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn(\''+pSeq+'\')" onmouseout="zoomOut(\''+pSeq+'\')"/><img id="zoo'+pSeq+'" class="zoom"/></div><div class="divMid" id="mid'+pSeq+'"><div class="num">'+vCodigo+'</div>'+pValores[0]+'</div><button type="button" id="but'+pSeq+'" class="butVar" style="padding:5px; visibility: hidden;" onclick="clickVariacao(\''+pSeq+'\'); blur();">+</button><div class="divBot"><select id="exp'+pSeq+'" class="selectExp" onchange="changeExp('+pSeq+', this.value); blur();"></select><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[2]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur();"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur();"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option><option value="cosmofoil">Cosmo Foil</option><option value="mirrorfoil">Mirror Foil</option><option value="mirrorreversefoil">Mirror Reverse Foil</option><option value="pokeballfoil">Pokeball Foil</option><option value="masterballfoil">Masterball Foil</option></select></div></div></div>\n\n';
 }
 
 function tratarTitulos(pDisposicao, pSeparar){
@@ -672,134 +675,155 @@ function tratarTitulos(pDisposicao, pSeparar){
 	}
 }
 
-function carregarCarta(pSeq, pIdElemento, pNumeracao, pCodigo) {
-	if (pNumeracao == '') {
-		carregarImagem(pSeq, pIdElemento, pCodigo, true);
-		return;	
-	}
-
-	if (document.getElementById("top"+pIdElemento) != null){
-		document.getElementById("top"+pIdElemento).style.visibility = "visible";}
-	if (document.getElementById("mid"+pIdElemento) != null){
-		document.getElementById("mid"+pIdElemento).style.display = "none";}
-	if (document.getElementById("but"+pIdElemento) != null){
-		document.getElementById("but"+pIdElemento).style.visibility = "visible";}
-		
-	if (pIdElemento.toString().includes("var")){
-		document.getElementById("img"+pIdElemento).style.top = "0px";}
-
-	let aValoresInput = pNumeracao.split("/");
-	var vCodigoTratado = zeroEsquerda(aValoresInput[0], 3);	
-	var vEdicaoTratada = zeroEsquerda(aValoresInput[1], 3);
+function carregarExpansao(pSeq, pCodExp){
 	
-	switch(vEdicaoTratada) {
-		// Promocional
-		case 'SVP':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/svp/'+vCodigoTratado+'/high.webp';
-			break;
-		// Escarleta e Violeta
-		case '198':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv01/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/scarlet-violet/pt-br/SV01_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// Evoluções em Paldea
-        case '193':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv02/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/paldea-evolved/pt-br/SV02_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// Obsidiana em Chamas
-		case '197':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv03/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/obsidian-flames/pt-br/SV03_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// 151
-		case '165':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv03.5/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/151/pt-br/SV3pt5_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// Fenda Paradoxal
-		case '182':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv04/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/paradox-rift/pt-br/SV04_PTBR_'+vCodigoTratado+'.png';
-			break; 
-		// Destinos de Paldea
-		case '091':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv04.5/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/paldean-fates/pt-br/SV4pt5_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// Forças Temporais
-		case '162':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv05/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/temporal-forces/pt-br/SV05_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// Máscaras do Crepúsculo
-		case '167':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv06/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/twilight-masquerade/pt-br/SV06_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// Fábulas Nebulosas
-		case '064':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv06.5/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/shrouded-fable/pt-br/SV6pt5_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// Coroa Estelar
-		case '142':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv07/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/stellar-crown/pt-br/SV07_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// Fagulhas Impetuosas
-		case '191':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv08/'+vCodigoTratado+'/high.webp';
-			//document.getElementById('img'+pIdElemento).src = 'https://dz3we2x72f7ol.cloudfront.net/expansions/surging-sparks/pt-br/SV08_PTBR_'+vCodigoTratado+'.png';
-			break;
-		// Evoluções Prismáticas
-        case '131':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv08.5/'+vCodigoTratado+'/high.webp';
-			break;
-		// Amigos de Jornada
-        case '159':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv09/'+vCodigoTratado+'/high.webp';
-			break;
-		// Rivais Predestinados
-        case '182':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv10/'+vCodigoTratado+'/high.webp';
-			break;
-		// Raio Preto
-        case '086b':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv10.5b/'+vCodigoTratado+'/high.webp';
-			break;
-		// Fogo Branco
-        case '086w':
-			document.getElementById('img'+pIdElemento).src = 'https://assets.tcgdex.net/pt/sv/sv10.5w/'+vCodigoTratado+'/high.webp';
-			break;
+	var selectExp = document.getElementById('exp'+pSeq);
+	
+	var aValoresExpansao = pCodExp.split("/");
+	
+	selectExp.style.background = "Url('Imagens/Expansões/"+aValoresExpansao[1]+".png') no-repeat center / 100%";
+}
 
-		default:
-			carregarImagem(pSeq, pIdElemento, pCodigo, true);
+function carregarCartaImagem(pSeq, pValores){
+
+	if (!carregarCarta(pSeq, pValores[2], pValores[3])) {
+		carregarImagem(pSeq, pValores[1] + pValores[8], true);
 	}
 }
 
-function carregarImagem(pSeq, pIdElemento, pCodigo, pCarregar) {
-	if (document.getElementById("top"+pIdElemento) != null){
-		document.getElementById("top"+pIdElemento).style.visibility = "hidden";}
-	if (document.getElementById("mid"+pIdElemento) != null){
-		document.getElementById("mid"+pIdElemento).style.display = "flex";}
-	if (document.getElementById("but"+pIdElemento) != null){
-		document.getElementById("but"+pIdElemento).style.visibility = "hidden";}
+function carregarCarta(pSeq, pNumeracao, pExpansao) {
 
-	let vImagemElemento = document.getElementById('img'+pIdElemento);
+	if ((pNumeracao == '') || (pExpansao == '')) {
+		return false; }
+
+	let aValoresInput = pNumeracao.split("/");
+	var vCodigoTratado = zeroEsquerda(aValoresInput[0], 3);	
+	/*var vExpansaoTratada = zeroEsquerda(aValoresInput[1], 3);
+	var vExpansao = '';
+	const expansoes = ["182", "086"];
+	if (pExpansao == ''){
+		if (expansoes.includes(vExpansaoTratada)) {
+			tratarSelectExp(pSeq, vExpansaoTratada);
+			return false;
+		}
+		vExpansao = traduzirCodigoExpansao(vExpansaoTratada);
+	} else {
+		vExpansao = pExpansao;
+	}*/
+
+	if (document.getElementById("top"+pSeq) != null){
+		document.getElementById("top"+pSeq).style.visibility = "visible";}
+	if (document.getElementById("mid"+pSeq) != null){
+		document.getElementById("mid"+pSeq).style.display = "none";}
+	if (document.getElementById("but"+pSeq) != null){
+		document.getElementById("but"+pSeq).style.visibility = "visible";}
+		
+	var vImg = document.getElementById("img"+pSeq);	
+	
+	if (pSeq.toString().includes("var")){
+		vImg.style.top = "0px";}
+	
+	vImg.src = 'https://assets.tcgdex.net/pt/'+pExpansao+'/'+vCodigoTratado+'/high.webp';
+	carregarExpansao(pSeq, pExpansao);
+	return true;
+}
+
+function carregarImagem(pSeq, pCodigo, pCarregar) {
+	if (document.getElementById("top"+pSeq) != null){
+		document.getElementById("top"+pSeq).style.visibility = "hidden";}
+	if (document.getElementById("mid"+pSeq) != null){
+		document.getElementById("mid"+pSeq).style.display = "flex";}
+	if (document.getElementById("but"+pSeq) != null){
+		document.getElementById("but"+pSeq).style.visibility = "hidden";}
+
+	let vImagemElemento = document.getElementById('img'+pSeq);
 	
 	if ( !Boolean(pCarregar) ) {
 		vImagemElemento.src = cImagemVazia;
 		return;
 	}
 	
-	if (pIdElemento.toString().includes("var")){
+	if (pSeq.toString().includes("var")){
 		vImagemElemento.style.top = "35px";}
 
 	if (pCodigo == '0000') {
 		vImagemElemento.src = 'Imagens/reservado.png';}
 	else {	
 		vImagemElemento.src = 'Imagens/Pokemon/'+pCodigo+'.png';}
+}
+
+function traduzirCodigoExpansao(pCodExp) {
+	var vCodExp = '';
+	
+	switch(pCodExp) {	
+		
+		// Escarlate e Violeta Promos SVP
+		case 'SVP':
+			vCodExp = 'sv/svp';
+			break;
+			
+		// Escarlate e Violeta SVI
+		case '198':
+			vCodExp = 'sv/sv01';
+			break;
+			
+		// Evoluções em Paldea PAL
+        case '193':
+			vCodExp = 'sv/sv02';
+			break;
+			
+		// Obsidiana em Chamas OBF
+		case '197':
+			vCodExp = 'sv/sv03';
+			break;
+			
+		// 151 MEW
+		case '165':
+			vCodExp = 'sv/sv03.5';
+			break;
+
+		// Destinos de Paldea PAF
+		case '091':
+			vCodExp = 'sv/sv04.5';
+			break;
+			
+		// Forças Temporais TEF
+		case '162':
+			vCodExp = 'sv/sv05';
+			break;
+			
+		// Máscaras do Crepúsculo TWM
+		case '167':
+			vCodExp = 'sv/sv06';
+			break;
+			
+		// Fábulas Nebulosas SFA
+		case '064':
+			vCodExp = 'sv/sv06.5';
+			break;
+			
+		// Coroa Estelar SCR
+		case '142':
+			vCodExp = 'sv/sv07';
+			break;
+			
+		// Fagulhas Impetuosas SSP
+		case '191':
+			vCodExp = 'sv/sv08';
+			break;
+			
+		// Evoluções Prismáticas PRE
+        case '131':
+			vCodExp = 'sv08.5';
+			break;
+			
+		// Amigos de Jornada JTG
+        case '159':
+			vCodExp = 'sv/sv09';
+			break;
+	}
+	
+	return vCodExp;
 }
 
 
@@ -812,11 +836,11 @@ function clickPokemon(pSeq) {
 		return;
 	}
 	
-	/*if ((vValores[1] == '0000') && (vValores[5] == 'N')) {
+	/*if ((vValores[1] == '0000') && (vValores[6] == 'N')) {
 		return;
 	}*/
 
-	if (vValores[5] == 'N') {
+	if (vValores[6] == 'N') {
 		adicionarPokemon(pSeq, vValores);
 	} else {
 		removerPokemon(pSeq, vValores);
@@ -827,30 +851,30 @@ function adicionarPokemon(pSeq, pValores){
 	if (pValores[1] != '0000') {
 		gCartasAdicionadas = gCartasAdicionadas + 1;}
 		
-	pValores[5] = 'S';
+	pValores[6] = 'S';
 	
 	localStorage.setItem(pSeq, pValores.join('|'));
 	
-	carregarCarta(pSeq, pSeq, pValores[2], pValores[1] + pValores[7]);
+	carregarCartaImagem(pSeq, pValores);
 }
 
 function alterarPokemon(pSeq, pValores){
-	if (pValores[5] == 'N') {
+	if (pValores[6] == 'N') {
 		adicionarPokemon(pSeq, pValores);
 	} else {
 		localStorage.setItem(pSeq, pValores.join('|'));
-		carregarCarta(pSeq, pSeq, pValores[2], pValores[1] + pValores[7]);
+		carregarCartaImagem(pSeq, pValores);
 	}
 }
 
 function removerPokemon(pSeq, pValores){
 	zoomOut(pSeq);
-	pValores[5] = 'N';
+	pValores[6] = 'N';
 	pValores[2] = '';
-	pValores[3] = '';
-	pValores[4] = '';	
+	pValores[4] = '';
+	pValores[5] = '';	
 	removerVlrElementos(pSeq);
-	carregarImagem(pSeq, pSeq, '', false);
+	carregarImagem(pSeq, '', false);
 	if (pValores[1] != '0000') {
 		gCartasAdicionadas = gCartasAdicionadas - 1;}
 		
@@ -862,43 +886,123 @@ function carregarVlrElementos(pSeq, pValores){
 	document.getElementById("inp"+pSeq).value = pValores[2];
 
 	let vSelect = document.getElementById("sel"+pSeq);
-	vSelect.value = pValores[3];
+	vSelect.value = pValores[4];
 	vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
 
 	let vExtra = document.getElementById("ext"+pSeq);
-	vExtra.value = pValores[4];
+	vExtra.value = pValores[5];
 	vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
 	
-	carregarRaridade(pSeq, pValores[3]);
+	carregarRaridade(pSeq, pValores[4]);
 }
 
 function removerVlrElementos(pSeq) {
 	document.getElementById("inp"+pSeq).value = "";
 	document.getElementById("ext"+pSeq).value = "";
 	document.getElementById("sel"+pSeq).value = "";
+	var selectExp = document.getElementById("exp"+pSeq);
+	selectExp.value = "";
+	removerOptions(selectExp);
 	document.getElementById("lab"+pSeq).innerHTML = "";
 }
 
+function removerVlrElementosInput(pSeq) {
+	document.getElementById("ext"+pSeq).value = "";
+	document.getElementById("sel"+pSeq).value = "";
+	var selectExp = document.getElementById("exp"+pSeq);
+	selectExp.value = "";
+	removerOptions(selectExp);
+	document.getElementById("lab"+pSeq).innerHTML = "";
+}
+
+function removerOptions(pSelect){
+	while (pSelect.options.length) {
+		pSelect.options.remove(0); 
+	}
+	
+	pSelect.style.background = "Url('')";
+}
+
+function tratarSelectExp(pSeq, pCodExp){
+
+	var selectExp = document.getElementById('exp'+pSeq);
+	removerOptions(selectExp);
+	
+	selectExp.style.contentVisibility = 'visible';
+	
+
+	var opt = document.createElement('option');
+	opt.value = '';
+	opt.innerHTML = '';
+	selectExp.appendChild(opt);
+	
+	switch(pCodExp) {
+		
+		case '182':
+			var opt2 = document.createElement('option');
+				opt2.value = 'sv/sv04';
+				opt2.innerHTML = 'Fenda Paradoxal';
+				selectExp.appendChild(opt2);
+			var opt3 = document.createElement('option');
+				opt3.value = 'sv/sv10';
+				opt3.innerHTML = 'Rivais Predestinados';
+				selectExp.appendChild(opt3);
+			break;
+			
+		case '086':
+			var opt2 = document.createElement('option');
+				opt2.value = 'sv/sv10.5b';
+				opt2.innerHTML = 'Raio Preto';
+				selectExp.appendChild(opt2);
+			var opt3 = document.createElement('option');
+				opt3.value = 'sv/sv10.5w';
+				opt3.innerHTML = 'Fogo Branco';
+				selectExp.appendChild(opt3);
+			break;
+	}
+}
+
+function changeExp(pSeq, pValue){
+
+	carregarExpansao(pSeq, pValue);
+	document.getElementById('exp'+pSeq).style.contentVisibility = 'hidden';
+	var vItem = localStorage.getItem(pSeq);
+	var vValores = vItem.split("|");	
+	vValores[3] = pValue;
+	localStorage.setItem(pSeq, vValores.join('|'));
+	
+	carregarCartaImagem(pSeq, vValores);
+}
+
 function changeInp(pSeq, pValue) {
+	
 	var vItem = localStorage.getItem(pSeq); 
 	var vValores = vItem.split("|");
+	//if (pValue == '') {
+	removerVlrElementosInput(pSeq);
+	vValores[2] = pValue;
+	vValores[3] = '';
+	vValores[4] = '';
+	vValores[5] = '';
 	
-	if (pValue == '') {
-		removerVlrElementos(pSeq);
-		vValores[2] = '';
-		vValores[3] = '';
-		vValores[4] = '';
+	let aValoresInput = pValue.split("/");
+	//var vCodigoTratado = zeroEsquerda(aValoresInput[0], 3);	
+	var vExpansaoTratada = zeroEsquerda(aValoresInput[1], 3);
+	const expansoes = ["182", "086"];
+	if (expansoes.includes(vExpansaoTratada)) {
+		tratarSelectExp(pSeq, vExpansaoTratada);
 	} else {
-		vValores[2] = pValue;}
-	
+		vValores[3] = traduzirCodigoExpansao(vExpansaoTratada);
+	}
+
 	alterarPokemon(pSeq, vValores);
-}	
+}
 
 function changeExt(pSeq, pExt) {
 	var vItem = localStorage.getItem(pSeq); 
 	var vValores = vItem.split("|");
 	
-	vValores[4] = pExt.value;
+	vValores[5] = pExt.value;
 	localStorage.setItem(pSeq, vValores.join('|'));
 	
 	if (pExt.value == '') {
@@ -913,7 +1017,7 @@ function changeSel(pSeq, pSelValue) {
 	let vItem = localStorage.getItem(pSeq); 
 	let vValores = vItem.split("|");
 	
-	vValores[3] = pSelValue;
+	vValores[4] = pSelValue;
 	alterarPokemon(pSeq, vValores);
 }
 
@@ -1036,7 +1140,7 @@ function zoomOut(pSeq) {
 		if (document.getElementById("top"+pSeq).style.visibility == "hidden") {
 			return; }
 	}
-		
+
 	if (gModoZoom == 'duplicar') {
 		var element = document.getElementById("zoo"+pSeq);
 		element.style.display = "none";
@@ -1061,7 +1165,7 @@ function clickVariacao(pSeq){
 	
 	var vItem = localStorage.getItem(pSeq);
 	var aValores = vItem.split("|");
-	var aVariacoes = aValores[6].split(";");
+	var aVariacoes = aValores[7].split(";");
 	var aVariacao = ''; 
 	var vSeqVar = '';
 
@@ -1075,7 +1179,7 @@ function clickVariacao(pSeq){
 			gerarVariacao(divVariacao, pSeq, aVariacao[0]);
 
 			if (aVariacao[0] != '') {
-				carregarCarta(pSeq, vSeqVar, aVariacao[0], aValores[1] + aValores[7]);}
+				carregarCartaImagemVariacao(vSeqVar, aVariacao, aValores[1] + aValores[8]);}
 
 			carregarVlrElementosVar(vSeqVar, aVariacao);
 			
@@ -1086,10 +1190,16 @@ function clickVariacao(pSeq){
 	divVariacao.innerHTML = divVariacao.innerHTML + '<div class="card divMais" id="divVarMais" onclick="adicionarVar(\''+pSeq+'\')"><img class="imgMais" src="Imagens/mais.png"></img></div>';
 }
 
+// "0xRaridade;1xExtra;2Numeracao"
+function gerarVariacao(pElement, pSeq, pNumeracao){
+	var vSeqVar = pSeq+'var'+gQtdVariacoes;
+	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner NovaVar"><div id="top'+vSeqVar+'" style="visibility: hidden;"></div><div style="display: inline-block;"><img id="img'+vSeqVar+'" class="card-avatar variacao" loading="lazy" src="'+cImagemVazia+'" onmousemove="zoomInVar(\''+vSeqVar+'\')" onmouseout="zoomOut(\''+vSeqVar+'\')"><img id="zoo'+vSeqVar+'" class="zoom"></div><div class="divBot"><select id="exp'+vSeqVar+'" class="selectExp" onchange="changeExpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur();"></select><input type="text" id="inp'+vSeqVar+'" class="inputA varInp" value="'+pNumeracao+'" onchange="changeInpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value)" onclick="select()"/><label id="lab'+vSeqVar+'" class="labelA varInp"></label><select id="sel'+vSeqVar+'" class="selectA varSel" onchange="changeSelVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur()"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+vSeqVar+'" class="selectB varSel" onchange="changeExtVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this); blur()"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option><option value="cosmofoil">Cosmo Foil</option><option value="mirrorfoil">Mirror Foil</option><option value="mirrorreversefoil">Mirror Reverse Foil</option><option value="pokeballfoil">Pokeball Foil</option><option value="masterballfoil">Masterball Foil</option></select></div></div></div>';
+}
+
 function fecharVariacao(pSeq){
 	var vItem = localStorage.getItem(pSeq); 
 	var aValores = vItem.split("|");
-	var aVariacoes = aValores[6].split(";");
+	var aVariacoes = aValores[7].split(";");
 	var aVariacao;
 	var aVariacoesNew = [];
 	
@@ -1100,16 +1210,10 @@ function fecharVariacao(pSeq){
 			aVariacoesNew.push(aVariacao.join('_'));}
 	}
 
-	aValores[6] = aVariacoesNew.join(';');	
+	aValores[7] = aVariacoesNew.join(';');	
 
 	localStorage.setItem(pSeq, aValores.join('|'));
 	document.getElementById('divVariacao').style.display = "none";
-}
-
-// "0xRaridade;1xExtra;2Numeracao"
-function gerarVariacao(pElement, pSeq, pNumeracao){
-	var vSeqVar = pSeq+'var'+gQtdVariacoes;
-	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner NovaVar"><div id="top'+vSeqVar+'" style="visibility: hidden;"></div><div style="display: inline-block;"><img id="img'+vSeqVar+'" class="card-avatar variacao" loading="lazy" src="'+cImagemVazia+'" onmousemove="zoomInVar(\''+vSeqVar+'\')" onmouseout="zoomOut(\''+vSeqVar+'\')"><img id="zoo'+vSeqVar+'" class="zoom"></div><div class="divBot"><input type="text" id="inp'+vSeqVar+'" class="inputA varInp" value="'+pNumeracao+'" onchange="changeInpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value)" onclick="select()"/><label id="lab'+vSeqVar+'" class="labelA varInp"></label><select id="sel'+vSeqVar+'" class="selectA varSel" onchange="changeSelVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur()"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Especial</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+vSeqVar+'" class="selectB varSel" onchange="changeExtVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this); blur()"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option></select></div></div></div>';
 }
 
 function adicionarVar(pSeq){
@@ -1120,13 +1224,13 @@ function adicionarVar(pSeq){
 	
 	var vItem = localStorage.getItem(pSeq); 
 	var aValores = vItem.split("|");
-	var aVariacoes = aValores[6].split(";");
+	var aVariacoes = aValores[7].split(";");
 	
 	if (aVariacoes == "") {
 		aVariacoes = "__";
 	} else {
 		aVariacoes.push("__");
-		aValores[6] = aVariacoes.join(';');
+		aValores[7] = aVariacoes.join(';');
 	}
 
 	localStorage.setItem(pSeq, aValores.join('|'));
@@ -1136,33 +1240,96 @@ function adicionarVar(pSeq){
 	divVariacao.innerHTML = divVariacao.innerHTML + '<div class="card divMais" id="divVarMais" onclick="adicionarVar(\''+pSeq+'\')"><img class="imgMais" src="Imagens/mais.png"></img></div>';
 }
 
-function changeInpVar(pSeq, pIndVar, pValue) {
+function removerVlrElementosVar(pSeqVar, pVariacao){
+	zoomOut(pSeqVar);
+
+	let vInput = document.getElementById("inp"+pSeqVar);
+		vInput.value = "";
+		vInput.setAttribute("value", "");
+	let vSelect = document.getElementById("sel"+pSeqVar);
+		vSelect.value = "";
+		vSelect.setAttribute("value", "");
+	let vExtra = document.getElementById("ext"+pSeqVar);
+		vExtra.value = "";
+		vExtra.setAttribute("value", "");
+	let vSelectExp = document.getElementById("ext"+pSeqVar);
+		vSelectExp.value = "";
+		vSelectExp.setAttribute("value", "");
+	removerOptions(selectExp);
+	document.getElementById("lab"+pSeqVar).innerHTML = "";
+}
+
+function removerVlrElementosVarInput(pSeqVar) {
+
+	zoomOut(pSeqVar);
+
+	let vSelect = document.getElementById("sel"+pSeqVar);
+		vSelect.value = "";
+		vSelect.setAttribute("value", "");
+	let vExtra = document.getElementById("ext"+pSeqVar);
+		vExtra.value = "";
+		vExtra.setAttribute("value", "");
+	let vSelectExp = document.getElementById("ext"+pSeqVar);
+		vSelectExp.value = "";
+		vSelectExp.setAttribute("value", "");
+
+	removerOptions(vSelectExp);
+
+	document.getElementById("lab"+pSeqVar).innerHTML = "";
+	
+}
+
+function changeExpVar(pSeq, pIndVar, pValue){
+
 	var pSeqVar = pSeq+'var'+pIndVar;
 	var vItem = localStorage.getItem(pSeq); 
 	var aValores = vItem.split("|");
-
-	var aVariacoes = aValores[6].split(";");
-
-	if (aVariacoes[pIndVar] == null){
-		return;}
+	var aVariacoes = aValores[7].split(";");
 	var aVariacao = aVariacoes[pIndVar].split("_");
 	
-	if (pValue == ''){
-		removerVlrElementosVar(pSeq, pSeqVar, aVariacao);
-	} else {
-		aVariacao[0] = pValue;
-		document.getElementById("inp"+pSeqVar).setAttribute('value', pValue);
-		aVariacao[1] = '';
-		aVariacao[2] = '';
-		document.getElementById("sel"+pSeqVar).setAttribute('value', "");
-		document.getElementById("ext"+pSeqVar).setAttribute('value', "");
-		document.getElementById("lab"+pSeqVar).innerHTML = "";
-		carregarCarta(pSeq, pSeqVar, aVariacao[0], aValores[1] + aValores[7]);
-	}
-	aVariacoes[pIndVar] = aVariacao.join('_');
-	aValores[6] = aVariacoes.join(';');
+	carregarExpansao(pSeqVar, pValue);
+	document.getElementById('exp'+pSeqVar).style.contentVisibility = 'hidden';
 	
+	aVariacao[1] = pValue;
+	
+	aVariacoes[pIndVar] = aVariacao.join('_');
+	aValores[7] = aVariacoes.join(';');
 	localStorage.setItem(pSeq, aValores.join('|'));
+	
+	carregarCartaImagemVariacao(pSeqVar, aVariacao, aValores[1] + aValores[8]);
+}
+
+function changeInpVar(pSeq, pIndVar, pValue) {
+	
+	var pSeqVar = pSeq+'var'+pIndVar;
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[7].split(";");
+	var aVariacao = aVariacoes[pIndVar].split("_");
+	
+	//if (pValue == ''){
+	removerVlrElementosVarInput(pSeqVar);
+	aVariacao[0] = pValue;	
+	document.getElementById("inp"+pSeqVar).setAttribute('value', pValue);
+	aVariacao[1] = '';
+	aVariacao[2] = '';
+	aVariacao[3] = '';
+	
+	let aValoresInput = pValue.split("/");
+	//var vCodigoTratado = zeroEsquerda(aValoresInput[0], 3);	
+	var vExpansaoTratada = zeroEsquerda(aValoresInput[1], 3);
+	const expansoes = ["182", "086"];
+	if (expansoes.includes(vExpansaoTratada)) {
+		tratarSelectExp(pSeqVar, vExpansaoTratada);
+	} else {
+		aVariacao[1] = traduzirCodigoExpansao(vExpansaoTratada);
+	}
+
+	aVariacoes[pIndVar] = aVariacao.join('_');
+	aValores[7] = aVariacoes.join(';');
+	localStorage.setItem(pSeq, aValores.join('|'));
+	
+	carregarCartaImagemVariacao(pSeqVar, aVariacao, aValores[1] + aValores[8]);
 }
 
 function changeExtVar(pSeq, pIndVar, pExtVar) {
@@ -1173,12 +1340,12 @@ function changeExtVar(pSeq, pIndVar, pExtVar) {
 	
 	var vItem = localStorage.getItem(pSeq); 
 	var aValores = vItem.split("|");
-	var aVariacoes = aValores[6].split(";");
+	var aVariacoes = aValores[7].split(";");
 	var aVariacao = aVariacoes[pIndVar].split("_");
 	
 	aVariacao[2] = pExtVar.value;
 	aVariacoes[pIndVar] = aVariacao.join('_');	
-	aValores[6] = aVariacoes.join(';');
+	aValores[7] = aVariacoes.join(';');
 	
 	localStorage.setItem(pSeq, aValores.join('|'));
 	
@@ -1198,12 +1365,12 @@ function changeSelVar(pSeq, pIndVar, pValue) {
 	
 	var vItem = localStorage.getItem(pSeq); 
 	var aValores = vItem.split("|");
-	var aVariacoes = aValores[6].split(";");
+	var aVariacoes = aValores[7].split(";");
 	var aVariacao = aVariacoes[pIndVar].split("_");
 	
 	aVariacao[1] = pValue;
 	aVariacoes[pIndVar] = aVariacao.join('_');	
-	aValores[6] = aVariacoes.join(';');
+	aValores[7] = aVariacoes.join(';');
 	
 	localStorage.setItem(pSeq, aValores.join('|'));
 	
@@ -1212,37 +1379,27 @@ function changeSelVar(pSeq, pIndVar, pValue) {
 
 function carregarVlrElementosVar(pSeqVar, pVariacao){
 	let vSelect = document.getElementById("sel"+pSeqVar);
-		vSelect.value = pVariacao[1];
-		vSelect.setAttribute('value', pVariacao[1]);
+		vSelect.value = pVariacao[2];
+		vSelect.setAttribute('value', pVariacao[2]);
 		vSelect.options[vSelect.options.selectedIndex].setAttribute('selected', 'true');
 	
 	let vExtra = document.getElementById("ext"+pSeqVar);
-		vExtra.value = pVariacao[2];
-		vExtra.setAttribute('value', pVariacao[2]);
+		vExtra.value = pVariacao[3];
+		vExtra.setAttribute('value', pVariacao[3]);
 		vExtra.options[vExtra.options.selectedIndex].setAttribute('selected', 'true');
 	
-	carregarRaridade(pSeqVar, pVariacao[1]);
+	carregarRaridade(pSeqVar, pVariacao[2]);
+	carregarExpansao(pSeqVar, pVariacao[1]);
 }
 
-function removerVlrElementosVar(pSeq, pSeqVar, pVariacao){
-	zoomOut(pSeqVar);
-	pVariacao[0] = "";
-	pVariacao[1] = "";
-	pVariacao[2] = "";
+function carregarCartaImagemVariacao(pSeq, pValores, pCodigo){
 
-	let vInput = document.getElementById("inp"+pSeqVar);
-		vInput.value = "";
-		vInput.setAttribute("value", "");
-	let vSelect = document.getElementById("sel"+pSeqVar);
-		vSelect.value = "";
-		vSelect.setAttribute("value", "");
-	let vExtra = document.getElementById("ext"+pSeqVar);
-		vExtra.value = "";
-		vExtra.setAttribute("value", "");
-	document.getElementById("lab"+pSeqVar).innerHTML = "";
-
-	carregarImagem(pSeq, pSeqVar, '', false);
+	if (!carregarCarta(pSeq, pValores[0], pValores[1])) {
+		carregarImagem(pSeq, pCodigo, true);
+	}
 }
+
+
 
 function ajustarTamFonte(){
 	var i = 0;
@@ -1357,7 +1514,7 @@ function tratarTxt(pFile){
 function importarDados(pDados){
 	if (pDados == null) {
 		return;	}
-		
+	
 	localStorage.clear();
 	Object.keys(pDados).forEach(function (k) {
 		localStorage.setItem(k, pDados[k]);
