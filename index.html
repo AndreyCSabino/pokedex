@@ -122,6 +122,7 @@ img.card-avatar{ width: 140px; position: relative; transition: all .2s ease-in-o
 img.expImage{ width: 23px; float: left;}
 .pagina{width:670px; display: inline-table;}
 .paginaTitulo{font-weight: 600; margin:25px 0 13px;}
+textarea{border-radius:3px; border: 1px solid lightgray; padding:10px;}
 
 .topmenu{height:70px; display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-end; font-size: 36px; font-weight: 600; font-family: var(--body-font);}
 
@@ -149,6 +150,7 @@ img.expImage{ width: 23px; float: left;}
 .selectB{border:0px solid red; height:15px; min-width:30px; font-size:11px; letter-spacing:-.3px; text-align:right; float:right; opacity: 1 !important; color:#000000 !important; display: none; }
 .selectExp{border:0px solid red; height:14px; min-width:23px; font-size:11px; letter-spacing:-.3px; text-align:left; float:left; opacity:1 !important; color:#000000 !important; field-sizing:content; background:url(''); }
 .butVar{border: 0px solid red; height: 21px; line-height: 0.3; font-family:'Montserrat'; font-size: 19px; font-weight: 500; position: absolute; left:0; bottom:22px; background:white; border-radius:3px;}
+.butObs{border: 0px solid red; height: 21px; font-family:'Montserrat'; font-size: 19px; font-weight: 500; position: absolute; right:0; bottom:22px; background:white; border-radius:3px; display: flex; align-items: end;}
 .butFechar{position: absolute; top: 5px; right: 7px; padding: 5px;}
 
 /*.desabilitado {pointer-events: none; touch-action: none; tabindex:-1; }*/
@@ -289,6 +291,7 @@ onload="gerar('linha')"
 		</div>
 
 		<div class="divVar" id="divVariacao" style="text-align: center;">      </div>
+		<div class="divVar" id="divObservacao" style="text-align: center;">      </div>
 
 		<div class="geral" id="divGeral"></div>
 
@@ -413,6 +416,8 @@ function changeDetalhamento(pValue){
 		change_css_rules(changeRuleFunc, ['img.variacao']);
 		changeRuleFunc = function(rule){rule.style.bottom = "22px";};
 		change_css_rules(changeRuleFunc, ['.butVar']);
+		changeRuleFunc = function(rule){rule.style.bottom = "22px";};
+		change_css_rules(changeRuleFunc, ['.butObs']);
 		gAlturaZoom = '-31.2%';
 		gLarguraZoom = '9%';
 		gAlturaZoomVar = '-29.3%';
@@ -433,6 +438,8 @@ function changeDetalhamento(pValue){
 			change_css_rules(changeRuleFunc, ['img.card-avatar','img.variacao']);
 			changeRuleFunc = function(rule){rule.style.bottom = "22px";};
 			change_css_rules(changeRuleFunc, ['.butVar']);
+			changeRuleFunc = function(rule){rule.style.bottom = "22px";};
+			change_css_rules(changeRuleFunc, ['.butObs']);
 			gAlturaZoom = '-24.3%';
 			gLarguraZoom = '5%';
 			gAlturaZoomVar = '-24.3%';
@@ -450,6 +457,8 @@ function changeDetalhamento(pValue){
 			change_css_rules(changeRuleFunc, ['img.card-avatar','img.variacao']);
 			changeRuleFunc = function(rule){rule.style.bottom = "0px";};
 			change_css_rules(changeRuleFunc, ['.butVar']);
+			changeRuleFunc = function(rule){rule.style.bottom = "0px";};
+			change_css_rules(changeRuleFunc, ['.butObs']);
 			gAlturaZoom = '-24.3%';
 			gLarguraZoom = '5%';
 			gAlturaZoomVar = '-24.3%';
@@ -603,13 +612,13 @@ function gerar(pDisposicao){
 	//ajustarTamFonte();
 }
 
-//"xSequencial" : "0xNome|1xCodigo|2xNumeracao|3xExpansao|4xRaridade|5xExtra|6xAdicionado|7xVariacoes|8xFormas" "0Numeracao;1xExpansao;2xRaridade;3xExtra"
+//"xSequencial" : "0xNome|1xCodigo|2xNumeracao|3xExpansao|4xRaridade|5xExtra|6xAdicionado|7xVariacoes|8xFormas|9xObservacoes" "0Numeracao;1xExpansao;2xRaridade;3xExtra;4xObservacoes"
 function gerarElementos(pElement, pSeq, pValores){
 	var vCodigo = '';
 	if (pValores[1] != '0000'){
 		vCodigo = 'Nº '+pValores[1];}
 
-	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">'+vCodigo+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn(\''+pSeq+'\')" onmouseout="zoomOut(\''+pSeq+'\')"/><img id="zoo'+pSeq+'" class="zoom"/></div><div class="divMid" id="mid'+pSeq+'"><div class="num">'+vCodigo+'</div>'+pValores[0]+'</div><button type="button" id="but'+pSeq+'" class="butVar" style="padding:5px; visibility: hidden;" onclick="clickVariacao(\''+pSeq+'\'); blur();">+</button><div class="divBot"><select id="exp'+pSeq+'" class="selectExp" onchange="changeExp('+pSeq+', this.value); blur();"></select><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[2]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur();"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur();"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option><option value="cosmofoil">Cosmo Foil</option><option value="mirrorfoil">Mirror Foil</option><option value="mirrorreversefoil">Mirror Reverse Foil</option><option value="pokeballfoil">Pokeball Foil</option><option value="masterballfoil">Masterball Foil</option></select></div></div></div>\n\n';
+	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner"><div class="divTop" id="top'+pSeq+'" style="visibility: hidden;">'+pValores[0]+'<div class="num">'+vCodigo+'</div></div><div style="display: inline-block;"><img id="img'+pSeq+'" class="card-avatar" loading="lazy" src="'+cImagemVazia+'" onclick="clickPokemon(\''+pSeq+'\')" onmousemove="zoomIn(\''+pSeq+'\')" onmouseout="zoomOut(\''+pSeq+'\')"/><img id="zoo'+pSeq+'" class="zoom"/></div><div class="divMid" id="mid'+pSeq+'"><div class="num">'+vCodigo+'</div>'+pValores[0]+'</div><button type="button" id="but'+pSeq+'" class="butVar" style="padding:5px; visibility: hidden;" onclick="clickVariacao(\''+pSeq+'\'); blur();">+</button><button type="button" id="obs'+pSeq+'" class="butObs" style="padding:5px; visibility: hidden;" onclick="clickObs(\''+pSeq+'\'); blur();">...</button><div class="divBot"><select id="exp'+pSeq+'" class="selectExp" onchange="changeExp('+pSeq+', this.value); blur();"></select><input type="text" id="inp'+pSeq+'" class="inputA" value="'+pValores[2]+'" onchange="changeInp('+pSeq+', this.value)" onclick="select()"/><label id="lab'+pSeq+'" class="labelA"></label><select id="sel'+pSeq+'" class="selectA" onchange="changeSel('+pSeq+', this.value); blur();"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+pSeq+'" class="selectB" onchange="changeExt('+pSeq+', this); blur();"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option><option value="pokeballfoil">Pokeball Foil</option><option value="masterballfoil">Masterball Foil</option></select></div></div></div>\n\n';
 }
 
 function tratarTitulos(pDisposicao, pSeparar){
@@ -717,6 +726,8 @@ function carregarCarta(pSeq, pNumeracao, pExpansao) {
 		document.getElementById("mid"+pSeq).style.display = "none";}
 	if (document.getElementById("but"+pSeq) != null){
 		document.getElementById("but"+pSeq).style.visibility = "visible";}
+	if (document.getElementById("obs"+pSeq) != null){
+		document.getElementById("obs"+pSeq).style.visibility = "visible";}
 		
 	var vImg = document.getElementById("img"+pSeq);	
 	
@@ -735,6 +746,8 @@ function carregarImagem(pSeq, pCodigo, pCarregar) {
 		document.getElementById("mid"+pSeq).style.display = "flex";}
 	if (document.getElementById("but"+pSeq) != null){
 		document.getElementById("but"+pSeq).style.visibility = "hidden";}
+	if (document.getElementById("obs"+pSeq) != null){
+		document.getElementById("obs"+pSeq).style.visibility = "visible";}
 
 	let vImagemElemento = document.getElementById('img'+pSeq);
 	
@@ -1151,15 +1164,83 @@ function zoomOut(pSeq) {
 	}
 }
 
+function clickObs(pSeq){
+	gQtdVariacoes = 0;
+	var vbutRect = document.getElementById("obs"+pSeq).getBoundingClientRect().top;
+	var vbodyRect = document.body.getBoundingClientRect().top;
+	var vResult = vbutRect - vbodyRect - 25;
+	var divObservacao = document.getElementById('divObservacao');	
+	
+	divObservacao.style.top = vResult+'px';
+	
+	if (divObservacao.style.display != 'block'){
+		divObservacao.style.display = "block";}
+	
+	var vItem = localStorage.getItem(pSeq);
+	var aValores = vItem.split("|");
+	
+	divObservacao.innerHTML = '<h4 style="margin: 0 0 10px 0;">Observações</h4><button class="butFechar" onclick="fecharObservacao(\''+pSeq+'\'); blur();">❌</button>   <textarea id="taObs'+pSeq+'" rows="5" cols="100">'+aValores[9]+'</textarea> ';
+}
+
+function fecharObservacao(pSeq){
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+
+	aValores[9] = document.getElementById("taObs"+pSeq).value;	
+
+	localStorage.setItem(pSeq, aValores.join('|'));
+	document.getElementById('divObservacao').style.display = "none";
+}
+
+function clickObsVar(pSeq, pIndVar){
+	var vSeqVar = pSeq+'var'+pIndVar;
+	var vbutRect = document.getElementById("obs"+vSeqVar).getBoundingClientRect().top;
+	var vbodyRect = document.body.getBoundingClientRect().top;
+	var vResult = vbutRect - vbodyRect - 25;
+	var divObservacao = document.getElementById('divObservacao');
+	
+	divObservacao.style.top = vResult+'px';
+	
+	if (divObservacao.style.display != 'block'){
+		divObservacao.style.display = "block";}
+	
+	var vItem = localStorage.getItem(pSeq);
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[7].split(";");
+	var aVariacao = aVariacoes[pIndVar].split("_");
+	
+	divObservacao.innerHTML = '<h4 style="margin: 0 0 10px 0;">Observações</h4><button id="butFecharObsVar" class="butFechar" onclick="fecharObservacaoVar(\''+pSeq+'\', \''+pIndVar+'\'); blur();">❌</button>   <textarea id="taObs'+vSeqVar+'" rows="5" cols="100">'+aVariacao[4]+'</textarea> ';
+}
+
+function fecharObservacaoVar(pSeq, pIndVar){
+	var vSeqVar = pSeq+'var'+pIndVar;
+	
+	var vItem = localStorage.getItem(pSeq); 
+	var aValores = vItem.split("|");
+	var aVariacoes = aValores[7].split(";");
+	var aVariacao = aVariacoes[pIndVar].split("_");
+
+	aVariacao[4] = document.getElementById("taObs"+vSeqVar).value;
+
+	aVariacoes[pIndVar] = aVariacao.join('_');
+	aValores[7] = aVariacoes.join(';');
+	localStorage.setItem(pSeq, aValores.join('|'));
+	
+
+	localStorage.setItem(pSeq, aValores.join('|'));
+	document.getElementById('divObservacao').style.display = "none";
+}
+
 // VARIACOES
 function clickVariacao(pSeq){
 	gQtdVariacoes = 0;
 	var vbutRect = document.getElementById("but"+pSeq).getBoundingClientRect().top;
 	var vbodyRect = document.body.getBoundingClientRect().top;
 	var vResult = vbutRect - vbodyRect - 25;
-	document.getElementById("divVariacao").style.top = vResult+'px';
+	var divVariacao = document.getElementById('divVariacao');
 	
-	var divVariacao = document.getElementById('divVariacao');	
+	divVariacao.style.top = vResult+'px';
+		
 	if (divVariacao.style.display != 'block'){
 		divVariacao.style.display = "block";}
 	
@@ -1193,7 +1274,7 @@ function clickVariacao(pSeq){
 // "0xRaridade;1xExtra;2Numeracao"
 function gerarVariacao(pElement, pSeq, pNumeracao){
 	var vSeqVar = pSeq+'var'+gQtdVariacoes;
-	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner NovaVar"><div id="top'+vSeqVar+'" style="visibility: hidden;"></div><div style="display: inline-block;"><img id="img'+vSeqVar+'" class="card-avatar variacao" loading="lazy" src="'+cImagemVazia+'" onmousemove="zoomInVar(\''+vSeqVar+'\')" onmouseout="zoomOut(\''+vSeqVar+'\')"><img id="zoo'+vSeqVar+'" class="zoom"></div><div class="divBot"><select id="exp'+vSeqVar+'" class="selectExp" onchange="changeExpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur();"></select><input type="text" id="inp'+vSeqVar+'" class="inputA varInp" value="'+pNumeracao+'" onchange="changeInpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value)" onclick="select()"/><label id="lab'+vSeqVar+'" class="labelA varInp"></label><select id="sel'+vSeqVar+'" class="selectA varSel" onchange="changeSelVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur()"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+vSeqVar+'" class="selectB varSel" onchange="changeExtVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this); blur()"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option><option value="cosmofoil">Cosmo Foil</option><option value="mirrorfoil">Mirror Foil</option><option value="mirrorreversefoil">Mirror Reverse Foil</option><option value="pokeballfoil">Pokeball Foil</option><option value="masterballfoil">Masterball Foil</option></select></div></div></div>';
+	pElement.innerHTML = pElement.innerHTML + '<div class="card"><div class="card-inner NovaVar"><div id="top'+vSeqVar+'" style="visibility: hidden;"></div><div style="display: inline-block;"><img id="img'+vSeqVar+'" class="card-avatar variacao" loading="lazy" src="'+cImagemVazia+'" onmousemove="zoomInVar(\''+vSeqVar+'\')" onmouseout="zoomOut(\''+vSeqVar+'\')"><img id="zoo'+vSeqVar+'" class="zoom"><button type="button" id="obs'+vSeqVar+'" class="butObs" style="padding:5px; visibility: hidden;" onclick="clickObsVar(\''+pSeq+'\', \''+gQtdVariacoes+'\'); blur();">...</button></div><div class="divBot"><select id="exp'+vSeqVar+'" class="selectExp" onchange="changeExpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur();"></select><input type="text" id="inp'+vSeqVar+'" class="inputA varInp" value="'+pNumeracao+'" onchange="changeInpVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value)" onclick="select()"/><label id="lab'+vSeqVar+'" class="labelA varInp"></label><select id="sel'+vSeqVar+'" class="selectA varSel" onchange="changeSelVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this.value); blur()"><option value=""></option><option value="comum">Comum</option><option value="incomum">Incomum</option><option value="rara">Rara</option><option value="promocional">Promocional</option><option value="raradupla">Rara Dupla</option><option value="raraultra">Rara Ultra</option><option value="ilustracaorara">Ilustração Rara</option><option value="ilustracaoraraespecial">Ilustração Rara Esp.</option><option value="rarasecreta">Rara Secreta</option></select><select id="ext'+vSeqVar+'" class="selectB varSel" onchange="changeExtVar(\''+pSeq+'\', \''+gQtdVariacoes+'\', this); blur()"><option value=""></option><option value="normal">Normal</option><option value="foil">Foil</option><option value="reversefoil">Reverse Foil</option><option value="pokeballfoil">Pokeball Foil</option><option value="masterballfoil">Masterball Foil</option></select></div></div></div>';
 }
 
 function fecharVariacao(pSeq){
@@ -1214,6 +1295,10 @@ function fecharVariacao(pSeq){
 
 	localStorage.setItem(pSeq, aValores.join('|'));
 	document.getElementById('divVariacao').style.display = "none";
+	
+	if (document.getElementById('divObservacao').style.display == 'block'){
+		document.getElementById('butFecharObsVar').click();
+	}
 }
 
 function adicionarVar(pSeq){
@@ -1227,9 +1312,9 @@ function adicionarVar(pSeq){
 	var aVariacoes = aValores[7].split(";");
 	
 	if (aVariacoes == "") {
-		aVariacoes = "__";
+		aVariacoes = "___";
 	} else {
-		aVariacoes.push("__");
+		aVariacoes.push("___");
 		aValores[7] = aVariacoes.join(';');
 	}
 
@@ -1314,6 +1399,7 @@ function changeInpVar(pSeq, pIndVar, pValue) {
 	aVariacao[1] = '';
 	aVariacao[2] = '';
 	aVariacao[3] = '';
+	aVariacao[4] = '';
 	
 	let aValoresInput = pValue.split("/");
 	//var vCodigoTratado = zeroEsquerda(aValoresInput[0], 3);	
